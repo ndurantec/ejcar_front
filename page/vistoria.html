@@ -18,14 +18,17 @@
         <div class="checkbox-personalizado">
             <input type="checkbox" id="boxstep">
             <label for="boxstep">Step</label>
+            <div id="erro-step" class="erro"></div>
         </div>
         <div class="checkbox-personalizado">
             <input type="checkbox" id="boxmacaco">
             <label for="boxmacaco">Macaco</label>
+            <div id="erro-macaco" class="erro"></div>
         </div>
         <div class="checkbox-personalizado">
             <input type="checkbox" id="boxchave">
             <label for="boxchave">Chave de Roda</label>
+            <div id="erro-chave" class="erro"></div>
         </div>
         
         <b>Outros itens:</b>
@@ -35,7 +38,7 @@
             <div class="termo-titulo">Termo de Aceitação</div>
             <div class="termo-texto">
                 Eu, <input type="text" class="campo-termo-input" placeholder="Nome do Proprietário" id="proprietario">, 
-                proprietário do veículo <input type="text" class="campo-termo-input" placeholder="Marca e Modelo do Veículo" id="marcaModelo">, 
+                proprietário do veículo <input type="text"class="campo-termo-input" placeholder="Marca e Modelo do Veículo" id="marcaModelo">, 
                 placa <input type="text" class="campo-termo-input" placeholder="Placa do Veículo" id="placa">, 
                 declaro, para todos os fins de direito, que concordo e atesto que o meu veículo 
                 entrou nas instalações da oficina EJCAR com os seguintes objetos em seu interior. 
@@ -61,6 +64,7 @@
         <div class="btn-container">
             <button class="btn-danger" id="concluirBtn">Concluir</button>
         </div>
+         <button class="btn-danger" id="botaoconcluir" onclick="validarCheckbox()">Concluir</button>
     </div>
     <script src="/script/vistoria.js"></script>
    </body>

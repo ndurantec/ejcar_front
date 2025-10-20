@@ -115,6 +115,14 @@ body {
     color: #333;
 }
 
+/* Mensagem de erro em vermelho abaixo dos checkboxes */
+.erro {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 4px;
+  min-height: 18px; /* espaço reservado para mensagem */
+}
+
 .formulario-com-borda textarea {
     width: 100%;
     padding: 16px;
@@ -160,7 +168,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* ESTILOS PARA OS CAMPOS NO TERMO */
 .campo-termo-input {
     display: inline-block;
     min-width: 150px;

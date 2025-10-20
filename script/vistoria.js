@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
     canvas.addEventListener('touchmove', draw, { passive: false });
     canvas.addEventListener('touchend', stopDrawing);
     
-    // Botão limpar
+                   // Botão limpar//
     clearBtn.addEventListener('click', clearSignature);
     
     window.addEventListener('resize', initCanvas);
@@ -91,4 +91,62 @@ document.addEventListener('DOMContentLoaded', function() {
     concluirBtn.addEventListener('click', function() {
         alert('Vistoria registrada com sucesso! Obrigado.');
     });
-});
+}); 
+
+const botaoConcluir = document.getElementById('botaoconcluir');
+function mostrarErro(idElemento, mensagem) {
+    document.getElementById(idElemento).textContent = mensagem;
+}
+
+function limparErros() {
+    mostrarErro('erro-step', '');
+    mostrarErro('erro-macaco', '');
+    mostrarErro('erro-chave', '');
+}
+
+function validarCheckbox() {
+    limparErros();
+
+    let ok = true;
+
+    let step = document.getElementById("boxstep").checked;
+    if (!step) {
+       mostrarErro('erro-step', 'Marque se possui step.');
+       ok = false;
+    } 
+
+    let macaco = document.getElementById("boxmacaco").checked;
+    if (!macaco) {
+       mostrarErro('erro-macaco', 'Verifique se possui macaco para continuar.');
+       ok = false;
+    } 
+
+    let chave = document.getElementById("boxchave").checked;
+    if (!chave) {
+       mostrarErro('erro-chave', 'Verifique se possui chave para continuar.');
+       ok = false;
+    } 
+
+    if (ok) {
+        alert('Formulário enviado com sucesso!');
+    }
+
+    return ok;
+}
+
+//    botaoConcluir.addEventListener('click', function() {
+//     let erros = [];
+
+//     const step = document.getElementById("boxstep").value;
+//     const macaco = document.getElementById("boxmacaco").value;
+//     const chave = document.getElementById("boxchave").value;
+
+//     console.log("step:", step);
+//     console.log("macaco:", macaco);
+//     console.log("chave:", chave);
+
+//     if (!step && !macaco && !chave) {
+//         erros.push("Selecione pelo menos um item do veículo (Step, Macaco ou Chave de Roda).");
+//     }
+
+// });
