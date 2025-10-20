@@ -12,7 +12,7 @@ botaoEntrar.addEventListener('click', function(evento) {
     console.log("Email:", email);
 
   if (usuario === '') {
-     document.getElementById('erro-usuario').textContent = '';
+     document.getElementById('erro-usuario').textContent = 'Preencha o usuário!';
        
   }
 
