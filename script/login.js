@@ -10,4 +10,20 @@ botaoEntrar.addEventListener('click', function(evento) {
     console.log("Usuário:", usuario);
     console.log("Senha:", senha);
     console.log("Email:", email);
+
+  if (usuario === '') {
+     document.getElementById('erro-usuario').textContent = '';
+       
+  }
+
+ 
+  if (senha === '') {
+     document.getElementById('erro-senha').textContent = 'Preencha a senha!';
+  }
+
+ 
+  if (email === '') {
+     document.getElementById('erro-email').textContent = 'Preencha o email!';
+  } 
+
 });
