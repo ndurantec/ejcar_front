@@ -7,7 +7,7 @@
         /* Estilos Gerais */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #000000;
+            background:#2c2c2c;
             display: flex;
             justify-content: center;
             align-items: center;
