@@ -32,6 +32,22 @@ body {
     letter-spacing: 1px;
 }
 
+.container h1 {
+    color: #d32f2f;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+.container hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #d32f2f, transparent);
+    margin: 20px 0 30px;
+}
+
 /* Grupos de formulário */
 .form-group {
     margin-bottom: 20px;

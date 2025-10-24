@@ -6,9 +6,9 @@
     <title>Login - Oficina Mecânica</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/asset/style/login.css">
-    
 </head>
 <body>
+    <body>
     <div class="login-container">
         <h1>Login</h1>
         <hr>
@@ -16,11 +16,13 @@
         <div class="input-group">
             <label for="usuario">Usuário:</label>
             <input type="text" id="usuario" placeholder="Digite seu nome de usuário">
+            <div id="erro-usuario" class="erro"></div>
         </div>
         
         <div class="input-group">
             <label for="senha">Senha:</label>
             <input type="password" id="senha" placeholder="Digite sua senha">
+             <div id="erro-senha" class="erro"></div>
         </div>
         
         <div class="input-group">
@@ -28,6 +30,7 @@
             <div class="email-input-container">
                 <i class="fas fa-envelope email-icon"></i>
                 <input type="email" id="email" class="email-input" placeholder="you@example.com">
+                 <div id="erro-email" class="erro"></div>
             </div>
         </div>
         
@@ -43,20 +46,6 @@
             <i class="fas fa-user-plus"></i> Criar Conta
         </a>
 
-        <div class="user-types">
-            <div class="user-type">
-                <i class="fas fa-user-shield"></i>
-                <span>Administrador</span>
-            </div>
-            <div class="user-type">
-                <i class="fas fa-user-tie"></i>
-                <span>Funcionário</span>
-            </div>
-            <div class="user-type">
-                <i class="fas fa-user"></i>
-                <span>Cliente</span>
-            </div>
         </div>
-    </div>
 <script src="/script/login.js"></script>
 </body>

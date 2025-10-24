@@ -203,4 +203,49 @@ hr {
         gap: 10px;
     }
     
+
+    /* Adicione estas otimizações DENTRO do seu bloco @media (max-width: 768px) */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 25px 20px; /* Redução que você já fez */
+        /* Novo: Em telas muito pequenas, use uma pequena margem no topo e base se não for centralizado perfeitamente */
+        /* Isso é útil se o body não estiver centralizando verticalmente */
+        /* margin: 20px auto; */ 
+        
+        /* Opcional: Remover a sombra em mobile para uma aparência mais limpa */
+        box-shadow: none; 
+    }
+    
+    h1 {
+        font-size: 28px; /* Redução que você já fez */
+    }
+
+    /* Ajuste o tamanho da fonte dos rótulos e links para melhorar a leitura */
+    .input-group label, .links {
+        font-size: 15px;
+    }
+
+    /* Reduz o padding dos botões para serem menos "altos" em telas menores */
+    .btn {
+        padding: 12px;
+    }
+
+    .user-types {
+        flex-direction: column; /* Ajuste que você já fez */
+        gap: 10px;
+    }
+    
+    .user-type {
+        flex-direction: row; /* Ajuste que você já fez */
+        gap: 10px;
+        /* Opcional: Faz com que cada opção de tipo de usuário ocupe 100% */
+        width: 100%; 
+        justify-content: flex-start;
+    }
+
+    /* Opcional: Adiciona padding ao body para evitar que o conteúdo encoste nas bordas laterais */
+    body {
+        padding: 10px; /* Garante que haja um pequeno espaço em volta do .login-container */
+    }
+}
 }

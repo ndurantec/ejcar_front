@@ -27,4 +27,6 @@ function cadastrar() {
             }
 
                   alert(nome + " - " + telefone + " - " + endereco + " - " + cep);
+
+                  alert("Sucesso! Operação concluída.");
 }
