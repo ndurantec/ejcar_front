@@ -150,7 +150,7 @@ body {
     
     /* === PROPRIEDADES PARA A IMAGEM DE FUNDO COBRIR A ÁREA === */
     /* CORREÇÃO APLICADA: Usei aspas simples no caminho da URL para resolver o problema com espaços e backslashes */
-    background-image: url('/asset/image/WhatsApp\ Image\ 2025-10-03\ at\ 11.10.03.jpeg');
+    background-image: url('/asset/image/backgroundejcar.jpeg');
     background-size: cover; /* Faz a imagem cobrir todo o fundo da div */
     background-position: center; /* Centraliza a imagem */
     background-repeat: no-repeat; /* Impede a repetição */
