@@ -163,3 +163,53 @@ function validarCheckbox() {
     return ok;
 }
 botaoConcluir.addEventListener('click', validarCheckbox);
+
+
+
+function concluir() {
+    fetch('http://127.0.0.1:8080/responsaveis', {
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
+
+function salvar() {
+    fetch('http://127.0.0.1:8080/responsaveis', {
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
+
+function deletar() {
+    fetch('http://127.0.0.1:8080/responsaveis', {
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
+
+function atualizar() {
+    fetch('http://127.0.0.1:8080/responsaveis', {
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
