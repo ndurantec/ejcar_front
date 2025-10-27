@@ -38,4 +38,20 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+
+
+function salvarprodut() {
+   
+
+
+    // Envia os dados via fetch
+    fetch('http://127.0.0.1:8080/responsaveis&#39;, { // altere a URL conforme seu endpoint
+       
+    }).then(response => {
            
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}        
