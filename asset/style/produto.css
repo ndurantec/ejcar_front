@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 :root {
     --primary-red: rgb(183, 28, 28);
     --light-red-shadow: rgba(183, 28, 28, 0.3);
     --light-red-focus: rgba(183, 28, 28, 0.2);
 }
-=======
+
  :root {
             --primary-red: rgb(183, 28, 28); /* NOVO VERMELHO */
             --light-red-shadow: rgba(183, 28, 28, 0.3); /* Sombra para o botão */
@@ -22,7 +21,6 @@
             padding: 20px;
             margin: 0;
         }
->>>>>>> 7ec932a6d00809125ea736be5561785a334b3c39
 
 /* --- GERAL --- */
 body {
