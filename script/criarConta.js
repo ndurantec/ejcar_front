@@ -89,77 +89,26 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const concluirBtn = document.getElementById('concluirBtn');
     concluirBtn.addEventListener('click', function() {
-        alert('Vistoria registrada com sucesso! Obrigado.');
+        alert('Conta registrada com sucesso!');
     });
 }); 
 
-const botaoConcluir = document.getElementById('botaoconcluir');
-    function mostrarErro(idElemento, mensagem) {
-    document.getElementById(idElemento).textContent = mensagem;
-}
+//function criarconta() {
+    //const nome = document.getElementById("usuario").value;
+    //const senha = document.getElementById("senha").value;
+    //const email = document.querySelector('input[type="email"]').value;
 
-function limparErros() {
-    mostrarErro('erro-step', '');
-    mostrarErro('erro-macaco', '');
-    mostrarErro('erro-chave', '');
-}
+    //if(nome === ""){
+        //alert("Você precisa preencher o campo nome");
+    //}
 
-function validarCheckbox() {
-    limparErros();
+    //if(senha === ""){
+      //alert("Você precisa preencher o campo senha");
+    //}
 
-    let step = document.getElementById("boxstep").checked;
-    let macaco = document.getElementById("boxmacaco").checked;
-    let chave = document.getElementById("boxchave").checked;
-    let descricao = document.getElementById("descricao").value;
-    let proprietario = document.getElementById("proprietario").value;
-    let marcaModelo = document.getElementById("marcaModelo").value;
-    let placa = document.getElementById("placa").value;
-    let termo = document.getElementById("termoAceite").checked;
+    //if(email === ""){
+        //alert("Você precisa preencher o campo email");
+    //}
 
-    console.log("Step:", step);
-    console.log("Macaco:", macaco);
-    console.log("Chave de Roda:", chave);
-    console.log("Outros itens:", descricao);
-    console.log("Proprietário:", proprietario);
-    console.log("Marca/Modelo:", marcaModelo);
-    console.log("Placa:", placa);
-    console.log("Termo aceito:", termo);
-
-    let ok = true;
-
-    if (!step) {
-        mostrarErro('erro-step', 'Verifique se possui step para continuar.');
-        ok = false;
-    } 
-
-    if (!macaco) {
-        mostrarErro('erro-macaco', 'Verifique se possui macaco para continuar.');
-        ok = false;
-    } 
-
-    if (!chave) {
-        mostrarErro('erro-chave', 'Verifique se possui chave para continuar.');
-        ok = false;
-    } 
-
-        if (descricao.trim() === '') {
-        mostrarErro('erro-descricao', 'Descreva os outros itens!');
-        ok = false;
-    }
-
-    if (ok) {
-        alert('Formulário enviado com sucesso!');
-    }
-
-    if (!termo) {
-        mostrarErro('erro-termo', 'Aceite os termos para continuar!');
-        ok = false;
-    }
-
-    if (ok) {
-        alert('✅ Vistoria concluída com sucesso!');
-    }
-
-    return ok;
-}
-botaoConcluir.addEventListener('click', validarCheckbox);
+    //alert(nome + " - " + senha + " - " + email);
+//}
