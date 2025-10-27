@@ -52,7 +52,7 @@ function salvarAgendamento() {
                 alert(dataEntrada + " - " + dataSaida + " - " + seguradoraSim + " - " + seguradoraNao )
    
     // Envia os dados via fetch
-    fetch('http://127.0.0.1:8080/responsaveis', { // altere a URL conforme seu endpoint
+    fetch('http://localhost:8080/agenda/cadagenda', { // altere a URL conforme seu endpoint
        
     }).then(response => {
            
@@ -67,7 +67,7 @@ function salvarAgendamento() {
 function alterarAgendamento() {
    
     // Envia os dados via fetch
-    fetch('http://127.0.0.1:8080/responsaveis', { // altere a URL conforme seu endpoint
+    fetch('http://localhost:8080/agenda/{id}', { // altere a URL conforme seu endpoint
        
     }).then(response => {
            
@@ -82,7 +82,7 @@ function alterarAgendamento() {
 function consultarAgendamento() {
    
     // Envia os dados via fetch
-    fetch('http://127.0.0.1:8080/responsaveis', { // altere a URL conforme seu endpoint
+    fetch('http://localhost:8080/agenda/agenda', { // altere a URL conforme seu endpoint
        
     }).then(response => {
            
@@ -97,7 +97,7 @@ function consultarAgendamento() {
 function deletarAgendamento() {
    
     // Envia os dados via fetch
-    fetch('http://127.0.0.1:8080/responsaveis', { // altere a URL conforme seu endpoint
+    fetch('http://localhost:8080/agenda/{id}', { // altere a URL conforme seu endpoint
        
     }).then(response => {
            

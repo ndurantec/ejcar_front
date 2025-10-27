@@ -64,7 +64,7 @@ function salvarResponsavel() {
                   alert("Sucesso! Operação concluída.");
 
     // Envia os dados via fetch
-    fetch('http://127.0.0.1:8080/responsaveis', { // altere a URL conforme seu endpoint
+    fetch('http://localhost:8080/responsavel/cadresp', { // altere a URL conforme seu endpoint
        
     }).then(response => {
            
@@ -79,7 +79,7 @@ function salvarResponsavel() {
 function alterarResponsavel() {
    
     // Envia os dados via fetch
-    fetch('http://127.0.0.1:8080/responsaveis', { // altere a URL conforme seu endpoint
+    fetch('http://localhost:8080/responsavel/{id}', { // altere a URL conforme seu endpoint
        
     }).then(response => {
            
@@ -94,7 +94,7 @@ function alterarResponsavel() {
 function consultarResponsavel() {
    
     // Envia os dados via fetch
-    fetch('http://127.0.0.1:8080/responsaveis', { // altere a URL conforme seu endpoint
+    fetch('http://localhost:8080/responsavel/listaresponsavel', { // altere a URL conforme seu endpoint
        
     }).then(response => {
            
@@ -109,7 +109,7 @@ function consultarResponsavel() {
 function deletarResponsavel() {
    
     // Envia os dados via fetch
-    fetch('http://127.0.0.1:8080/responsaveis', { // altere a URL conforme seu endpoint
+    fetch('http://localhost:8080/responsavel/{id}', { // altere a URL conforme seu endpoint
        
     }).then(response => {
            
