@@ -30,3 +30,72 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+function consultar() {
+   
+
+
+    // Envia os dados via fetch
+    fetch('http://127.0.0.1:8080/responsaveis', { // altere a URL conforme seu endpoint
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
+
+
+function salvar() {
+   
+
+
+    // Envia os dados via fetch
+    fetch('http://127.0.0.1:8080/responsaveis', { // altere a URL conforme seu endpoint
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
+
+
+function alterar() {
+   
+
+
+    // Envia os dados via fetch
+    fetch('http://127.0.0.1:8080/responsaveis', { // altere a URL conforme seu endpoint
+        
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
+
+
+function deletar() {
+   
+
+
+    // Envia os dados via fetch
+    fetch('http://127.0.0.1:8080/responsaveis' , { // altere a URL conforme seu endpoint
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
+
+
