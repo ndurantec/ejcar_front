@@ -179,6 +179,63 @@ function concluir() {
 }
 
 function salvar() {
+limparErros();
+
+    let step = document.getElementById("boxstep").checked;
+    let macaco = document.getElementById("boxmacaco").checked;
+    let chave = document.getElementById("boxchave").checked;
+    let descricao = document.getElementById("descricao").value;
+    let proprietario = document.getElementById("proprietario").value;
+    let marcaModelo = document.getElementById("marcaModelo").value;
+    let placa = document.getElementById("placa").value;
+    let termo = document.getElementById("termoAceite").checked;
+
+    console.log("Step:", step);
+    console.log("Macaco:", macaco);
+    console.log("Chave de Roda:", chave);
+    console.log("Outros itens:", descricao);
+    console.log("Proprietário:", proprietario);
+    console.log("Marca/Modelo:", marcaModelo);
+    console.log("Placa:", placa);
+    console.log("Termo aceito:", termo);
+
+    let ok = true;
+
+    if (!step) {
+        mostrarErro('erro-step', 'Verifique se possui step para continuar.');
+        ok = false;
+    } 
+
+    if (!macaco) {
+        mostrarErro('erro-macaco', 'Verifique se possui macaco para continuar.');
+        ok = false;
+    } 
+
+    if (!chave) {
+        mostrarErro('erro-chave', 'Verifique se possui chave para continuar.');
+        ok = false;
+    } 
+
+        if (descricao.trim() === '') {
+        mostrarErro('erro-descricao', 'Descreva os outros itens!');
+        ok = false;
+    }
+
+    if (ok) {
+        alert('Formulário enviado com sucesso!');
+    }
+
+    if (!termo) {
+        mostrarErro('erro-termo', 'Aceite os termos para continuar!');
+        ok = false;
+    }
+
+    if (ok) {
+        alert('✅ Vistoria concluída com sucesso!');
+    }
+
+    return ok;
+
     fetch('http://127.0.0.1:8080/responsaveis', {
        
     }).then(response => {
