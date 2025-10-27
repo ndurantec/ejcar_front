@@ -234,9 +234,8 @@ limparErros();
         alert('✅ Vistoria concluída com sucesso!');
     }
 
-    return ok;
 
-    fetch('http://127.0.0.1:8080/responsaveis', {
+    fetch('http://localhost:8080/vistoria/insert', {
        
     }).then(response => {
            
@@ -248,7 +247,7 @@ limparErros();
 }
 
 function deletar() {
-    fetch('http://127.0.0.1:8080/responsaveis', {
+    fetch('http://localhost:8080/vistoria/{id}', {
        
     }).then(response => {
            
@@ -260,7 +259,7 @@ function deletar() {
 }
 
 function atualizar() {
-    fetch('http://127.0.0.1:8080/responsaveis', {
+    fetch('http://localhost:8080/vistoria/{id}', {
        
     }).then(response => {
            
