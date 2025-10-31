@@ -1,0 +1,276 @@
+/* Variáveis de Cores */
+:root {
+    --primary-red: rgb(183, 28, 28); /* VERMELHO ESPECÍFICO */
+    --background-dark: #121212; /* Fundo principal (Preto) */
+    --text-light: #f5f5f5; /* Branco/Branco Sujo */
+}
+
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+}
+
+body {
+    background-color: var(--background-dark); 
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ----------------------- HEADER (VERMELHO SÓLIDO) ----------------------- */
+.header {
+    background-color: var(--primary-red); /* Fundo Vermelho */
+    padding: 5px 50px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Garante alinhamento vertical */
+    border-bottom: 3px solid var(--background-dark); 
+    flex-wrap: wrap;
+    position: relative;
+    height: 100px;
+}
+
+.logo-container {
+    position: relative;
+    cursor: default;
+    display: flex; 
+    flex-direction: row; /* Layout Horizontal */
+    align-items: center; /* Alinha verticalmente */
+    gap: 10px; /* Espaço entre a logo e o texto (que agora está escondido) */
+    height: 100%; 
+}
+
+/* NOVO ESTILO: Container para a Imagem da Logo (substitui o texto) */
+.logo-image-link {
+    display: block;
+    text-decoration: none;
+    line-height: 0; 
+}
+
+.logo-img {
+    background-color: transparent; 
+    height: 100px; /* *** AUMENTADO: Logo maior, ocupando a altura total do header (100px) *** */
+    width: auto; 
+    max-width: 100%;
+    display: block; 
+}
+/* FIM DO NOVO ESTILO DA LOGO */
+
+/* SUBTÍTULO: REMOVIDO */
+.logo-subtitle {
+    display: none; /* *** TEXTO ABAIXO DA LOGO FOI REMOVIDO/ESCONDIDO *** */
+}
+
+/* LINKS DE AUTENTICAÇÃO E ÍCONE HOME */
+.user-auth {
+    display: flex;
+    gap: 20px; 
+    align-items: center; 
+    height: 100%; 
+}
+
+/* ESTILO BÁSICO DOS LINKS */
+.user-auth a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 10px 18px; 
+    border-radius: 5px;
+    border: 2px solid transparent; 
+    font-size: 1.2rem; 
+    display: flex;
+    align-items: center;
+}
+
+/* ESTILO DO ÍCONE DA CASINHA SEPARADA */
+.home-icon {
+    font-size: 1.4rem; 
+    color: var(--text-light);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+/* HOVER: Fundo preto e borda/texto branco para contraste no header vermelho */
+.home-icon:hover {
+    color: var(--text-light);
+    background-color: var(--background-dark); 
+    border-color: var(--background-dark);
+    transform: scale(1.1); 
+}
+
+/* HOVER NOS LINKS: Fundo preto e borda/texto branco para contraste no header vermelho */
+.user-auth a:hover {
+    color: var(--text-light); 
+    background-color: var(--background-dark); 
+    border-color: var(--background-dark);
+    transform: scale(1.05);
+}
+
+/* ----------------------- SUB-NAVEGAÇÃO (BARRA DE OPÇÕES PRINCIPAIS) ----------------------- */
+.sub-nav {
+    background-color: #0d0d0d;
+    padding: 15px 50px;
+    border-bottom: 1px solid #333;
+}
+
+.main-options {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.main-options a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+}
+
+/* HOVER: Cor do texto e borda é o Vermelho Específico (barra superior) */
+.main-options a:hover {
+    color: var(--primary-red);
+    border-bottom-color: var(--primary-red);
+}
+
+/* ----------------------- MAIN CONTENT (ÁREA PRINCIPAL COM IMAGEM) ----------------------- */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 40px; 
+    text-align: center;
+    
+    /* === PROPRIEDADES PARA A IMAGEM DE FUNDO COBRIR A ÁREA === */
+    background-image: url('/asset/image/backgroundejcar.jpeg');
+    background-size: cover; /* Faz a imagem cobrir todo o fundo da div */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Impede a repetição */
+    
+    /* Overlay escuro para garantir que o texto seja legível */
+    background-blend-mode: darken;
+    background-color: rgba(0, 0, 0, 0.4); /* Cor de fundo misturada com a imagem */
+}
+
+/* Estilo da mensagem sobre a imagem */
+.hero-message {
+    font-size: 2.5rem;
+    color: var(--text-light);
+    font-weight: 700;
+    /* Sombra para destacar o texto sobre a imagem de fundo */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    max-width: 90%;
+}
+
+/* ----------------------- FOOTER (FUNDO VERMELHO SÓLIDO) ----------------------- */
+.footer {
+    background-color: var(--primary-red); /* Fundo Vermelho */
+    color: var(--text-light);
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-info {
+    display: flex;
+    gap: 40px; 
+}
+
+.footer-section h4 {
+    font-size: 1rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* ÍCONES SOCIAIS NA DIREITA */
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    text-decoration: none;
+}
+
+/* HOVER: Ícones brancos para contraste no fundo vermelho */
+.social-icons a:hover {
+    color: var(--text-light); 
+    transform: scale(1.15);
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .logo-img {
+        height: 80px; /* Logo um pouco menor em telas médias */
+    }
+    .user-auth a {
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+    .home-icon {
+        font-size: 1.2rem;
+    }
+    .hero-message {
+        font-size: 2rem;
+    }
+}
+@media (max-width: 768px) {
+    .header {
+        flex-direction: row; /* Volta para linha para melhor encaixe com links de auth */
+        height: 90px; /* Reduz levemente a altura máxima para mobile */
+        padding: 0 20px;
+    }
+    .logo-container {
+        flex-direction: row; /* Mantém a linha */
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+    .logo-img {
+        height: 70px; /* Tamanho mobile */
+    }
+    /* .logo-subtitle continua como display: none; */
+    
+    .user-auth {
+        justify-content: center;
+        height: auto; /* Ajuste para mobile */
+    }
+    .sub-nav {
+        padding: 10px 20px;
+    }
+    .main-options {
+        gap: 15px;
+    }
+    .hero-message {
+        font-size: 1.5rem;
+    }
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 20px;
+    }
+    .footer-info {
+        margin-bottom: 15px;
+        gap: 20px;
+    }
+    .social-icons {
+        justify-content: center;
+    }
+}

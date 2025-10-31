@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
     canvas.addEventListener('touchmove', draw, { passive: false });
     canvas.addEventListener('touchend', stopDrawing);
     
-    // Botão limpar
+                   // Botão limpar//
     clearBtn.addEventListener('click', clearSignature);
     
     window.addEventListener('resize', initCanvas);
@@ -91,4 +91,208 @@ document.addEventListener('DOMContentLoaded', function() {
     concluirBtn.addEventListener('click', function() {
         alert('Vistoria registrada com sucesso! Obrigado.');
     });
+}); 
+
+const botaoConcluir = document.getElementById('botaoconcluir');
+    function mostrarErro(idElemento, mensagem) {
+    document.getElementById(idElemento).textContent = mensagem;
+}
+
+function limparErros() {
+    mostrarErro('erro-step', '');
+    mostrarErro('erro-macaco', '');
+    mostrarErro('erro-chave', '');
+}
+
+function validarCheckbox() {
+    limparErros();
+
+    let step = document.getElementById("boxstep").checked;
+    let macaco = document.getElementById("boxmacaco").checked;
+    let chave = document.getElementById("boxchave").checked;
+    let descricao = document.getElementById("descricao").value;
+    let proprietario = document.getElementById("proprietario").value;
+    let marcaModelo = document.getElementById("marcaModelo").value;
+    let placa = document.getElementById("placa").value;
+    let termo = document.getElementById("termoAceite").checked;
+
+    console.log("Step:", step);
+    console.log("Macaco:", macaco);
+    console.log("Chave de Roda:", chave);
+    console.log("Outros itens:", descricao);
+    console.log("Proprietário:", proprietario);
+    console.log("Marca/Modelo:", marcaModelo);
+    console.log("Placa:", placa);
+    console.log("Termo aceito:", termo);
+
+    let ok = true;
+
+    if (!step) {
+        mostrarErro('erro-step', 'Verifique se possui step para continuar.');
+        ok = false;
+    } 
+
+    if (!macaco) {
+        mostrarErro('erro-macaco', 'Verifique se possui macaco para continuar.');
+        ok = false;
+    } 
+
+    if (!chave) {
+        mostrarErro('erro-chave', 'Verifique se possui chave para continuar.');
+        ok = false;
+    } 
+
+        if (descricao.trim() === '') {
+        mostrarErro('erro-descricao', 'Descreva os outros itens!');
+        ok = false;
+    }
+
+    if (ok) {
+        alert('Formulário enviado com sucesso!');
+    }
+
+    if (!termo) {
+        mostrarErro('erro-termo', 'Aceite os termos para continuar!');
+        ok = false;
+    }
+
+    if (ok) {
+        alert('✅ Vistoria concluída com sucesso!');
+    }
+
+    return ok;
+}
+
+                // Tornar labels editáveis
+document.querySelectorAll('.campo-termo-label').forEach(label => {
+    label.addEventListener('click', function() {
+        const tipo = this.id === 'proprietario' ? 'nome do proprietário' : 
+                    this.id === 'marcaModelo' ? 'marca e modelo' : 'placa';
+        
+        const valor = prompt(`Digite o ${tipo}:`);
+        if (valor && valor.trim()) {
+            this.textContent = valor.trim();
+        }
+    });
 });
+
+botaoConcluir.addEventListener('click', validarCheckbox);
+function salvar() {
+    const dados = {
+        step: document.getElementById("boxstep").checked,
+        macaco: document.getElementById("boxmacaco").checked,
+        chave: document.getElementById("boxchave").checked,
+        descricao: document.getElementById("descricao").value,
+        proprietario: document.getElementById("proprietario").textContent,
+        marcaModelo: document.getElementById("marcaModelo").textContent,
+        placa: document.getElementById("placa").textContent,
+        termoAceito: document.getElementById("termoAceite").checked
+    };
+
+}
+
+
+
+function concluir() {
+    fetch('http://127.0.0.1:8080/responsaveis', {
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
+
+function salvar() {
+limparErros();
+
+    let step = document.getElementById("boxstep").checked;
+    let macaco = document.getElementById("boxmacaco").checked;
+    let chave = document.getElementById("boxchave").checked;
+    let descricao = document.getElementById("descricao").value;
+    let proprietario = document.getElementById("proprietario").value;
+    let marcaModelo = document.getElementById("marcaModelo").value;
+    let placa = document.getElementById("placa").value;
+    let termo = document.getElementById("termoAceite").checked;
+
+    console.log("Step:", step);
+    console.log("Macaco:", macaco);
+    console.log("Chave de Roda:", chave);
+    console.log("Outros itens:", descricao);
+    console.log("Proprietário:", proprietario);
+    console.log("Marca/Modelo:", marcaModelo);
+    console.log("Placa:", placa);
+    console.log("Termo aceito:", termo);
+
+    let ok = true;
+
+    if (!step) {
+        mostrarErro('erro-step', 'Verifique se possui step para continuar.');
+        ok = false;
+    } 
+
+    if (!macaco) {
+        mostrarErro('erro-macaco', 'Verifique se possui macaco para continuar.');
+        ok = false;
+    } 
+
+    if (!chave) {
+        mostrarErro('erro-chave', 'Verifique se possui chave para continuar.');
+        ok = false;
+    } 
+
+        if (descricao.trim() === '') {
+        mostrarErro('erro-descricao', 'Descreva os outros itens!');
+        ok = false;
+    }
+
+    if (ok) {
+        alert('Formulário enviado com sucesso!');
+    }
+
+    if (!termo) {
+        mostrarErro('erro-termo', 'Aceite os termos para continuar!');
+        ok = false;
+    }
+
+    if (ok) {
+        alert('✅ Vistoria concluída com sucesso!');
+    }
+
+
+    fetch('http://localhost:8080/vistoria/insert', {
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
+
+function deletar() {
+    fetch('http://localhost:8080/vistoria/{id}', {
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
+
+function atualizar() {
+    fetch('http://localhost:8080/vistoria/{id}', {
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
