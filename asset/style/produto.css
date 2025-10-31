@@ -4,28 +4,10 @@
     --light-red-focus: rgba(183, 28, 28, 0.2);
 }
 
- :root {
-            --primary-red: rgb(183, 28, 28); /* NOVO VERMELHO */
-            --light-red-shadow: rgba(183, 28, 28, 0.3); /* Sombra para o botão */
-            --light-red-focus: rgba(183, 28, 28, 0.2); /* Foco para o input */
-        }
-       
-        /* Estilos Gerais */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background:#2c2c2c;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            margin: 0;
-        }
-
 /* --- GERAL --- */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #000;
+    background: #2c2c2c;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -107,25 +89,22 @@ body {
     z-index: 2;
 }
 
-/* === O TAMANHO PADRÃO DAS CAIXAS === */
 .input-value {
     border: 1px solid #ddd;
     border-radius: 6px;
-    padding: 10px 16px 10px 16px; /* mesmo padding em todos */
+    padding: 10px 16px;
     font-size: 16px;
     background-color: #f9f9f9;
     transition: all 0.3s ease;
     width: 100%;
     box-sizing: border-box;
-    height: 45px; /* altura fixa — igual em todas */
+    height: 45px;
 }
 
-/* input com símbolo R$ */
 .input-valor {
     padding-left: 40px;
 }
 
-/* --- EFEITOS DE FOCO E HOVER --- */
 .input-value:focus {
     outline: none;
     border-color: var(--primary-red);
@@ -138,7 +117,7 @@ body {
     box-shadow: 0 4px 15px var(--light-red-shadow);
 }
 
-/* --- TEXTAREA (somente descrição continua grande) --- */
+/* --- TEXTAREA --- */
 textarea {
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -159,52 +138,49 @@ textarea:focus {
     background-color: #fff;
 }
 
-/* --- BOTÃO --- */
+/* --- CAMPOS LADO A LADO --- */
+.form-row {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.form-row .form-group {
+    flex: 1;
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* --- BOTÕES --- */
 .button-container {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-top: 35px;
 }
 
-button[type="submit"] {
+.button-container button {
     background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red) 100%);
     color: white;
     border: none;
-    padding: 16px 40px;
+    padding: 12px 25px;
     border-radius: 10px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px var(--light-red-shadow);
     letter-spacing: 0.5px;
-    position: relative;
-    overflow: hidden;
-    width: 200px;
 }
 
-button[type="submit"]:hover {
+.button-container button:hover {
     transform: translateY(-3px);
     box-shadow: 0 7px 20px var(--light-red-shadow);
 }
 
-button[type="submit"]:active {
+.button-container button:active {
     transform: translateY(1px);
-}
-
-button[type="submit"]::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: 0.5s;
-}
-
-button[type="submit"]:hover::before {
-    left: 100%;
 }
 
 /* --- RESPONSIVO --- */
@@ -217,8 +193,12 @@ button[type="submit"]:hover::before {
         font-size: 26px;
     }
 
-    button[type="submit"] {
+    .form-row {
+        flex-direction: column;
+    }
+
+    .button-container button {
         width: 100%;
-        padding: 14px;
     }
 }
+
