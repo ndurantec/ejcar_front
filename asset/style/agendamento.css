@@ -77,21 +77,21 @@
         }
 
         .btn-danger {
-            background: linear-gradient(135deg, #d32f2f 0%, rgb(183, 28, 28) 100%);
+            background: #d32f2f;
             color: white;
             border: none;
-            padding: 16px 40px;
+            padding: 16px;
             border-radius: 10px;
             font-size: 18px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(183, 28, 28, 0.3);
-            letter-spacing: 0.5px;
             position: relative;
             overflow: hidden;
             width: 200px;
             text-align: center;
+            margin-left: 5px;
         }
 
         .btn-danger:hover {
@@ -101,21 +101,6 @@
 
         .btn-danger:active {
             transform: translateY(1px);
-        }
-
-        .btn-danger::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-
-        .btn-danger:hover::before {
-            left: 100%;
         }
 
         /* Estilo responsivo */
