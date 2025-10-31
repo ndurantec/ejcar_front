@@ -15,3 +15,79 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+
+
+function salvarTipo() {
+   
+
+
+    // Envia os dados via fetch
+    fetch('http://localhost:8080/tipo_servico/cadtiposervico', { // altere a URL conforme seu endpoint
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
+
+
+function deletarTipo() {
+   
+
+
+    // Envia os dados via fetch
+    fetch('http://localhost:8080/tipo_servico/{id}', { // altere a URL conforme seu endpoint
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
+
+
+function atualizarTipo() {
+   
+
+
+    // Envia os dados via fetch
+    fetch('http://localhost:8080/tipo_servico/{id}', { // altere a URL conforme seu endpoint
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
+
+
+function consultarTipo() {
+   
+
+
+    // Envia os dados via fetch
+    fetch('http://localhost:8080/tipo_servico/{id}', { // altere a URL conforme seu endpoint
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}
+
+
+
+
+
+
+
