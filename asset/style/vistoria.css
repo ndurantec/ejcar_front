@@ -340,3 +340,70 @@ body {
         margin-top: 1px;
     }
 }
+
+/* Estilos para o Combobox - Integração com formulário existente */
+#modalidade {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d32f2f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 16px;
+    padding-right: 45px;
+}
+
+#modalidade:focus {
+    outline: none;
+    border-color: #d32f2f;
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.2);
+    background-color: #fff;
+}
+
+#modalidade:hover {
+    border-color: #b71c1c;
+}
+
+/* Estilo para as opções do select */
+#modalidade option {
+    padding: 12px;
+    background-color: white;
+    color: #333;
+}
+
+#modalidade option:checked {
+    background-color: rgba(211, 47, 47, 0.1);
+    color: #d32f2f;
+    font-weight: 600;
+}
+
+#modalidade option:hover {
+    background-color: rgba(211, 47, 47, 0.05);
+}
+
+/* Estilo para o placeholder (opção desabilitada) */
+#modalidade option[disabled] {
+    color: #999;
+    font-style: italic;
+    background-color: #f9f9f9;
+}
+
+/* Estilo responsivo */
+@media (max-width: 768px) {
+    #modalidade {
+        padding: 14px;
+        font-size: 16px;
+        background-position: right 14px center;
+        padding-right: 40px;
+    }
+}
