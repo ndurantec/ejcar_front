@@ -13,7 +13,7 @@ body {
 /* Container principal do formulário */
 .container {
     width: 100%;
-    max-width: 600px;
+    max-width: 750px;
     background: white;
     padding: 40px;
     border-radius: 12px;
@@ -104,7 +104,7 @@ body {
     background: linear-gradient(135deg, #d32f2f 0%, rgb(183, 28, 28) 100%);
     color: white;
     border: none;
-    padding: 14px 30px;
+    padding: 14px ;
     border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
@@ -118,7 +118,15 @@ body {
     justify-content: center;
     width: 100%;
     max-width: 250px;
+    margin-left: 3px;
 }
+
+  .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 35px;
+            width: 100%;
+        }
 
 .button:hover {
     transform: translateY(-3px);
