@@ -162,7 +162,34 @@ function validarCheckbox() {
 
     return ok;
 }
+
+                // Tornar labels editáveis
+document.querySelectorAll('.campo-termo-label').forEach(label => {
+    label.addEventListener('click', function() {
+        const tipo = this.id === 'proprietario' ? 'nome do proprietário' : 
+                    this.id === 'marcaModelo' ? 'marca e modelo' : 'placa';
+        
+        const valor = prompt(`Digite o ${tipo}:`);
+        if (valor && valor.trim()) {
+            this.textContent = valor.trim();
+        }
+    });
+});
+
 botaoConcluir.addEventListener('click', validarCheckbox);
+function salvar() {
+    const dados = {
+        step: document.getElementById("boxstep").checked,
+        macaco: document.getElementById("boxmacaco").checked,
+        chave: document.getElementById("boxchave").checked,
+        descricao: document.getElementById("descricao").value,
+        proprietario: document.getElementById("proprietario").textContent,
+        marcaModelo: document.getElementById("marcaModelo").textContent,
+        placa: document.getElementById("placa").textContent,
+        termoAceito: document.getElementById("termoAceite").checked
+    };
+
+}
 
 
 
