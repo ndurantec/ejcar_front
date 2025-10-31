@@ -7,64 +7,85 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="/script/orcamento.js"></script>
     <link rel="stylesheet" href="/asset/style/orcamento..css">
-    
-    
+
+
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1><i class="fas fa-file-invoice-dollar"></i> Sistema de Orçamento</h1>
-            
+
         </div>
-       
-   
-                        <hr>
 
+        <form id="orcamento-form">
+            <hr>
 
-                <div class="form-group">
-                    <div class="input-group">
-                        <label for="chassi" class="form-label"><i class="fas fa-barcode"></i> Chassi:</label>
-                        <div class="input-icon">
-                            <i class="fas fa-barcode"></i>
-                            <input type="text" class="form-control" id="chassi" placeholder="Digite o número do chassi" name="chassi">
-                        </div>
-                    </div>
-                   
-                    <div class="input-group">
-                        <label for="placa" class="form-label"><i class="fas fa-car"></i> Placa:</label>
-                        <div class="input-icon">
-                            <i class="fas fa-car"></i>
-                            <input type="text" class="form-control" id="placa" placeholder="Digite a placa do veículo" name="placa">
-                        </div>
-                    </div>
-                </div>
-                <div class="product-row">
-                    <div class="product-input">
-                        <label for="product-name" class="form-label">Produto:</label>
-                        <div class="input-icon">
-                            <i class="fas fa-box"></i>
-                            <input type="text" class="form-control" id="produto" placeholder="Nome do produto ou serviço">
-                        </div>
-                    </div>
-                   
-                    <button type="button" class="btn btn-add" id="add-product-btn">
-                    Mais Produtos
-                    </button>
-                </div>
-               
+            <div class="form-group">
                 <div class="input-group">
-                    <label for="product-price" class="form-label">Mão de obra:</label>
+                    <label for="chassi" class="form-label"><i class="fas fa-barcode"></i> Chassi:</label>
+                    <div class="input-icon">
+                        <i class="fas fa-barcode"></i>
+                        <input type="text" class="form-control" id="chassi" placeholder="Digite o número do chassi" name="chassi">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="placa" class="form-label"><i class="fas fa-car"></i> Placa:</label>
+                    <div class="input-icon">
+                        <i class="fas fa-car"></i>
+                        <input type="text" class="form-control" id="placa" placeholder="Digite a placa do veículo" name="placa">
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-row" style="display: flex; gap: 10px; align-items: flex-end;">
+                <div class="product-input" style="flex: 2;">
+                    <label for="produto" class="form-label"><i class="fas fa-box"></i>Produto:</label>
+                    <div class="input-icon">
+                        
+                     <select name="tipo" id="tipo">
+                     <option value="tinta">Tinta</option>
+                     <option value="pneu">Pneu</option>
+                     <option value="oleo">Oleo</option>
+                     <option value="outros">Outros</option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="product-input" style="flex: 2;">
+                    <label for="servico" class="form-label"><i class="fas fa-wrench"></i>Serviço:</label>
+                    <div class="input-icon">
+                        <select name="tipo" id="tipo"class="form-control">
+                        <option value="desmontagem">Desmontagem</option>
+                        <option value="montagem">Montagem</option>
+                        <option value="chapeacao">Chapeação</option>
+                        <option value="preparacao">Preparação</option>
+                        <option value="polimento">Polimento</option>
+                        <option value="lavagem">Lavagem</option>
+                        <option value="Higienizacao">Higienização</option>
+                        <option value="outros">Outros</option>
+ </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="product-price" class="form-label">Valor:</label>
                     <div class="input-icon">
                         <i class="fas fa-dollar-sign"></i>
                         <input type="number" class="form-control" id="mao_de_obra" placeholder="0,00" min="0" step="0.01">
                     </div>
                 </div>
-               
-                <button type="button" class="btn btn-submit" onclick="finalizar()">
-                    <i class="fas fa-check-circle"></i> Finalizar Orçamento
+
+                <button type="button" class="btn btn-add" id="add-product-btn" style="flex: 0; white-space: nowrap;">
+                Adicionar
                 </button>
-            </form>
+            </div>
+            <button type="button" class="btn btn-submit" onclick="finalizar()">
+                <i class="fas fa-check-circle"></i> Finalizar Orçamento
+            </button>
+            <div class="form-group">
+</div>
+        </form>
         </div>
-    </div>
 </body>
-</html
+</html>

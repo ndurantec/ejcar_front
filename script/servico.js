@@ -33,10 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function consultar() {
    
-
-
-    // Envia os dados via fetch
-    fetch('http://localhost:8080/servico/listarServico', { // altere a URL conforme seu endpoint
+    fetch('http://localhost:8080/servico/listarServico', { 
        
     }).then(response => {
            
@@ -74,8 +71,7 @@ function salvar() {
 
     form.reset();
 
-    // Envia os dados via fetch
-    fetch('http://localhost:8080/servico/cadservico', { // altere a URL conforme seu endpoint
+    fetch('http://localhost:8080/servico/cadservico', { 
        
     }).then(response => {
            
@@ -89,10 +85,7 @@ function salvar() {
 
 function alterar() {
    
-
-
-    // Envia os dados via fetch
-    fetch('http://localhost:8080/servico/{id}', { // altere a URL conforme seu endpoint
+    fetch('http://localhost:8080/servico/{id}', { 
         
     }).then(response => {
            
@@ -106,10 +99,7 @@ function alterar() {
 
 function deletar() {
    
-
-
-    // Envia os dados via fetch
-    fetch('http://localhost:8080/servico/{id}' , { // altere a URL conforme seu endpoint
+    fetch('http://localhost:8080/servico/{id}' , { 
        
     }).then(response => {
            
