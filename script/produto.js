@@ -1,4 +1,10 @@
-document.addEventListener("DOMContentLoaded", function() {
+
+
+
+
+function salvarProduto() {
+
+  document.addEventListener("DOMContentLoaded", function() {
   var form = document.querySelector("form");
   var valorCampo = document.getElementById("valor");
   var descricaoCampo = document.getElementById("descricao");
@@ -37,15 +43,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 });
-
-
-
-function salvarprodut() {
    
 
 
     // Envia os dados via fetch
-    fetch('http://127.0.0.1:8080/responsaveis&#39;, { // altere a URL conforme seu endpoint
+    fetch("http://127.0.0.1:8080/responsaveis", { // altere a URL conforme seu endpoint
        
     }).then(response => {
            
@@ -54,4 +56,55 @@ function salvarprodut() {
     }).catch(error => {
        
     });
-}        
+} 
+
+function consultarProduto() {
+   
+
+
+    // Envia os dados via fetch
+    fetch("http://127.0.0.1:8080/responsaveis", { // altere a URL conforme seu endpoint
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}  
+
+function alterarProduto() {
+   
+
+
+    // Envia os dados via fetch
+    fetch("http://127.0.0.1:8080/responsaveis", { // altere a URL conforme seu endpoint
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+}  
+
+
+function deletarProduto() {
+   
+
+
+    // Envia os dados via fetch
+    fetch("http://127.0.0.1:8080/responsaveis", { // altere a URL conforme seu endpoint
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    });
+} 
+
+
