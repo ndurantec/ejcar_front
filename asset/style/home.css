@@ -25,47 +25,53 @@ body {
 /* ----------------------- HEADER (VERMELHO SÓLIDO) ----------------------- */
 .header {
     background-color: var(--primary-red); /* Fundo Vermelho */
-    padding: 25px 50px; 
+    padding: 5px 50px; 
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; /* Garante alinhamento vertical */
     border-bottom: 3px solid var(--background-dark); 
     flex-wrap: wrap;
     position: relative;
+    height: 100px;
 }
 
 .logo-container {
     position: relative;
     cursor: default;
-    display: flex;
-    flex-direction: column; 
-    align-items: flex-start;
+    display: flex; 
+    flex-direction: row; /* Layout Horizontal */
+    align-items: center; /* Alinha verticalmente */
+    gap: 10px; /* Espaço entre a logo e o texto (que agora está escondido) */
+    height: 100%; 
 }
 
-/* LOGO EJ CAR BEM GRANDE */
-.logo {
-    font-size: 3.5rem; 
-    font-weight: 800;
-    color: var(--text-light); 
-    text-decoration: none;
+/* NOVO ESTILO: Container para a Imagem da Logo (substitui o texto) */
+.logo-image-link {
     display: block;
-    margin-bottom: 4px; 
+    text-decoration: none;
+    line-height: 0; 
 }
 
-/* SUBTÍTULO VISÍVEL */
-.logo-subtitle {
+.logo-img {
+    background-color: transparent; 
+    height: 100px; /* *** AUMENTADO: Logo maior, ocupando a altura total do header (100px) *** */
+    width: auto; 
+    max-width: 100%;
     display: block; 
-    white-space: nowrap;
-    font-size: 1rem; 
-    font-weight: 500;
-    color: var(--text-light); 
+}
+/* FIM DO NOVO ESTILO DA LOGO */
+
+/* SUBTÍTULO: REMOVIDO */
+.logo-subtitle {
+    display: none; /* *** TEXTO ABAIXO DA LOGO FOI REMOVIDO/ESCONDIDO *** */
 }
 
 /* LINKS DE AUTENTICAÇÃO E ÍCONE HOME */
 .user-auth {
     display: flex;
     gap: 20px; 
-    align-items: center;
+    align-items: center; 
+    height: 100%; 
 }
 
 /* ESTILO BÁSICO DOS LINKS */
@@ -144,12 +150,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* Aumentei o padding para dar mais espaço à imagem */
     padding: 100px 40px; 
     text-align: center;
     
     /* === PROPRIEDADES PARA A IMAGEM DE FUNDO COBRIR A ÁREA === */
-    /* CORREÇÃO APLICADA: Usei aspas simples no caminho da URL para resolver o problema com espaços e backslashes */
     background-image: url('/asset/image/backgroundejcar.jpeg');
     background-size: cover; /* Faz a imagem cobrir todo o fundo da div */
     background-position: center; /* Centraliza a imagem */
@@ -213,11 +217,8 @@ body {
 
 /* Responsividade */
 @media (max-width: 992px) {
-    .logo {
-        font-size: 2.5rem;
-    }
-    .logo-subtitle {
-        font-size: 0.8rem;
+    .logo-img {
+        height: 80px; /* Logo um pouco menor em telas médias */
     }
     .user-auth a {
         font-size: 1rem;
@@ -232,12 +233,24 @@ body {
 }
 @media (max-width: 768px) {
     .header {
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: row; /* Volta para linha para melhor encaixe com links de auth */
+        height: 90px; /* Reduz levemente a altura máxima para mobile */
+        padding: 0 20px;
     }
+    .logo-container {
+        flex-direction: row; /* Mantém a linha */
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+    .logo-img {
+        height: 70px; /* Tamanho mobile */
+    }
+    /* .logo-subtitle continua como display: none; */
+    
     .user-auth {
-        width: 100%;
         justify-content: center;
+        height: auto; /* Ajuste para mobile */
     }
     .sub-nav {
         padding: 10px 20px;
@@ -251,9 +264,10 @@ body {
     .footer {
         flex-direction: column;
         text-align: center;
+        padding: 15px 20px;
     }
     .footer-info {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         gap: 20px;
     }
     .social-icons {
