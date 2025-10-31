@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cadastrar Veículo</title>
   <link rel="stylesheet" href="/asset/style/veiculo.css">
 </head>
+
 <body>
   <div class="container">
     <h2>CADASTRAR VEÍCULO</h2>
@@ -48,15 +50,28 @@
         </div>
       </div>
 
+      <!-- O serviço foi realizado? (igual ao de serviço) -->
+      <label>Tem seguradora?</label>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" id="sim" name="realizado" value="sim" required />
+          <label for="sim">Sim</label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" id="nao" name="realizado" value="nao" />
+          <label for="nao">Não</label>
+        </div>
+      </div>
+
       <div class="botoes">
         <button type="button" onclick="consultar()">Consultar</button>
         <button type="button" onclick="alterar()">Alterar</button>
         <button type="button" onclick="apagar()">Apagar</button>
-        
       </div>
     </form>
   </div>
 
   <script src="/script/veiculo.js"></script>
 </body>
+
 </html>
