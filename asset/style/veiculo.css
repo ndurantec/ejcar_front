@@ -1,0 +1,147 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.container {
+  width: 95%;
+  max-width: 600px;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  border-top: 5px solid #d32f2f;
+  margin: 0 auto;
+}
+
+.container h2 {
+  color: #d32f2f;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.linha-vermelha {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #d32f2f, transparent);
+  margin: 20px 0 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: block;
+  color: #333;
+  margin-top: 22px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+input[type="text"],
+input[type="date"] {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 16px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+  outline: none;
+  border-color: #d32f2f;
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.2);
+  background-color: #fff;
+}
+
+input[type="text"]::placeholder {
+  color: #999;
+}
+
+/* ==== CAMPOS LADO A LADO ==== */
+.linha {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.campo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==== BOTÕES ==== */
+.botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.botoes button {
+  background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(183, 28, 28, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.botoes button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(183, 28, 28, 0.4);
+}
+
+.botoes button:active {
+  transform: translateY(1px);
+}
+
+/* ==== RESPONSIVIDADE ==== */
+@media (max-width: 768px) {
+  .container {
+    padding: 25px 20px;
+    width: 95%;
+  }
+
+  .container h2 {
+    font-size: 26px;
+  }
+
+  .linha {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .botoes {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .botoes button {
+    width: 100%;
+  }
+}
