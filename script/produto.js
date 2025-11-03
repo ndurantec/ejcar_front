@@ -1,8 +1,41 @@
+function limparErros() {
+    let erros = document.querySelectorAll('.erro');
+    erros.forEach(e => e.textContent = '');
+}
 
+function coletarDados() {
+    const canvas = document.getElementById('signaturePad');
+  
+    return {
+        nome: document.getElementById("nome").value.trim(),
+        cpf: document.getElementById("cpf").value.trim()
+    };
+}
 
+function validarFormulario() {
+    //limparErros();
 
+    // Captura dos valores do formulário
+    let nome = document.getElementById("nome").value;
+    let cpf = document.getElementById("cpf").value;
+    
+    let ok = true;
+
+    if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
+    if (!cpf) { mostrarErro('erro-cpf', 'Verifique se possui cpf para continuar.'); ok = false; }
+    
+
+    return ok;
+}
 
 function salvarProduto() {
+
+   limparErros();
+
+   if (!validarFormulario()) return;
+
+   const dados = coletarDados();
+    //console.log("Enviando criar conta:", dados);
 
   document.addEventListener("DOMContentLoaded", function() {
   var form = document.querySelector("form");
