@@ -158,3 +158,8 @@ body {
         max-width: 100%;
     }
 }
+
+/* A propriedade 'position: relative;' deve ser adicionada ao <body> para que o botão fique fixo no canto */
+body {
+    position: relative;
+}
