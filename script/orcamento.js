@@ -121,8 +121,31 @@ function cadastrarorcamento() {
 
 function consultarorcamento(){
 
+        
+
+        limparErros();
+    
+    if (!validarFormulario()) return;
+
+    const dados = coletarDados();
+
+    
 
               fetch("http://localhost:8080/orcamento/{id}", 
+
+                {
+        
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
+
+    }
        
       ).then(response => {
            
@@ -135,8 +158,27 @@ function consultarorcamento(){
 
 function deletar(){
 
+        limparErros();
+    
+    if (!validarFormulario()) return;
+
+    const dados = coletarDados();
 
               fetch("http://localhost:8080/orcamento/{id}", 
+
+                {
+        
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
+
+    }
        
       ).then(response => {
            
@@ -149,7 +191,22 @@ function deletar(){
 
 function atualizar(){
 
+
               fetch("http://localhost:8080/orcamento/{id}", 
+
+                {
+        
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
+
+    }
        
       ).then(response => {
            
