@@ -1,187 +1,189 @@
-    
-/* Estilos Gerais */
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        padding: 20px;
-        margin: 0;
-    }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+    display: block;
+    padding: 15px;
+    margin: 0;
+    min-height: 100vh;
+}
 
-    .formulario-com-borda {
-        width: 100%;
-        max-width: 600px;
-        background: white;
-        padding: 40px;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-        border-top: 5px solid #d32f2f;
-    }
+.formulario-com-borda {
+    width: 95%;
+    max-width: 1000px; /* Reduzido de 1200px */
+    background: white;
+    padding: 25px; /* Reduzido de 40px */
+    border-radius: 10px; /* Reduzido de 12px */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Reduzido */
+    border-top: 4px solid #d32f2f; /* Reduzido de 5px */
+    margin: 0 auto;
+}
 
-    /* Título e Divisor */
-    .formulario-com-borda h1 {
-        color: #d32f2f;
-        text-align: center;
-        margin-bottom: 15px;
-        font-weight: 700;
-        font-size: 32px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-    }
+.formulario-com-borda h1 {
+    color: #d32f2f;
+    text-align: center;
+    margin-bottom: 12px; /* Reduzido de 15px */
+    font-weight: 700;
+    font-size: 26px; /* Reduzido de 32px */
+    letter-spacing: 0.5px; /* Reduzido de 1px */
+    text-transform: uppercase;
+}
 
-    .formulario-com-borda hr {
-        border: none;
-        height: 2px;
-        background: linear-gradient(to right, transparent, #d32f2f, transparent);
-        margin: 20px 0 30px;
-    }
+.formulario-com-borda hr {
+    border: none;
+    height: 1px; /* Reduzido de 2px */
+    background: linear-gradient(to right, transparent, #d32f2f, transparent);
+    margin: 15px 0 20px; /* Reduzido */
+}
 
-    /* Labels dos Campos */
-    .formulario-com-borda b {
-        display: block;
-        color: #333;
-        margin-top: 22px;
-        margin-bottom: 10px;
-        font-weight: 600;
-        font-size: 16px;
-    }
+.formulario-com-borda b {
+    display: block;
+    color: #333;
+    margin-top: 18px; /* Reduzido de 22px */
+    margin-bottom: 8px; /* Reduzido de 10px */
+    font-weight: 600;
+    font-size: 15px; /* Reduzido de 16px */
+}
 
-    /* Campos de Input */
-    .formulario-com-borda .form-control {
-        border: 1px solid #ddd;
-        border-radius: 6px;
-        padding: 16px;
-        font-size: 16px;
-        background-color: #f9f9f9;
-        transition: all 0.3s ease;
-        width: 100%;
-        box-sizing: border-box;
-    }
+.formulario-com-borda .form-control {
+    border: 1px solid #ddd;
+    border-radius: 5px; /* Reduzido de 6px */
+    padding: 12px; /* Reduzido de 16px */
+    font-size: 14px; /* Reduzido de 16px */
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-    .formulario-com-borda .form-control:focus {
-        outline: none;
-        border-color: #d32f2f;
-        box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.2);
-        background-color: #fff;
-    }
-
-    .formulario-com-borda .form-control::placeholder {
-        color: #999;
-    }
-
-    /* Container do Email com Ícone */
-    .formulario-com-borda #email {
-        display: block;
-        width: 100%;
-        margin: 15px 0;
-        position: relative;
-    }
-
-    .fa-envelope {
-        position: absolute;
-        left: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #999;
-        z-index: 2;
-    }
-
-    .formulario-com-borda #email input {
-        padding-left: 40px;
-    }
-
-    /* Container do Botão Centralizado */
-    .btn-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 35px;
-        width: 100%;
-    }
-
-    /* Botão Estilizado */
-    .btn-danger {
-        background: linear-gradient(135deg, #d32f2f 0%, rgb(183, 28, 28) 100%);
-        color: white;
-        border: none;
-        padding: 16px 40px;
-        border-radius: 10px;
-        font-size: 18px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(183, 28, 28, 0.3);
-        letter-spacing: 0.5px;
-        position: relative;
-        overflow: hidden;
-        width: 200px;
-        text-align: center;
-    }
-
-    .btn-danger:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 7px 20px rgba(183, 28, 28, 0.4);
-    }
-
-    .btn-danger:active {
-        transform: translateY(1px);
-    }
-
-    .btn-danger::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: 0.5s;
-    }
-
-    .btn-danger:hover::before {
-        left: 100%;
-    }
-
-    /* Estilo responsivo */
-    @media (max-width: 768px) {
-        .formulario-com-borda {
-            padding: 25px 20px;
-        }
-        
-        .formulario-com-borda h1 {
-            font-size: 26px;
-        }
-        
-        .btn-danger {
-            width: 100%;
-            padding: 14px;
-        }
-    }
-    
-.signature-container {
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 25px 0;
+.formulario-com-borda .form-control:focus {
+    outline: none;
+    border-color: #d32f2f;
+    box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.2); /* Reduzido de 3px */
     background-color: #fff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.formulario-com-borda .form-control::placeholder {
+    color: #999;
+}
+
+.email-container {
+    display: block;
+    width: 100%;
+    margin: 12px 0; /* Reduzido de 15px */
+    position: relative;
+}
+
+.fa-envelope {
+    position: absolute;
+    left: 12px; /* Reduzido de 15px */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    z-index: 2;
+}
+
+.email-container input {
+    padding-left: 35px; /* Reduzido de 40px */
+}
+
+.senha-container {
+    position: relative;
+    width: 100%;
+}
+
+#toggleSenha, #toggleConfirme {
+    position: absolute;
+    right: 10px; /* Reduzido de 12px */
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 14px; /* Reduzido de 16px */
+    cursor: pointer;
+    padding: 6px; /* Reduzido de 8px */
+    border-radius: 3px; /* Reduzido de 4px */
+    transition: all 0.3s ease;
+}
+
+#toggleSenha:hover, #toggleConfirme:hover {
+    background-color: rgba(211, 47, 47, 0.1);
+    color: #d32f2f;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px; /* Reduzido de 35px */
+    width: 100%;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+    color: white;
+    border: none;
+    padding: 14px 30px; /* Reduzido de 16px 40px */
+    border-radius: 8px; /* Reduzido de 10px */
+    font-size: 16px; /* Reduzido de 18px */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(183, 28, 28, 0.3); /* Reduzido */
+    letter-spacing: 0.3px; /* Reduzido de 0.5px */
+    position: relative;
+    overflow: hidden;
+    width: 180px; /* Reduzido de 200px */
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px); /* Reduzido de -3px */
+    box-shadow: 0 5px 15px rgba(183, 28, 28, 0.4); /* Reduzido */
+}
+
+.btn-danger:active {
+    transform: translateY(1px);
+}
+
+.btn-danger::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn-danger:hover::before {
+    left: 100%;
+}
+
+.signature-container {
+    border: 1px solid #ddd; /* Reduzido de 2px */
+    border-radius: 8px; /* Reduzido de 10px */
+    padding: 15px; /* Reduzido de 20px */
+    margin: 20px 0; /* Reduzido de 25px */
+    background-color: #fff;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08); /* Reduzido */
 }
 
 .signature-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 12px; /* Reduzido de 15px */
     border-bottom: 1px solid #eee;
-    padding-bottom: 12px;
+    padding-bottom: 10px; /* Reduzido de 12px */
 }
 
 .signature-header h3 {
     margin: 0;
     color: #d32f2f;
-    font-size: 20px;
+    font-size: 18px; /* Reduzido de 20px */
     font-weight: bold;
 }
 
@@ -189,10 +191,10 @@
     background-color: #000;
     color: white;
     border: none;
-    padding: 10px 18px;
-    border-radius: 6px;
+    padding: 8px 15px; /* Reduzido de 10px 18px */
+    border-radius: 5px; /* Reduzido de 6px */
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px; /* Reduzido de 14px */
     transition: background-color 0.3s;
     font-weight: 500;
 }
@@ -202,18 +204,107 @@
 }
 
 #signaturePad {
-    border: 2px dashed #ccc;
-    border-radius: 8px;
+    border: 1px dashed #ccc; /* Reduzido de 2px */
+    border-radius: 6px; /* Reduzido de 8px */
     background-color: #f9f9f9;
     touch-action: none;
     width: 100%;
-    height: 200px;
+    height: 180px; /* Reduzido de 200px */
     cursor: crosshair;
 }
 
 .signature-footer {
-    margin-top: 12px;
+    margin-top: 10px; /* Reduzido de 12px */
     color: #666;
     font-style: italic;
     text-align: center;
+    font-size: 13px; /* Adicionado para reduzir */
+}
+
+.erro {
+    color: #d32f2f;
+    font-size: 13px; /* Reduzido de 14px */
+    margin-top: 4px; /* Reduzido de 5px */
+    min-height: 16px; /* Reduzido de 18px */
+    font-weight: 600;
+    width: 100%;
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* Reduzido de 15px */
+    }
+    
+    .formulario-com-borda {
+        padding: 20px 15px; /* Reduzido */
+        width: 95%;
+    }
+    
+    .formulario-com-borda h1 {
+        font-size: 22px; /* Reduzido de 26px */
+    }
+    
+    .btn-danger {
+        width: 100%;
+        padding: 12px; /* Reduzido de 14px */
+    }
+    
+    .signature-header {
+        flex-direction: column;
+        gap: 8px; /* Reduzido de 10px */
+    }
+    
+    .signature-header h3 {
+        text-align: center;
+    }
+    
+    #signaturePad {
+        height: 150px; /* Reduzido para mobile */
+    }
+}
+body {
+    position: relative;
+}
+
+.btn-back-home {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: #d32f2f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(183, 28, 28, 0.4);
+}
+
+.btn-back-home:hover {
+    background: #b71c1c;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(183, 28, 28, 0.5);
+}
+
+.btn-back-home:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .btn-back-home {
+        top: 10px;
+        left: 10px;
+        padding: 8px 14px;
+        font-size: 14px;
+    }
 }
