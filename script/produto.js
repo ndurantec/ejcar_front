@@ -37,15 +37,14 @@ function salvarProduto() {
    const dados = coletarDados();
     //console.log("Enviando criar conta:", dados);
 
-  document.addEventListener("DOMContentLoaded", function() {
+  
   var form = document.querySelector("form");
   var valorCampo = document.getElementById("valor");
   var descricaoCampo = document.getElementById("descricao");
   var erroValor = document.querySelector(".erro-valor");
   var erroDescricao = document.querySelector(".erro-descricao");
 
-  form.addEventListener("submit", function(event) {
-    event.preventDefault();
+  
 
     // Limpa mensagens anteriores
     erroValor.textContent = "";
@@ -74,14 +73,29 @@ function salvarProduto() {
       alert("Produto cadastrado com sucesso!");
       form.reset();
     }
-  });
-});
+  
+     var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
+
    
 
 
     // Envia os dados via fetch
     fetch("http://127.0.0.1:8080/responsaveis", { // altere a URL conforme seu endpoint
        
+
+    
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
+
     }).then(response => {
            
     }).then(data => {
@@ -91,9 +105,14 @@ function salvarProduto() {
     });
 } 
 
+     var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
+
 function consultarProduto() {
    
-
+     
+        
 
     // Envia os dados via fetch
     fetch("http://127.0.0.1:8080/responsaveis", { // altere a URL conforme seu endpoint
