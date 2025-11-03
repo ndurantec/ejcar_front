@@ -216,7 +216,27 @@ function concluir() {
 }
 
 function salvar() {
+
+    limparErros();
+
+    if (!validarFormulario()) return;
+
+    const dados = coletarDados();
+
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
+
     fetch('http://127.0.0.1:8080/responsaveis', {
+
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
        
     }).then(response => {
            
@@ -228,7 +248,27 @@ function salvar() {
 }
 
 function deletar() {
+    
+    limparErros();
+
+    if (!validarFormulario()) return;
+
+    const dados = coletarDados();
+
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
+
     fetch('http://127.0.0.1:8080/responsaveis', {
+
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers        
        
     }).then(response => {
            
