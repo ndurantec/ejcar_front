@@ -60,7 +60,7 @@ function coletarDados() {
 }
 
 
-function consultar() {
+function continuar() {
 
   limparErros();
 
@@ -68,8 +68,21 @@ function consultar() {
 
   const dados = coletarDados();
 
-   
+  var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
+
     fetch('http://localhost:8080/servico/listarServico', { 
+
+      method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
        
     }).then(response => {
            
@@ -83,11 +96,12 @@ function consultar() {
 
 function salvar() {
 
-   limparErros();
+  limparErros();
 
   if (!validarFormulario()) return;
 
   const dados = coletarDados();
+
 
    let funcionario = document.getElementById("funcionario").value.trim();
     let dataServico = document.getElementById("data").value;
@@ -128,11 +142,6 @@ function salvar() {
 
 function alterar() {
 
-  limparErros();
-
-  if (!validarFormulario()) return;
-
-  const dados = coletarDados();
    
     fetch('http://localhost:8080/servico/{id}', { 
         
@@ -148,11 +157,6 @@ function alterar() {
 
 function deletar() {
 
-  limparErros();
-
-  if (!validarFormulario()) return;
-
-  const dados = coletarDados();
    
     fetch('http://localhost:8080/servico/{id}' , { 
        
