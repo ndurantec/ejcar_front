@@ -212,11 +212,22 @@ function concluir() {
 
     const dados = coletarDados();
 
-
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
 
     if (validarCheckbox()) {
         fetch('http://127.0.0.1:8080/responsaveis', {
            
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
         }).then(response => {
                
         }).then(data => {
