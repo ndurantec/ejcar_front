@@ -108,9 +108,26 @@ function salvarResponsavel() {
 
                   alert("Sucesso! Operação concluída.");
 
+
+    var headers = new Headers();
+
+    headers.append("Content-Type", "application/json");
+
+    headers.append("Access-Control-Allow-Origin", "*");
+
+
     // Envia os dados via fetch
     fetch('http://localhost:8080/responsavel/cadresp', { // altere a URL conforme seu endpoint
-       
+    
+     method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers  
+
     }).then(response => {
            
     }).then(data => {
