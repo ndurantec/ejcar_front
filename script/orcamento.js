@@ -66,6 +66,11 @@ function limparErros() {
 }  
 function cadastrarorcamento() {
 
+         var headers = new Headers();
+         headers.append("Content-Type", "application/json");
+         headers.append("Access-Control-Allow-Origin", "*");
+
+
        const chassi = document.getElementById("chassi").value;
 
        const placa = document.getElementById("placa").value;
@@ -91,8 +96,20 @@ function cadastrarorcamento() {
                 alert("Você precisa preencher o campo mao de obra");
         }
         
-      fetch("http://localhost:8080/orcamento/cadorca", 
-       
+      fetch("http://localhost:8080/orcamento/cadorca",{
+
+         
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
+
+}
       ).then(response => {
            
       }).then(data => {
@@ -104,13 +121,31 @@ function cadastrarorcamento() {
 
 function consultarorcamento(){
 
+        
+
         limparErros();
     
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
 
+    
+
               fetch("http://localhost:8080/orcamento/{id}", 
+
+                {
+        
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
+
+    }
        
       ).then(response => {
            
@@ -130,6 +165,20 @@ function deletar(){
     const dados = coletarDados();
 
               fetch("http://localhost:8080/orcamento/{id}", 
+
+                {
+        
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
+
+    }
        
       ).then(response => {
            
@@ -142,13 +191,22 @@ function deletar(){
 
 function atualizar(){
 
-        limparErros();
-    
-    if (!validarFormulario()) return;
-
-    const dados = coletarDados();
 
               fetch("http://localhost:8080/orcamento/{id}", 
+
+                {
+        
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
+
+    }
        
       ).then(response => {
            

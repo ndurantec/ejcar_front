@@ -79,7 +79,7 @@ function salvarResponsavel() {
 
 
    
-     const nome = document.getElementById("name").value;
+    const nome = document.getElementById("name").value;
 
     const telefone = document.getElementById("telefone").value;
 
@@ -108,38 +108,93 @@ function salvarResponsavel() {
 
                   alert("Sucesso! Operação concluída.");
 
-    // Envia os dados via fetch
-    fetch('http://localhost:8080/responsavel/cadresp', { // altere a URL conforme seu endpoint
-       
-    }).then(response => {
-           
-    }).then(data => {
-       
-    }).catch(error => {
-       
-    });
+
+    var headers = new Headers();
+
+    headers.append("Content-Type", "application/json");
+
+    headers.append("Access-Control-Allow-Origin", "*");
+
+
+        // Envia os dados via fetch
+        fetch('http://localhost:8080/responsavel/cadresp', { // altere a URL conforme seu endpoint
+        
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            body: JSON.stringify(
+                dados
+            ),
+        
+            headers: headers  
+
+        }).then(response => {
+            
+        }).then(data => {
+        
+        }).catch(error => {
+        
+        });
 }
 
 
 function alterarResponsavel() {
    
+       c
+
+
     // Envia os dados via fetch
     fetch('http://localhost:8080/responsavel/{id}', { // altere a URL conforme seu endpoint
-       
+
+            method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers  
+    
     }).then(response => {
-           
+        
     }).then(data => {
-       
+    
     }).catch(error => {
-       
+    
     });
 }
 
 
 function consultarResponsavel() {
+
+    
+        limparErros();
+
+        if (!validarFormulario()) return;
+
+        const dados = coletarDados();
+        //console.log("Enviando criar conta:", dados);3
+
+
+        var headers = new Headers();
+
+        headers.append("Content-Type", "application/json");
+
+        headers.append("Access-Control-Allow-Origin", "*");
+
    
     // Envia os dados via fetch
     fetch('http://localhost:8080/responsavel/listaresponsavel', { // altere a URL conforme seu endpoint
+
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers  
+       
        
     }).then(response => {
            
@@ -152,9 +207,32 @@ function consultarResponsavel() {
 
 
 function deletarResponsavel() {
+
+       limparErros();
+
+        if (!validarFormulario()) return;
+
+        const dados = coletarDados();
+        //console.log("Enviando criar conta:", dados);3
+
+
+        var headers = new Headers();
+
+        headers.append("Content-Type", "application/json");
+
+        headers.append("Access-Control-Allow-Origin", "*");
    
     // Envia os dados via fetch
     fetch('http://localhost:8080/responsavel/{id}', { // altere a URL conforme seu endpoint
+
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers  
        
     }).then(response => {
            

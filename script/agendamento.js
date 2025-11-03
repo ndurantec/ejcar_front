@@ -107,7 +107,7 @@ function salvarAgendamento() {
     // Envia os dados via fetch
     fetch('http://localhost:8080/agenda/cadagenda', { // altere a URL conforme seu endpoint
        
-         method: 'POST',
+        method: 'POST',
         mode: 'cors',
         cache: 'no-cache',
         body: JSON.stringify(
@@ -131,9 +131,34 @@ function salvarAgendamento() {
 
 
 function alterarAgendamento() {
+
+        limparErros();
+
+        if (!validarFormulario()) return;
+
+        const dados = coletarDados();
+        //console.log("Enviando criar conta:", dados);3
+
+
+        var headers = new Headers();
+
+        headers.append("Content-Type", "application/json");
+
+        headers.append("Access-Control-Allow-Origin", "*");
+
    
     // Envia os dados via fetch
     fetch('http://localhost:8080/agenda/{id}', { // altere a URL conforme seu endpoint
+
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
        
     }).then(response => {
            
@@ -146,9 +171,34 @@ function alterarAgendamento() {
 
 
 function consultarAgendamento() {
+
+        limparErros();
+
+        if (!validarFormulario()) return;
+
+        const dados = coletarDados();
+        //console.log("Enviando criar conta:", dados);3
+
+
+        var headers = new Headers();
+
+        headers.append("Content-Type", "application/json");
+
+        headers.append("Access-Control-Allow-Origin", "*");
+
    
     // Envia os dados via fetch
     fetch('http://localhost:8080/agenda/agenda', { // altere a URL conforme seu endpoint
+
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
        
     }).then(response => {
            
@@ -161,9 +211,33 @@ function consultarAgendamento() {
 
 
 function deletarAgendamento() {
+
+        limparErros();
+
+        if (!validarFormulario()) return;
+
+        const dados = coletarDados();
+        //console.log("Enviando criar conta:", dados);3
+
+
+        var headers = new Headers();
+
+        headers.append("Content-Type", "application/json");
+
+        headers.append("Access-Control-Allow-Origin", "*");
+
    
     // Envia os dados via fetch
     fetch('http://localhost:8080/agenda/{id}', { // altere a URL conforme seu endpoint
+
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
        
     }).then(response => {
            

@@ -128,7 +128,21 @@ function salvar() {
 
     form.reset();
 
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
+
     fetch('http://localhost:8080/servico/cadservico', { 
+
+      method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
        
     }).then(response => {
            
@@ -142,8 +156,27 @@ function salvar() {
 
 function alterar() {
 
+  limparErros();
+
+  if (!validarFormulario()) return;
+
+  const dados = coletarDados();
+
+  var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
    
     fetch('http://localhost:8080/servico/{id}', { 
+
+      method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
         
     }).then(response => {
            
@@ -157,8 +190,27 @@ function alterar() {
 
 function deletar() {
 
+  limparErros();
+
+  if (!validarFormulario()) return;
+
+  const dados = coletarDados();
+
+  var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
    
     fetch('http://localhost:8080/servico/{id}' , { 
+
+      method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
        
     }).then(response => {
            
