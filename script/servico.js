@@ -29,9 +29,45 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+function limparErros() {
+    let erros = document.querySelectorAll('.erro');
+    erros.forEach(e => e.textContent = '');
+}
+
+function validarFormulario() {
+    //limparErros();
+
+    // Captura dos valores do formulário
+    let nome = document.getElementById("nome").value;
+    let cpf = document.getElementById("cpf").value;
+    
+    let ok = true;
+
+    if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
+    if (!cpf) { mostrarErro('erro-cpf', 'Verifique se possui cpf para continuar.'); ok = false; }
+    
+
+    return ok;
+}
+
+function coletarDados() {
+    const canvas = document.getElementById('signaturePad');
+  
+    return {
+        nome: document.getElementById("nome").value.trim(),
+        cpf: document.getElementById("cpf").value.trim()
+    };
+}
 
 
 function consultar() {
+
+  limparErros();
+
+  if (!validarFormulario()) return;
+
+  const dados = coletarDados();
+
    
     fetch('http://localhost:8080/servico/listarServico', { 
        
@@ -46,11 +82,18 @@ function consultar() {
 
 
 function salvar() {
-   
+
+   limparErros();
+
+  if (!validarFormulario()) return;
+
+  const dados = coletarDados();
 
    let funcionario = document.getElementById("funcionario").value.trim();
     let dataServico = document.getElementById("data").value;
     let realizado = document.querySelector('input[name="realizado"]:checked');
+
+    let ok = true
 
     if (funcionario === "") {
       alert("Você precisa preencher o nome do funcionário");
@@ -84,6 +127,12 @@ function salvar() {
 
 
 function alterar() {
+
+  limparErros();
+
+  if (!validarFormulario()) return;
+
+  const dados = coletarDados();
    
     fetch('http://localhost:8080/servico/{id}', { 
         
@@ -98,6 +147,12 @@ function alterar() {
 
 
 function deletar() {
+
+  limparErros();
+
+  if (!validarFormulario()) return;
+
+  const dados = coletarDados();
    
     fetch('http://localhost:8080/servico/{id}' , { 
        

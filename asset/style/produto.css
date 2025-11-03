@@ -4,6 +4,27 @@
     --light-red-focus: rgba(183, 28, 28, 0.2);
 }
 
+
+ :root {
+            --primary-red: rgb(183, 28, 28); /* NOVO VERMELHO */
+            --light-red-shadow: rgba(183, 28, 28, 0.3); /* Sombra para o botão */
+            --light-red-focus: rgba(183, 28, 28, 0.2); /* Foco para o input */
+        }
+       
+        /* Estilos Gerais */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background:#2c2c2c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+            background-color: #2c2c2c;
+        }
+
+
 /* --- GERAL --- */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
