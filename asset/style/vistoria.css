@@ -42,6 +42,7 @@ body {
     margin-bottom: 10px;
     font-weight: 600;
     font-size: 16px;
+    text-align: left;
 }
 
 .checkbox-personalizado {
@@ -53,6 +54,7 @@ body {
     transition: all 0.3s ease;
     cursor: pointer;
     flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .checkbox-personalizado:hover {
@@ -88,10 +90,40 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.checkbox-personalizado input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin-right: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.checkbox-personalizado input[type="radio"]:checked {
+    background-color: #d32f2f;
+    border-color: #d32f2f;
+}
+
+.checkbox-personalizado input[type="radio"]:checked::after {
+    content: "✓";
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .checkbox-personalizado label {
     cursor: pointer;
     font-size: 16px;
     color: #333;
+    text-align: left;
 }
 
 .erro {
@@ -102,7 +134,7 @@ body {
     font-weight: 600;
     width: 100%;
     text-align: left;
-    padding-left: 34px;
+    padding-left: 0;
     min-height: 16px;
 }
 
@@ -129,6 +161,7 @@ body {
     transition: all 0.3s ease;
     resize: vertical;
     min-height: 100px;
+    text-align: left;
 }
 
 .formulario-com-borda textarea:focus {
@@ -144,7 +177,7 @@ body {
     border-radius: 10px;
     border: 2px solid #d32f2f;
     margin: 30px 0;
-    text-align: center;
+    text-align: left;
 }
 
 .termo-titulo {
@@ -154,13 +187,14 @@ body {
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    text-align: center;
 }
 
 .termo-texto {
     color: #333;
     font-size: 16px;
     line-height: 1.6;
-    text-align: justify;
+    text-align: left;
     margin-bottom: 20px;
 }
 
@@ -198,6 +232,7 @@ body {
     margin: 25px 0;
     background-color: #fff;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: left;
 }
 
 .signature-header {
@@ -214,6 +249,7 @@ body {
     color: #d32f2f;
     font-size: 20px;
     font-weight: bold;
+    text-align: left;
 }
 
 .clear-btn {
@@ -246,7 +282,7 @@ body {
     margin-top: 12px;
     color: #666;
     font-style: italic;
-    text-align: center;
+    text-align: left;
 }
 
 .btn-container {
@@ -318,10 +354,11 @@ body {
     .signature-header {
         flex-direction: column;
         gap: 10px;
+        align-items: flex-start;
     }
     
     .signature-header h3 {
-        text-align: center;
+        text-align: left;
     }
     
     .campo-termo-input {
@@ -336,59 +373,92 @@ body {
     
     .erro {
         font-size: 13px;
-        padding-left: 30px;
+        padding-left: 0;
         margin-top: 1px;
     }
 }
 
-/* Estilos para o Combobox - Integração com formulário existente */
+/* ========== PARTE CERTA DO COMBOBOX NA BORDA ========== */
+
+/* Container para o combobox na borda */
+.combobox-container {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.combobox-container label {
+    text-align: left;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #333;
+    padding-left: 0;
+    margin-left: 0;
+}
+
 #modalidade {
     width: 100%;
-    padding: 16px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 16px;
-    background-color: #f9f9f9;
+    max-width: 400px;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #fff;
     transition: all 0.3s ease;
     box-sizing: border-box;
-    margin-bottom: 20px;
+    margin: 0;
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d32f2f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d32f2f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-position: right 16px center;
-    background-size: 16px;
-    padding-right: 45px;
+    background-size: 18px;
+    padding-right: 50px;
+    display: block;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    padding-left: 0;
+    margin-left: 0;
 }
 
 #modalidade:focus {
     outline: none;
     border-color: #d32f2f;
-    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.2);
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.15), 0 2px 12px rgba(0, 0, 0, 0.1);
     background-color: #fff;
+    transform: translateY(-1px);
 }
 
 #modalidade:hover {
     border-color: #b71c1c;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 /* Estilo para as opções do select */
 #modalidade option {
-    padding: 12px;
+    padding: 12px 16px;
     background-color: white;
     color: #333;
+    font-size: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: left;
 }
 
 #modalidade option:checked {
-    background-color: rgba(211, 47, 47, 0.1);
+    background: linear-gradient(135deg, rgba(211, 47, 47, 0.1) 0%, rgba(183, 28, 28, 0.05) 100%);
     color: #d32f2f;
     font-weight: 600;
 }
 
 #modalidade option:hover {
-    background-color: rgba(211, 47, 47, 0.05);
+    background-color: rgba(211, 47, 47, 0.08);
+    color: #d32f2f;
 }
 
 /* Estilo para o placeholder (opção desabilitada) */
@@ -398,12 +468,110 @@ body {
     background-color: #f9f9f9;
 }
 
-/* Estilo responsivo */
+/* Estado de erro */
+#modalidade.erro {
+    border-color: #d32f2f;
+    background-color: rgba(211, 47, 47, 0.02);
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+}
+
+/* Estilo responsivo para o combobox */
 @media (max-width: 768px) {
     #modalidade {
-        padding: 14px;
+        width: 100%;
+        padding: 14px 16px;
         font-size: 16px;
         background-position: right 14px center;
-        padding-right: 40px;
+        padding-right: 45px;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    #modalidade {
+        width: 100%;
+        padding: 12px 14px;
+        font-size: 16px;
+    }
+}
+
+/* Animação sutil ao abrir */
+@keyframes comboboxFocus {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.01);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#modalidade:focus {
+    animation: comboboxFocus 0.3s ease;
+}
+
+/* ========== PARTE CERTA DO FLUXO NA BORDA ========== */
+
+.fluxo-container {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.fluxo-container b {
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.fluxo-container .checkbox-personalizado {
+    display: inline-flex;
+    margin-right: 20px;
+    justify-content: flex-start;
+}
+body {
+    position: relative;
+}
+
+.btn-back-home {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: #d32f2f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(183, 28, 28, 0.4);
+}
+
+.btn-back-home:hover {
+    background: #b71c1c;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(183, 28, 28, 0.5);
+}
+
+.btn-back-home:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .btn-back-home {
+        top: 10px;
+        left: 10px;
+        padding: 8px 14px;
+        font-size: 14px;
     }
 }
