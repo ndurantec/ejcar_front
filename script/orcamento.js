@@ -24,7 +24,44 @@ function finalizar(){
                 alert("Você precisa preencher o campo mao de obra");
         }
      
-       
+       function coletarDados() {
+    const canvas = document.getElementById('signaturePad');
+  
+    return {
+        nome: document.getElementById("nome").value.trim(),
+        cpf: document.getElementById("cpf").value.trim()
+    };
+}
+ 
+function coletarDados() {
+    const canvas = document.getElementById('signaturePad');
+  
+    return {
+        nome: document.getElementById("nome").value.trim(),
+        cpf: document.getElementById("cpf").value.trim()
+    };
+}
+
+function validarFormulario() {
+    //limparErros();
+
+    // Captura dos valores do formulário
+    let nome = document.getElementById("nome").value;
+    let cpf = document.getElementById("cpf").value;
+    
+    let ok = true;
+
+    if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
+    if (!cpf) { mostrarErro('erro-cpf', 'Verifique se possui cpf para continuar.'); ok = false; }
+    
+
+    return ok;
+}
+
+function limparErros() {
+    let erros = document.querySelectorAll('.erro');
+    erros.forEach(e => e.textContent = '');
+}
 
 }  
 function cadastrarorcamento() {
@@ -66,6 +103,13 @@ function cadastrarorcamento() {
 }
 
 function consultarorcamento(){
+
+        limparErros();
+    
+    if (!validarFormulario()) return;
+
+    const dados = coletarDados();
+
               fetch("http://localhost:8080/orcamento/{id}", 
        
       ).then(response => {
@@ -78,6 +122,13 @@ function consultarorcamento(){
 }
 
 function deletar(){
+
+        limparErros();
+    
+    if (!validarFormulario()) return;
+
+    const dados = coletarDados();
+
               fetch("http://localhost:8080/orcamento/{id}", 
        
       ).then(response => {
@@ -90,6 +141,13 @@ function deletar(){
 }
 
 function atualizar(){
+
+        limparErros();
+    
+    if (!validarFormulario()) return;
+
+    const dados = coletarDados();
+
               fetch("http://localhost:8080/orcamento/{id}", 
        
       ).then(response => {
@@ -100,5 +158,3 @@ function atualizar(){
        
       });
 }
-
- 

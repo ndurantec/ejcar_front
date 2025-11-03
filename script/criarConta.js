@@ -82,39 +82,115 @@ document.addEventListener('DOMContentLoaded', function() {
     canvas.addEventListener('touchmove', draw, { passive: false });
     canvas.addEventListener('touchend', stopDrawing);
     
-                   // Botão limpar//
     clearBtn.addEventListener('click', clearSignature);
-    
     window.addEventListener('resize', initCanvas);
-    
-    const concluirBtn = document.getElementById('concluirBtn');
-    concluirBtn.addEventListener('click', function() {
-        alert('Conta registrada com sucesso!');
+
+    document.getElementById('toggleSenha').addEventListener('click', function() {
+        toggleSenha('toggleSenha', 'senha');
     });
-}); 
 
-//function criarconta() {
-    //const nome = document.getElementById("usuario").value;
-    //const senha = document.getElementById("senha").value;
-    //const email = document.querySelector('input[type="email"]').value;
+    document.getElementById('toggleConfirme').addEventListener('click', function() {
+        toggleSenha('toggleConfirme', 'confirme');
+    });
 
-    //if(nome === ""){
-        //alert("Você precisa preencher o campo nome");
-    //}
+});
 
-    //if(senha === ""){
-      //alert("Você precisa preencher o campo senha");
-    //}
+function toggleSenha(botaoId, inputId) {
+    const botao = document.getElementById(botaoId);
+    const input = document.getElementById(inputId);
+    const icon = botao.querySelector('i');
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'fa fa-eye-slash';
+    } else {
+        input.type = 'password';
+        icon.className = 'fa fa-eye';
+    }
+}
 
-    //if(email === ""){
-        //alert("Você precisa preencher o campo email");
-    //}
+function validarFormulario() {
+    document.querySelectorAll('.erro').forEach(erro => erro.textContent = '');
 
-    //alert(nome + " - " + senha + " - " + email);
-//}
+    const nome = document.getElementById("nome").value.trim();
+    const cpf = document.getElementById("cpf").value.trim();
+    const telefone = document.getElementById("telefone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const usuario = document.getElementById("usuario").value.trim();
+    const senha = document.getElementById("senha").value;
+    const confirme = document.getElementById("confirme").value;
+    
+    let ok = true;
 
+    if (nome === '') {
+        document.getElementById('erro-nome').textContent = 'Preencha o nome!';
+        ok = false;
+    }
+
+    if (cpf === '') {
+        document.getElementById('erro-cpf').textContent = 'Preencha o CPF!';
+        ok = false;
+    }
+
+    if (telefone === '') {
+        document.getElementById('erro-telefone').textContent = 'Preencha o telefone!';
+        ok = false;
+    }
+
+    if (email === '') {
+        document.getElementById('erro-email').textContent = 'Preencha o email!';
+        ok = false;
+    }
+
+    if (usuario === '') {
+        document.getElementById('erro-usuario').textContent = 'Preencha o usuário!';
+        ok = false;
+    }
+
+    if (senha === '') {
+        document.getElementById('erro-senha').textContent = 'Preencha a senha!';
+        ok = false;
+    }
+
+    if (confirme === '') {
+        document.getElementById('erro-confirme').textContent = 'Confirme a senha!';
+        ok = false;
+    }
+
+    if (senha !== confirme) {
+        document.getElementById('erro-confirme').textContent = 'As senhas não coincidem!';
+        ok = false;
+    }
+
+    if (ok) {
+        console.log("Nome:", nome);
+        console.log("CPF:", cpf);
+        console.log("Telefone:", telefone);
+        console.log("Email:", email);
+        console.log("Usuário:", usuario);
+        console.log("Senha:", senha);
+        console.log("Confirme:", confirme);
+        console.log("Formulário válido!");
+        alert('Conta criada com sucesso!');
+    } else {
+        console.log("Formulário inválido!");
+    }
+
+    return ok;
+}
+document.getElementById('criar').addEventListener('click', function(evento) {
+    evento.preventDefault();
+    validarFormulario();
+});
 
 function concluir() {
+
+    limparErros();
+
+    if (!validarFormulario()) return;
+
+    const dados = coletarDados();
+
     fetch('http://127.0.0.1:8080/responsaveis', {
        
     }).then(response => {
@@ -148,4 +224,34 @@ function deletar() {
     }).catch(error => {
        
     });
+}
+
+function limparErros() {
+    let erros = document.querySelectorAll('.erro');
+    erros.forEach(e => e.textContent = '');
+}
+
+function validarFormulario() {
+    //limparErros();
+
+    // Captura dos valores do formulário
+    let nome = document.getElementById("nome").value;
+    let cpf = document.getElementById("cpf").value;
+    
+    let ok = true;
+
+    if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
+    if (!cpf) { mostrarErro('erro-cpf', 'Verifique se possui cpf para continuar.'); ok = false; }
+    
+
+    return ok;
+}
+
+function coletarDados() {
+    const canvas = document.getElementById('signaturePad');
+  
+    return {
+        nome: document.getElementById("nome").value.trim(),
+        cpf: document.getElementById("cpf").value.trim()
+    };
 }

@@ -87,10 +87,24 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('resize', initCanvas);
     
-    const concluirBtn = document.getElementById('concluirBtn');
-    concluirBtn.addEventListener('click', function() {
-        alert('Vistoria registrada com sucesso! Obrigado.');
-    });
+    // Centralizar o combobox e atualizar o termo quando uma opção for selecionada
+    const comboboxContainer = document.querySelector('.combobox-container');
+    if (comboboxContainer) {
+        comboboxContainer.style.display = 'flex';
+        comboboxContainer.style.flexDirection = 'column';
+        comboboxContainer.style.alignItems = '';
+        comboboxContainer.style.marginBottom = '10px';
+    }
+    
+    const modalidadeSelect = document.getElementById('modalidade');
+    if (modalidadeSelect) {
+        modalidadeSelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            if (selectedOption.value) {
+                document.getElementById('marcaModelo').textContent = selectedOption.text.trim();
+            }
+        });
+    }
 }); 
 
 const botaoConcluir = document.getElementById('botaoconcluir');
@@ -102,18 +116,21 @@ function limparErros() {
     mostrarErro('erro-step', '');
     mostrarErro('erro-macaco', '');
     mostrarErro('erro-chave', '');
+    mostrarErro('erro-descricao', '');
+    mostrarErro('erro-termo', '');
 }
 
 function validarCheckbox() {
+
     limparErros();
 
     let step = document.getElementById("boxstep").checked;
     let macaco = document.getElementById("boxmacaco").checked;
     let chave = document.getElementById("boxchave").checked;
     let descricao = document.getElementById("descricao").value;
-    let proprietario = document.getElementById("proprietario").value;
-    let marcaModelo = document.getElementById("marcaModelo").value;
-    let placa = document.getElementById("placa").value;
+    let proprietario = document.getElementById("proprietario").textContent;
+    let marcaModelo = document.getElementById("marcaModelo").textContent;
+    let placa = document.getElementById("placa").textContent;
     let termo = document.getElementById("termoAceite").checked;
 
     console.log("Step:", step);
@@ -142,13 +159,9 @@ function validarCheckbox() {
         ok = false;
     } 
 
-        if (descricao.trim() === '') {
+    if (descricao.trim() === '') {
         mostrarErro('erro-descricao', 'Descreva os outros itens!');
         ok = false;
-    }
-
-    if (ok) {
-        alert('Formulário enviado com sucesso!');
     }
 
     if (!termo) {
@@ -163,7 +176,6 @@ function validarCheckbox() {
     return ok;
 }
 
-                // Tornar labels editáveis
 document.querySelectorAll('.campo-termo-label').forEach(label => {
     label.addEventListener('click', function() {
         const tipo = this.id === 'proprietario' ? 'nome do proprietário' : 
@@ -177,6 +189,7 @@ document.querySelectorAll('.campo-termo-label').forEach(label => {
 });
 
 botaoConcluir.addEventListener('click', validarCheckbox);
+
 function salvar() {
     const dados = {
         step: document.getElementById("boxstep").checked,
@@ -188,89 +201,30 @@ function salvar() {
         placa: document.getElementById("placa").textContent,
         termoAceito: document.getElementById("termoAceite").checked
     };
-
+    console.log('Dados salvos:', dados);
 }
-
-
 
 function concluir() {
-    fetch('http://127.0.0.1:8080/responsaveis', {
-       
-    }).then(response => {
+
+    limparErros();
+
+    if (!validarFormulario()) return;
+
+    const dados = coletarDados();
+
+
+
+    if (validarCheckbox()) {
+        fetch('http://127.0.0.1:8080/responsaveis', {
            
-    }).then(data => {
-       
-    }).catch(error => {
-       
-    });
-}
-
-function salvar() {
-limparErros();
-
-    let step = document.getElementById("boxstep").checked;
-    let macaco = document.getElementById("boxmacaco").checked;
-    let chave = document.getElementById("boxchave").checked;
-    let descricao = document.getElementById("descricao").value;
-    let proprietario = document.getElementById("proprietario").value;
-    let marcaModelo = document.getElementById("marcaModelo").value;
-    let placa = document.getElementById("placa").value;
-    let termo = document.getElementById("termoAceite").checked;
-
-    console.log("Step:", step);
-    console.log("Macaco:", macaco);
-    console.log("Chave de Roda:", chave);
-    console.log("Outros itens:", descricao);
-    console.log("Proprietário:", proprietario);
-    console.log("Marca/Modelo:", marcaModelo);
-    console.log("Placa:", placa);
-    console.log("Termo aceito:", termo);
-
-    let ok = true;
-
-    if (!step) {
-        mostrarErro('erro-step', 'Verifique se possui step para continuar.');
-        ok = false;
-    } 
-
-    if (!macaco) {
-        mostrarErro('erro-macaco', 'Verifique se possui macaco para continuar.');
-        ok = false;
-    } 
-
-    if (!chave) {
-        mostrarErro('erro-chave', 'Verifique se possui chave para continuar.');
-        ok = false;
-    } 
-
-        if (descricao.trim() === '') {
-        mostrarErro('erro-descricao', 'Descreva os outros itens!');
-        ok = false;
-    }
-
-    if (ok) {
-        alert('Formulário enviado com sucesso!');
-    }
-
-    if (!termo) {
-        mostrarErro('erro-termo', 'Aceite os termos para continuar!');
-        ok = false;
-    }
-
-    if (ok) {
-        alert('✅ Vistoria concluída com sucesso!');
-    }
-
-
-    fetch('http://localhost:8080/vistoria/insert', {
-       
-    }).then(response => {
+        }).then(response => {
+               
+        }).then(data => {
            
-    }).then(data => {
-       
-    }).catch(error => {
-       
-    });
+        }).catch(error => {
+           
+        });
+    }
 }
 
 function deletar() {
@@ -295,4 +249,129 @@ function atualizar() {
     }).catch(error => {
        
     });
+}
+
+// Função para imprimir/gerar PDF da vistoria
+function imprimirVistoria() {
+    if (!document.getElementById('termoAceite').checked) {
+        alert('É necessário aceitar os termos antes de imprimir a vistoria.');
+        return;
+    }
+
+    const canvas = document.getElementById('signaturePad');
+    const ctx = canvas.getContext('2d');
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    let isEmpty = true;
+    
+    for (let i = 0; i < imageData.data.length; i += 4) {
+        if (imageData.data[i + 3] !== 0) {
+            isEmpty = false;
+            break;
+        }
+    }
+    
+    if (isEmpty) {
+        alert('É necessário fornecer uma assinatura antes de imprimir a vistoria.');
+        return;
+    }
+
+    const janelaImpressao = window.open('', '_blank');
+    const conteudo = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Vistoria Veicular - EJCAR</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                .cabecalho { text-align: center; border-bottom: 2px solid #d32f2f; padding-bottom: 10px; margin-bottom: 20px; }
+                .dados-vistoria { margin-bottom: 20px; }
+                .item { margin: 5px 0; }
+                .assinatura { margin-top: 30px; border-top: 1px solid #000; padding-top: 10px; }
+                .data { text-align: right; margin-top: 20px; }
+            </style>
+        </head>
+        <body>
+            <div class="cabecalho">
+                <h1>Vistoria Veicular - EJCAR</h1>
+                <p>Cascavel-Paraná</p>
+            </div>
+            
+            <div class="dados-vistoria">
+                <h2>Dados da Vistoria</h2>
+                <div class="item"><strong>Fluxo:</strong> ${document.querySelector('input[name="fluxo"]:checked').value === 'entrada' ? 'Entrada' : 'Saída'}</div>
+                <div class="item"><strong>Veículo:</strong> ${document.getElementById('modalidade').options[document.getElementById('modalidade').selectedIndex].text}</div>
+                <div class="item"><strong>Proprietário:</strong> ${document.getElementById('proprietario').textContent}</div>
+                <div class="item"><strong>Marca/Modelo:</strong> ${document.getElementById('marcaModelo').textContent}</div>
+                <div class="item"><strong>Placa:</strong> ${document.getElementById('placa').textContent}</div>
+            </div>
+            
+            <div class="itens-vistoria">
+                <h2>Itens Verificados</h2>
+                <div class="item"><strong>Step:</strong> ${document.getElementById('boxstep').checked ? 'Presente' : 'Ausente'}</div>
+                <div class="item"><strong>Macaco:</strong> ${document.getElementById('boxmacaco').checked ? 'Presente' : 'Ausente'}</div>
+                <div class="item"><strong>Chave de Roda:</strong> ${document.getElementById('boxchave').checked ? 'Presente' : 'Ausente'}</div>
+                <div class="item"><strong>Outros Itens:</strong> ${document.getElementById('descricao').value || 'Nenhum'}</div>
+            </div>
+            
+            <div class="termo">
+                <h2>Termo de Aceitação</h2>
+                <p>
+                    Eu, ${document.getElementById('proprietario').textContent},
+                    proprietário do veículo ${document.getElementById('marcaModelo').textContent},
+                    placa ${document.getElementById('placa').textContent},
+                    declaro, para todos os fins de direito, que concordo e atesto que o meu veículo 
+                    ${document.querySelector('input[name="fluxo"]:checked').value === 'entrada' ? 'entrou' : 'saiu'} nas instalações da oficina EJCAR com os seguintes objetos em seu interior. 
+                    Compreendo que esta lista representa os itens presentes no veículo no momento da 
+                    sua ${document.querySelector('input[name="fluxo"]:checked').value === 'entrada' ? 'entrada' : 'saída'} na oficina.
+                </p>
+            </div>
+            
+            <div class="assinatura">
+                <p><strong>Assinatura do Proprietário:</strong></p>
+                <img src="${canvas.toDataURL()}" style="max-width: 400px; border: 1px solid #ccc;">
+            </div>
+            
+            <div class="data">
+                <p>Data: ${new Date().toLocaleDateString('pt-BR')}</p>
+            </div>
+        </body>
+        </html>
+    `;
+    
+    janelaImpressao.document.write(conteudo);
+    janelaImpressao.document.close();
+
+    janelaImpressao.onload = function() {
+        janelaImpressao.print();
+    };
+}
+
+function limparErros() {
+    let erros = document.querySelectorAll('.erro');
+    erros.forEach(e => e.textContent = '');
+}
+
+function validarFormulario() {
+    //limparErros();
+
+    // Captura dos valores do formulário
+    let nome = document.getElementById("nome").value;
+    let cpf = document.getElementById("cpf").value;
+    
+    let ok = true;
+
+    if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
+    if (!cpf) { mostrarErro('erro-cpf', 'Verifique se possui cpf para continuar.'); ok = false; }
+    
+
+    return ok;
+}
+
+function coletarDados() {
+    const canvas = document.getElementById('signaturePad');
+  
+    return {
+        nome: document.getElementById("nome").value.trim(),
+        cpf: document.getElementById("cpf").value.trim()
+    };
 }
