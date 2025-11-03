@@ -114,6 +114,9 @@ function atualizarTipo() {
 
 function consultarTipo() {
    
+var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
 
 
     // Envia os dados via fetch
@@ -127,6 +130,24 @@ function consultarTipo() {
        
     });
 }
+         
+fetch('http://localhost:8080/professor/insert', {
+        
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
+
+    })
+    
+
+
+
 
 
 
