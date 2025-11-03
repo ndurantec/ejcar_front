@@ -11,10 +11,6 @@
 
 </head>
 <body>
-     <a class="btn-back-home" href="/page/home.html" id="btnVoltarHome">
-    <i class="fas fa-arrow-left"></i> Voltar
-</a>
-
     <div class="container">
         <div class="header">
             <h1><i class="fas fa-file-invoice-dollar"></i> Sistema de Orçamento</h1>
@@ -44,9 +40,9 @@
 
             <div class="product-row" style="display: flex; gap: 10px; align-items: flex-end;">
                 <div class="product-input" style="flex: 2;">
-                    <label for="produto" class="form-label"><i class="fas fa-box"></i>Produto:</label>
+                    <label for="produto" class="form-label"><i class="fas fa-box"></i> Produto:</label>
                     <div class="input-icon">
-                        
+                    <i class="fas fa-box"></i></label>  
                      <select name="tipo" id="tipo">
                      <option value="tinta">Tinta</option>
                      <option value="pneu">Pneu</option>
@@ -57,8 +53,9 @@
                 </div>
 
                 <div class="product-input" style="flex: 2;">
-                    <label for="servico" class="form-label"><i class="fas fa-wrench"></i>Serviço:</label>
+                    <label for="servico" class="form-label"><i class="fas fa-wrench"></i> Serviço:</label>
                     <div class="input-icon">
+                        <i class="fas fa-wrench"></i>
                         <select name="tipo" id="tipo"class="form-control">
                         <option value="desmontagem">Desmontagem</option>
                         <option value="montagem">Montagem</option>
@@ -68,12 +65,12 @@
                         <option value="lavagem">Lavagem</option>
                         <option value="Higienizacao">Higienização</option>
                         <option value="outros">Outros</option>
- </select>
+                    </select>
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label for="product-price" class="form-label">Valor:</label>
+                    <label for="product-price" class="form-label" ><i class="fas fa-dollar-sign"></i> Valor:</label>
                     <div class="input-icon">
                         <i class="fas fa-dollar-sign"></i>
                         <input type="number" class="form-control" id="mao_de_obra" placeholder="0,00" min="0" step="0.01">
@@ -84,19 +81,18 @@
                 Adicionar
                 </button>
             </div>
-            <div>
+            <div class="top">
             <button type="button" class="btn btn-submit" onclick="finalizar()">
-                <i class="fas fa-check-circle"></i> Finalizar Orçamento
+                Finalizar Orçamento
             </button>
 
-            <button type="button" class="btn-primary" onclick="cadastrarorcamento()">Cadastrar Orcamentos</button>
-            <button type="button" class="btn-primary" onclick="consultarorcamento()">Consultar Orcamentos</button>
-            <button type="button" class="btn-primary" onclick="deletar()">Deletar</button>
-            <button type="button" class="btn-primary" onclick="atualizar()">Atualizar</button>
+            <button type="button" class="btn btn-submit" onclick="cadastrarorcamento()">Cadastrar Orcamentos</button>
+            <button type="button" class="btn btn-submit" onclick="consultarorcamento()">Consultar Orcamentos</button>
+            <button type="button" class="btn btn-submit" onclick="deletar()">Deletar</button>
+            <button type="button" class="btn btn-submit" onclick="atualizar()">Atualizar</button>
             </div>
 
-            <div class="form-group">
-</div>
+          
         </form>
         </div>
 </body>

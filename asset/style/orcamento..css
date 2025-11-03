@@ -84,6 +84,18 @@ hr {
     box-sizing: border-box;
 }
 
+.input-icon select {
+    padding: 12px 14px 12px 38px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-size: 15px;
+    transition: 0.3s ease;
+    box-sizing: border-box;
+}
+
+
 .input-icon input:focus {
     outline: none;
     border-color: #d32f2f;
@@ -101,6 +113,10 @@ hr {
 
 .product-input {
     flex: 1;
+}
+.top{
+    display: flex;
+    justify-content: center;
 }
 
 .btn-add {
@@ -120,7 +136,7 @@ hr {
 }
 
 .btn-submit {
-    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+    background: #b71c1c;
     color: white;
     border: none;
     padding: 14px 25px;
@@ -135,8 +151,7 @@ hr {
     width: 50%;
     margin-top: 25px;
 
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 2px;
     display: block;
 }
 
@@ -183,51 +198,3 @@ hr {
         font-size: 20px;
     }
 }
-    /* A propriedade 'position: relative;' deve ser adicionada ao <body> para que o botão fique fixo no canto */
-body {
-    position: relative;
-}
-
-.btn-back-home {
-    position: absolute;
-    top: 25px;
-    left: 25px;
-    z-index: 10;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px 18px;
-    background: #d32f2f;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 10px rgba(183, 28, 28, 0.4);
-}
-
-.btn-back-home:hover {
-    background: #b71c1c;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(183, 28, 28, 0.5);
-}
-
-.btn-back-home:active {
-    transform: translateY(1px);
-    box-shadow: none;
-}
-
-@media (max-width: 768px) {
-    .btn-back-home {
-        top: 10px;
-        left: 10px;
-        padding: 8px 14px;
-        font-size: 14px;
-    }
-}
-
-
