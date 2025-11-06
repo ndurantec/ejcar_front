@@ -111,7 +111,15 @@ function salvarProduto() {
 
 function consultarProduto() {
    
-     
+      
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
         
 
     // Envia os dados via fetch
@@ -125,10 +133,22 @@ function consultarProduto() {
        
     });
 }  
+    
+     var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
 
 function alterarProduto() {
    
-
+         
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
 
     // Envia os dados via fetch
     fetch("http://127.0.0.1:8080/responsaveis", { // altere a URL conforme seu endpoint
@@ -142,9 +162,22 @@ function alterarProduto() {
     });
 }  
 
+    
+     var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
 
 function deletarProduto() {
    
+       
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers 
 
 
     // Envia os dados via fetch
