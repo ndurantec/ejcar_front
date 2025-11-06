@@ -1,42 +1,3 @@
-
-// cadastrar
-// function cadastrar() {
-//     const nome = document.getElementById("name").value;
-
-//     const telefone = document.getElementById("telefone").value;
-
-//     const endereco = document.getElementById("endereco").value;
-
-//     const cep= document.getElementById("cep").value;
-
-//     const cpf= document.getElementById("cpf").value;
-
-
-//             if(nome == ""){
-//                 alert("Você precisa preencher o campo nome");
-//             }
-
-//             if(telefone == ""){
-//                 alert("Você precisa preencher o campo telefone");
-//             }
-
-//              if(cpf == ""){
-//                 alert("Você precisa preencher o campo telefone");
-//             }
-
-//              if(endereco == ""){
-//                 alert("Você precisa preencher o campo endereco");
-//             }
-
-//              if(cep == ""){
-//                 alert("Você precisa preencher o campo CEP");
-//             }
-
-//                   alert(nome + " - " + telefone + " - " + endereco + " - " + cep);
-
-//                   alert("Sucesso! Operação concluída.");
-// }
-
 function limparErros() {
     let erros = document.querySelectorAll('.erro');
     erros.forEach(e => e.textContent = '');
@@ -80,76 +41,33 @@ function coletarDados() {
 }
 
 
-
-
-
 function salvar() {
 
     
-        limparErros();
+    limparErros();
 
-        if (!validarFormulario()) return;
+    if (!validarFormulario()) return;
 
-        const dados = coletarDados();
-        //console.log("Enviando criar conta:", dados);
-
-
-
-   
-    // const nome = document.getElementById("name").value;
-
-    // const telefone = document.getElementById("telefone").value;
-
-    // const endereco = document.getElementById("endereco").value;
-
-    // const cep= document.getElementById("cep").value;
-
-    // const cpf= document.getElementById("cpf").value;
-
-
-            // if(nome == ""){
-            //     alert("Você precisa preencher o campo nome");
-            // }
-
-            // if(cpf == ""){
-            //   alert("Você precisa preencher o campo CPF");
-            // }
-
-            // if(telefone == ""){
-            //     alert("Você precisa preencher o campo telefone");
-            // }
-
-            //  if(endereco == ""){
-            //     alert("Você precisa preencher o campo endereco");
-            // }
-
-            //  if(cep == ""){
-            //     alert("Você precisa preencher o campo CEP");
-            // }
-
-            //       alert(nome + " - " + telefone + " - " + endereco + " - " + cep + " - " + cpf);
-
-            //       alert("Sucesso! Operação concluída.");
-
+    const dados = coletarDados();
 
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
 
 
-        // Envia os dados via fetch
-        fetch('http://localhost:8080/responsavel/cadresp', { // altere a URL conforme seu endpoint
-        
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            body: JSON.stringify(
-                dados
-            ),
-        
-            headers: headers  
+    // Envia os dados via fetch
+    fetch('http://localhost:8080/responsavel/cadresp', { // altere a URL conforme seu endpoint
+    
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers  
 
-        }).then(async response => {
+    }).then(async response => {
       let data = await response.data();
 
       console.log(data);//resposta do servidor
@@ -209,11 +127,11 @@ function salvar() {
 
 function alterar() {
    
-          limparErros();
+    limparErros();
 
-        if (!validarFormulario()) return;
+    if (!validarFormulario()) return;
 
-        const dados = coletarDados();
+    const dados = coletarDados();
 
 
     // Envia os dados via fetch
@@ -225,7 +143,7 @@ function alterar() {
         body: JSON.stringify(
             dados
         ),
-    
+
         headers: headers  
     
     }).then(async response => {
@@ -288,21 +206,18 @@ function alterar() {
 
 function consultar() {
 
+    limparErros();
 
-    
-        limparErros();
+    if (!validarFormulario()) return;
 
-        if (!validarFormulario()) return;
+    const dados = coletarDados();
+    //console.log("Enviando criar conta:", dados);3
 
-        const dados = coletarDados();
-        //console.log("Enviando criar conta:", dados);3
+    var headers = new Headers();
 
+    headers.append("Content-Type", "application/json");
 
-        var headers = new Headers();
-
-        headers.append("Content-Type", "application/json");
-
-        headers.append("Access-Control-Allow-Origin", "*");
+    headers.append("Access-Control-Allow-Origin", "*");
 
    
     // Envia os dados via fetch
@@ -377,20 +292,19 @@ function consultar() {
 
 function deletar() {
 
+    limparErros();
 
-       limparErros();
+    if (!validarFormulario()) return;
 
-        if (!validarFormulario()) return;
-
-        const dados = coletarDados();
-        //console.log("Enviando criar conta:", dados);3
+    const dados = coletarDados();
+    //console.log("Enviando criar conta:", dados);3
 
 
-        var headers = new Headers();
+    var headers = new Headers();
 
-        headers.append("Content-Type", "application/json");
+    headers.append("Content-Type", "application/json");
 
-        headers.append("Access-Control-Allow-Origin", "*");
+    headers.append("Access-Control-Allow-Origin", "*");
    
     // Envia os dados via fetch
     fetch('http://localhost:8080/responsavel/{id}', { // altere a URL conforme seu endpoint
@@ -407,7 +321,7 @@ function deletar() {
     }).then(async response => {
       let data = await response.data();
 
-      console.log(data);//resposta do servidor
+        console.log(data);//resposta do servidor
       
 
       if (!response.ok) {
