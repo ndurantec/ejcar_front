@@ -15,11 +15,28 @@
 
         <form>
             <label for="entradaVeiculo"><b>Data da entrada do veículo:</b></label>
-            <input type="datetime-local" id="entradaVeiculo" class="form-control">
+            <input type="date" id="entradaVeiculo" class="form-control">
 
-            <label for="saidaVeiculo"><b>Data da saída do veículo:</b></label>
-            <input type="datetime-local" id="saidaVeiculo" class="form-control">
+            <label for="entradaVeiculo"><b>Hora da entrada do veículo:</b></label>
+            <input type="time" id="entradaVeiculo" class="form-control">
 
+            <label for="saidaVeiculo"><b>Data da saida do veículo:</b></label>
+            <input type="date" id="saidaVeiculo" class="form-control">
+
+            <label for="saidaVeiculo"><b>Hora da saida do veículo:</b></label>
+            <input type="time" id="saidaVeiculo" class="form-control">
+
+            <label for="servico"><b>Serviço:</b></label>
+                    <select name="servico" id="servico" class="form-control"> 
+                        <option value="" disabled selected>Selecione uma opção</option>
+                        <option value="desmontagem">Desmontagem</option>
+                        <option value="montagem">Montagem</option>
+                        <option value="chapeacao">Chapeação</option>
+                        <option value="preparacao-pintura">Preparação e pintura</option>
+                        <option value="polimento">Polimento</option>
+                        <option value="lavagem-detalhada">Lavagem detalhada</option>
+                        <option value="higienizacao">Higienização</option>
+                    </select>
             <!-- <b>Tem seguradora?</b>
             <div class="checkbox-container">
                 <input type="radio" name="temSeguradora" id="seguradoraSim" value="Sim">
@@ -40,7 +57,7 @@
                 <a class="btn-back-home" href="/page/home.html" id="btnVoltarHome">
                     <i class="fas fa-arrow-left"></i> Voltar
                 </a>
-                
+
                 <button type="button" class="btn-danger" onclick="agendar()">Concluir</button>
 
                 <button type="button" class="btn-danger" onclick="salvarAgendamento()" id="botao">salvar</button>
