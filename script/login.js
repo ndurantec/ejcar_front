@@ -40,15 +40,17 @@ function logar() {
     const usuario = document.getElementById('usuario').value;
     const senha = document.getElementById('senha').value;
     const email = document.getElementById('email').value;
-
+    const telefone = document.getElementById('telefone').value;
      
     console.log("Usuário:", usuario);
     console.log("Senha:", senha);
     console.log("Email:", email);
+    console.log("Telefone:", telefone);
 
     document.getElementById('erro-usuario').textContent = '';
     document.getElementById('erro-senha').textContent = '';
     document.getElementById('erro-email').textContent = '';
+    document.getElementById('erro-telefone').textContent = '';
 
    
     if (usuario === '') {
@@ -62,6 +64,10 @@ function logar() {
     if (email === '') {
        document.getElementById('erro-email').textContent = 'Preencha o email!';
     }
+
+    if (telefone === '') {
+        document.getElementById('erro-telefone').textContent = 'Preencha o telefone!';
+     }
 
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
