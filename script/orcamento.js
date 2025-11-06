@@ -1,139 +1,282 @@
-function finalizar(){
-    const chassi = document.getElementById("chassi").value;
+// function finalizar(){
+//     const chassi = document.getElementById("chassi").value;
 
-    const placa = document.getElementById("placa").value;
+//     const placa = document.getElementById("placa").value;
     
-    const produto = document.getElementById("produto").value;
+//     const produto = document.getElementById("produto").value;
 
-    const mao_de_obra = document.getElementById("mao_de_obra").value;
-    alert(chassi + " - " + placa + " - " + produto + " - " + mao_de_obra);
+//     const mao_de_obra = document.getElementById("mao_de_obra").value;
+//     alert(chassi + " - " + placa + " - " + produto + " - " + mao_de_obra);
 
-        if(chassi == ""){
-                alert("Você precisa preencher o campo chassi");
-        }
+//         if(chassi == ""){
+//                 alert("Você precisa preencher o campo chassi");
+//         }
 
-        if(placa == ""){
-                alert("Você precisa preencher o campo placa");
-        }
+//         if(placa == ""){
+//                 alert("Você precisa preencher o campo placa");
+//         }
 
-        if(produto == ""){
-                alert("Você precisa preencher o campo produto");
-        }
+//         if(produto == ""){
+//                 alert("Você precisa preencher o campo produto");
+//         }
      
-        if(mao_de_obra == ""){
-                alert("Você precisa preencher o campo mao de obra");
-        }
+//         if(mao_de_obra == ""){
+//                 alert("Você precisa preencher o campo mao de obra");
+//         }
      
-       function coletarDados() {
-    const canvas = document.getElementById('signaturePad');
+//        function coletarDados() {
+//     const canvas = document.getElementById('signaturePad');
   
-    return {
-        nome: document.getElementById("nome").value.trim(),
-        cpf: document.getElementById("cpf").value.trim()
-    };
-}
+//     return {
+//         nome: document.getElementById("nome").value.trim(),
+//         cpf: document.getElementById("cpf").value.trim()
+//     };
+// }
  
-function coletarDados() {
-    const canvas = document.getElementById('signaturePad');
+// function coletarDados() {
+//     const canvas = document.getElementById('signaturePad');
   
-    return {
-        nome: document.getElementById("nome").value.trim(),
-        cpf: document.getElementById("cpf").value.trim()
-    };
+//     return {
+//         nome: document.getElementById("nome").value.trim(),
+//         cpf: document.getElementById("cpf").value.trim()
+//     };
+// }
+
+// function validarFormulario() {
+//     //limparErros();
+
+//     // Captura dos valores do formulário
+//     let nome = document.getElementById("nome").value;
+//     let cpf = document.getElementById("cpf").value;
+    
+//     let ok = true;
+
+//     if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
+//     if (!cpf) { mostrarErro('erro-cpf', 'Verifique se possui cpf para continuar.'); ok = false; }
+    
+
+//     return ok;
+// }
+
+// function limparErros() {
+//     let erros = document.querySelectorAll('.erro');
+//     erros.forEach(e => e.textContent = '');
+// }
+
+// }  
+// function cadastrarorcamento() {
+
+//          var headers = new Headers();
+//          headers.append("Content-Type", "application/json");
+//          headers.append("Access-Control-Allow-Origin", "*");
+
+
+//        const chassi = document.getElementById("chassi").value;
+
+//        const placa = document.getElementById("placa").value;
+    
+//        const produto = document.getElementById("produto").value;
+
+//        const mao_de_obra = document.getElementById("mao_de_obra").value;
+//        alert(chassi + " - " + placa + " - " + produto + " - " + mao_de_obra);
+
+//         if(chassi == ""){
+//                 alert("Você precisa preencher o campo chassi");
+//         }
+
+//         if(placa == ""){
+//                 alert("Você precisa preencher o campo placa");
+//         }
+
+//         if(produto == ""){
+//                 alert("Você precisa preencher o campo produto");
+//         }
+     
+//         if(mao_de_obra == ""){
+//                 alert("Você precisa preencher o campo mao de obra");
+//         }
+        
+//       fetch("http://localhost:8080/orcamento/cadorca",{
+
+         
+//         method: 'POST',
+//         mode: 'cors',
+//         cache: 'no-cache',
+//         body: JSON.stringify(
+//             dados
+//         ),
+    
+//         headers: headers
+
+
+// }
+//       ).then(response => {
+           
+//       }).then(data => {
+       
+//       }).catch(error => {
+       
+//       });
+// }
+
+// function consultarorcamento(){
+
+        
+
+//         limparErros();
+    
+//     if (!validarFormulario()) return;
+
+//     const dados = coletarDados();
+
+    
+
+//               fetch("http://localhost:8080/orcamento/{id}", 
+
+//                 {
+        
+//         method: 'POST',
+//         mode: 'cors',
+//         cache: 'no-cache',
+//         body: JSON.stringify(
+//             dados
+//         ),
+    
+//         headers: headers
+
+
+//     }
+       
+//       ).then(response => {
+           
+//       }).then(data => {
+       
+//       }).catch(error => {
+       
+//       });
+// }
+
+// function deletar(){
+
+//         limparErros();
+    
+//     if (!validarFormulario()) return;
+
+//     const dados = coletarDados();
+
+//               fetch("http://localhost:8080/orcamento/{id}", 
+
+//                 {
+        
+//         method: 'POST',
+//         mode: 'cors',
+//         cache: 'no-cache',
+//         body: JSON.stringify(
+//             dados
+//         ),
+    
+//         headers: headers
+
+
+//     }
+       
+//       ).then(response => {
+           
+//       }).then(data => {
+       
+//       }).catch(error => {
+       
+//       });
+// }
+
+// function atualizar(){
+
+
+//               fetch("http://localhost:8080/orcamento/{id}", 
+
+//                 {
+        
+//         method: 'POST',
+//         mode: 'cors',
+//         cache: 'no-cache',
+//         body: JSON.stringify(
+//             dados
+//         ),
+    
+//         headers: headers
+
+
+//     }
+       
+//       ).then(response => {
+           
+//       }).then(data => {
+       
+//       }).catch(error => {
+       
+//       });
+// }
+function mostrarErro(idElemento, mensagem) {
+    document.getElementById(idElemento).textContent = mensagem;
+}
+function limparErros() {
+    let erros = document.querySelectorAll('.erro');
+    erros.forEach(e => e.textContent = '');
 }
 
 function validarFormulario() {
     //limparErros();
 
     // Captura dos valores do formulário
-    let nome = document.getElementById("nome").value;
-    let cpf = document.getElementById("cpf").value;
-    
+    let chassi = document.getElementById("chassi").value;
+    let placa = document.getElementById("placa").value;
+    let produto = document.getElementById("produto").value;
+    let servico = document.getElementById("servico").value;
+    let valor = document.getElementById("valor").value;
+
+
     let ok = true;
 
-    if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
-    if (!cpf) { mostrarErro('erro-cpf', 'Verifique se possui cpf para continuar.'); ok = false; }
-    
+    if (!chassi) { mostrarErro('erro-chassi', 'Verifique se possui chassi para continuar.'); ok = false; }
+    if (!placa) { mostrarErro('erro-placa', 'Verifique se possui placa para continuar.'); ok = false; }
+    if (!produto) { mostrarErro('erro-produto', 'Verifique se possui produto para continuar.'); ok = false; }
+    if (!servico) { mostrarErro('erro-servico', 'Verifique se possui serivoc para continuar.'); ok = false; }
+    if (!valor) { mostrarErro('erro-valor', 'Verifique se possui valor para continuar.'); ok = false; }
 
     return ok;
 }
 
-function limparErros() {
-    let erros = document.querySelectorAll('.erro');
-    erros.forEach(e => e.textContent = '');
+function coletarDados() {
+    const canvas = document.getElementById('signaturePad');
+  
+    return {
+        chassi: document.getElementById("chassi").value.trim(),
+        placa: document.getElementById("placa").value.trim(),
+        produto: document.getElementById("produto").value.trim(),
+        servico: document.getElementById("servico").value.trim(),
+        valor: document.getElementById("valor").value.trim(),
+
+
+    };
 }
 
-}  
+
 function cadastrarorcamento() {
 
-         var headers = new Headers();
-         headers.append("Content-Type", "application/json");
-         headers.append("Access-Control-Allow-Origin", "*");
-
-
-       const chassi = document.getElementById("chassi").value;
-
-       const placa = document.getElementById("placa").value;
     
-       const produto = document.getElementById("produto").value;
-
-       const mao_de_obra = document.getElementById("mao_de_obra").value;
-       alert(chassi + " - " + placa + " - " + produto + " - " + mao_de_obra);
-
-        if(chassi == ""){
-                alert("Você precisa preencher o campo chassi");
-        }
-
-        if(placa == ""){
-                alert("Você precisa preencher o campo placa");
-        }
-
-        if(produto == ""){
-                alert("Você precisa preencher o campo produto");
-        }
-     
-        if(mao_de_obra == ""){
-                alert("Você precisa preencher o campo mao de obra");
-        }
-        
-      fetch("http://localhost:8080/orcamento/cadorca",{
-
-         
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        body: JSON.stringify(
-            dados
-        ),
-    
-        headers: headers
-
-
-}
-      ).then(response => {
-           
-      }).then(data => {
-       
-      }).catch(error => {
-       
-      });
-}
-
-function consultarorcamento(){
-
-        
-
-        limparErros();
     
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
+    //console.log("Enviando criar conta:", dados);
 
-    
+    console.log(JSON.stringify(dados));
 
-              fetch("http://localhost:8080/orcamento/{id}", 
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
 
-                {
+    fetch('http://localhost:8080/orcamento/cadorca', {
         
         method: 'POST',
         mode: 'cors',
@@ -145,30 +288,82 @@ function consultarorcamento(){
         headers: headers
 
 
-    }
-       
-      ).then(response => {
-           
-      }).then(data => {
-       
-      }).catch(error => {
-       
-      });
+    })
+    .then(async response => {
+      let data = await response.json();
+
+      console.log(data);
+      
+
+      if (!response.ok) {
+        // Caso sejam erros de validação no DTO
+        if (typeof data === "object") {
+          let mensagens = Object.values(data).join("<br>");
+
+          console.log("Entrou dento do if data ==== object");
+          console.log("----------------------------------------------");
+          console.log(mensagens);
+          console.log("----------------------------------------------");
+
+            let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+
+            for (const [campo, mensagem] of Object.entries(data)) {
+                // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+
+                console.log("========================================================");
+                console.log(idElementoErro);
+                console.log("========================================================");
+                // Tenta exibir o erro no elemento específico
+                if (document.getElementById(idElementoErro)) {
+                    //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                    mostrarErro(idElementoErro, mensagem);
+                                        
+                } 
+
+
+
+            }
+
+          
+        } else {
+          mostrarMensagem("⚠️ Erro desconhecido", "erro");
+        }
+        throw new Error("Erro de validação");
+      }
+
+      return data;
+    })
+    .then(data => {
+      if (data.id) {
+        localStorage.setItem("id_orcamento", data.id);
+        // mostrarMensagem(data.message || "✅ Professor cadastrado com sucesso!", "sucesso");
+      }
+    })
+    .catch(error => console.error(error));
 }
 
-function deletar(){
+//deletar 
 
-        limparErros();
+
+function deletarorcamento() {
+
+    
     
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
+    //console.log("Enviando criar conta:", dados);
 
-              fetch("http://localhost:8080/orcamento/{id}", 
+    console.log(JSON.stringify(dados));
 
-                {
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
+
+    fetch('http://localhost:8080/orcamento/{id}', {
         
-        method: 'POST',
+        method: 'DELETE',
         mode: 'cors',
         cache: 'no-cache',
         body: JSON.stringify(
@@ -178,25 +373,164 @@ function deletar(){
         headers: headers
 
 
-    }
-       
-      ).then(response => {
-           
-      }).then(data => {
-       
-      }).catch(error => {
-       
-      });
+    })
+    .then(async response => {
+      let data = await response.json();
+
+      console.log(data);
+      
+
+      if (!response.ok) {
+        // Caso sejam erros de validação no DTO
+        if (typeof data === "object") {
+          let mensagens = Object.values(data).join("<br>");
+
+          console.log("Entrou dento do if data ==== object");
+          console.log("----------------------------------------------");
+          console.log(mensagens);
+          console.log("----------------------------------------------");
+
+            let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+
+            for (const [campo, mensagem] of Object.entries(data)) {
+                // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+
+                console.log("========================================================");
+                console.log(idElementoErro);
+                console.log("========================================================");
+                // Tenta exibir o erro no elemento específico
+                if (document.getElementById(idElementoErro)) {
+                    //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                    mostrarErro(idElementoErro, mensagem);
+                                        
+                } 
+
+
+
+            }
+
+          
+        } else {
+          mostrarMensagem("⚠️ Erro desconhecido", "erro");
+        }
+        throw new Error("Erro de validação");
+      }
+
+      return data;
+    })
+    .then(data => {
+      if (data.id) {
+        localStorage.setItem("id_orcamento", data.id);
+        // mostrarMensagem(data.message || "✅ Professor cadastrado com sucesso!", "sucesso");
+      }
+    })
+    .catch(error => console.error(error));
+}
+//CONSULTAR
+
+function deletarorcamento() {
+
+    
+    
+    if (!validarFormulario()) return;
+
+    const dados = coletarDados();
+    //console.log("Enviando criar conta:", dados);
+
+    console.log(JSON.stringify(dados));
+
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
+
+    fetch('http://localhost:8080/orcamento/tabelaOrcamento', {
+        
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers
+
+
+    })
+    .then(async response => {
+      let data = await response.json();
+
+      console.log(data);
+      
+
+      if (!response.ok) {
+        // Caso sejam erros de validação no DTO
+        if (typeof data === "object") {
+          let mensagens = Object.values(data).join("<br>");
+
+          console.log("Entrou dento do if data ==== object");
+          console.log("----------------------------------------------");
+          console.log(mensagens);
+          console.log("----------------------------------------------");
+
+            let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+
+            for (const [campo, mensagem] of Object.entries(data)) {
+                // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+
+                console.log("========================================================");
+                console.log(idElementoErro);
+                console.log("========================================================");
+                // Tenta exibir o erro no elemento específico
+                if (document.getElementById(idElementoErro)) {
+                    //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                    mostrarErro(idElementoErro, mensagem);
+                                        
+                } 
+
+
+
+            }
+
+          
+        } else {
+          mostrarMensagem("⚠️ Erro desconhecido", "erro");
+        }
+        throw new Error("Erro de validação");
+      }
+
+      return data;
+    })
+    .then(data => {
+      if (data.id) {
+        localStorage.setItem("id_orcamento", data.id);
+        // mostrarMensagem(data.message || "✅ Professor cadastrado com sucesso!", "sucesso");
+      }
+    })
+    .catch(error => console.error(error));
 }
 
-function atualizar(){
+//ATUALIZAR
 
+function deletarorcamento() {
 
-              fetch("http://localhost:8080/orcamento/{id}", 
+    
+    
+    if (!validarFormulario()) return;
 
-                {
+    const dados = coletarDados();
+    //console.log("Enviando criar conta:", dados);
+
+    console.log(JSON.stringify(dados));
+
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
+
+    fetch('http://localhost:8080/orcamento/{id}', {
         
-        method: 'POST',
+        method: 'PUT',
         mode: 'cors',
         cache: 'no-cache',
         body: JSON.stringify(
@@ -206,13 +540,57 @@ function atualizar(){
         headers: headers
 
 
-    }
-       
-      ).then(response => {
-           
-      }).then(data => {
-       
-      }).catch(error => {
-       
-      });
+    })
+    .then(async response => {
+      let data = await response.json();
+
+      console.log(data);
+      
+
+      if (!response.ok) {
+        // Caso sejam erros de validação no DTO
+        if (typeof data === "object") {
+          let mensagens = Object.values(data).join("<br>");
+
+          console.log("Entrou dento do if data ==== object");
+          console.log("----------------------------------------------");
+          console.log(mensagens);
+          console.log("----------------------------------------------");
+
+            let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+
+            for (const [campo, mensagem] of Object.entries(data)) {
+                // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+
+                console.log("========================================================");
+                console.log(idElementoErro);
+                console.log("========================================================");
+                // Tenta exibir o erro no elemento específico
+                if (document.getElementById(idElementoErro)) {
+                    //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                    mostrarErro(idElementoErro, mensagem);
+                                        
+                } 
+
+
+
+            }
+
+          
+        } else {
+          mostrarMensagem("⚠️ Erro desconhecido", "erro");
+        }
+        throw new Error("Erro de validação");
+      }
+
+      return data;
+    })
+    .then(data => {
+      if (data.id) {
+        localStorage.setItem("id_orcamento", data.id);
+        // mostrarMensagem(data.message || "✅ Professor cadastrado com sucesso!", "sucesso");
+      }
+    })
+    .catch(error => console.error(error));
 }

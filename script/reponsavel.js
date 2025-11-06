@@ -1,35 +1,41 @@
 
 // cadastrar
-function cadastrar() {
-    const nome = document.getElementById("name").value;
+// function cadastrar() {
+//     const nome = document.getElementById("name").value;
 
-    const telefone = document.getElementById("telefone").value;
+//     const telefone = document.getElementById("telefone").value;
 
-    const endereco = document.getElementById("endereco").value;
+//     const endereco = document.getElementById("endereco").value;
 
-    const cep= document.getElementById("cep").value;
+//     const cep= document.getElementById("cep").value;
+
+//     const cpf= document.getElementById("cpf").value;
 
 
-            if(nome == ""){
-                alert("Você precisa preencher o campo nome");
-            }
+//             if(nome == ""){
+//                 alert("Você precisa preencher o campo nome");
+//             }
 
-            if(telefone == ""){
-                alert("Você precisa preencher o campo telefone");
-            }
+//             if(telefone == ""){
+//                 alert("Você precisa preencher o campo telefone");
+//             }
 
-             if(endereco == ""){
-                alert("Você precisa preencher o campo endereco");
-            }
+//              if(cpf == ""){
+//                 alert("Você precisa preencher o campo telefone");
+//             }
 
-             if(cep == ""){
-                alert("Você precisa preencher o campo CEP");
-            }
+//              if(endereco == ""){
+//                 alert("Você precisa preencher o campo endereco");
+//             }
 
-                  alert(nome + " - " + telefone + " - " + endereco + " - " + cep);
+//              if(cep == ""){
+//                 alert("Você precisa preencher o campo CEP");
+//             }
 
-                  alert("Sucesso! Operação concluída.");
-}
+//                   alert(nome + " - " + telefone + " - " + endereco + " - " + cep);
+
+//                   alert("Sucesso! Operação concluída.");
+// }
 
 function limparErros() {
     let erros = document.querySelectorAll('.erro');
@@ -41,14 +47,19 @@ function validarFormulario() {
 
     // Captura dos valores do formulário
     let nome = document.getElementById("nome").value;
+    let telefone = document.getElementById("telefone").value;
     let cpf = document.getElementById("cpf").value;
-    
+    let cep = document.getElementById("cep").value;
+    let endereco = document.getElementById("endereco").value;
+
     let ok = true;
 
     if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
+    if (!telefone) { mostrarErro('erro-telefone', 'Verifique se possui telefone para continuar.'); ok = false; }
     if (!cpf) { mostrarErro('erro-cpf', 'Verifique se possui cpf para continuar.'); ok = false; }
+    if (!cep) { mostrarErro('erro-cep', 'Verifique se possui cep para continuar.'); ok = false; }
+    if (!endereco) { mostrarErro('erro-endereco', 'Verifique se possui endereço para continuar.'); ok = false; }
     
-
     return ok;
 }
 
@@ -57,7 +68,14 @@ function coletarDados() {
   
     return {
         nome: document.getElementById("nome").value.trim(),
-        cpf: document.getElementById("cpf").value.trim()
+        telefone: document.getElementById("telefone").value.trim(),
+        cpf: document.getElementById("cpf").value.trim(),
+        cep: document.getElementById("cep").value.trim(),
+        endereco: document.getElementById("endereco").value.trim(),
+        idUsuario: localStorage.getItem("id_usuario"),
+        veiculoDto: {
+            id: localStorage.getItem("id_veiculo") // ou pegue de um campo <input hidden>
+        }
     };
 }
 
@@ -65,8 +83,7 @@ function coletarDados() {
 
 
 
-
-function salvarResponsavel() {
+function salvar() {
 
     
         limparErros();
@@ -79,40 +96,44 @@ function salvarResponsavel() {
 
 
    
-    const nome = document.getElementById("name").value;
+    // const nome = document.getElementById("name").value;
 
-    const telefone = document.getElementById("telefone").value;
+    // const telefone = document.getElementById("telefone").value;
 
-    const endereco = document.getElementById("endereco").value;
+    // const endereco = document.getElementById("endereco").value;
 
-    const cep= document.getElementById("cep").value;
+    // const cep= document.getElementById("cep").value;
+
+    // const cpf= document.getElementById("cpf").value;
 
 
-            if(nome == ""){
-                alert("Você precisa preencher o campo nome");
-            }
+            // if(nome == ""){
+            //     alert("Você precisa preencher o campo nome");
+            // }
 
-            if(telefone == ""){
-                alert("Você precisa preencher o campo telefone");
-            }
+            // if(cpf == ""){
+            //   alert("Você precisa preencher o campo CPF");
+            // }
 
-             if(endereco == ""){
-                alert("Você precisa preencher o campo endereco");
-            }
+            // if(telefone == ""){
+            //     alert("Você precisa preencher o campo telefone");
+            // }
 
-             if(cep == ""){
-                alert("Você precisa preencher o campo CEP");
-            }
+            //  if(endereco == ""){
+            //     alert("Você precisa preencher o campo endereco");
+            // }
 
-                  alert(nome + " - " + telefone + " - " + endereco + " - " + cep);
+            //  if(cep == ""){
+            //     alert("Você precisa preencher o campo CEP");
+            // }
 
-                  alert("Sucesso! Operação concluída.");
+            //       alert(nome + " - " + telefone + " - " + endereco + " - " + cep + " - " + cpf);
+
+            //       alert("Sucesso! Operação concluída.");
 
 
     var headers = new Headers();
-
     headers.append("Content-Type", "application/json");
-
     headers.append("Access-Control-Allow-Origin", "*");
 
 
@@ -128,25 +149,82 @@ function salvarResponsavel() {
         
             headers: headers  
 
-        }).then(response => {
-            
-        }).then(data => {
-        
-        }).catch(error => {
-        
-        });
+        })
+            .then(async response => {
+      let data = await response.data();
+
+      console.log(data);//resposta do servidor
+      
+
+      if (!response.ok) {
+        // Caso sejam erros de validação no DTO
+        if (typeof data === "object") {
+          let mensagens = Object.values(data).join("<br>");
+
+          console.log("Entrou dento do if data ==== object");
+          console.log("----------------------------------------------");
+          console.log(mensagens);
+          console.log("----------------------------------------------");
+
+            let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+
+            for (const [campo, mensagem] of Object.entries(data)) {
+                // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+
+                console.log("========================================================");
+                console.log(idElementoErro);
+                console.log("========================================================");
+                // Tenta exibir o erro no elemento específico
+                if (document.getElementById(idElementoErro)) {
+                    //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                    mostrarErro(idElementoErro, mensagem);
+                                        
+                } 
+            }
+
+          
+        } else {
+         // mostrarMensagem("⚠️ Erro desconhecido", "erro");
+         //alert("⚠️ " + text);
+        }
+        throw new Error("Erro de validação");
+      }
+
+      return data;
+    })
+    .then(data => {
+      if (data.id) {
+        localStorage.setItem("id_responsavel", data.id);
+        // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");
+        alert("Responsável cadastrado com sucesso!")
+      } else {
+        alert("Cadastro concluído, mas o ID não foi retornado.")
+      }
+    })
+    .catch(error => console.error("Erro ao cadastrar:", error))
+
+
+
+
+
+
+
+
+
+
 }
 
 
-function alterarResponsavel() {
+function alterar() {
    
-       c
+       
 
 
     // Envia os dados via fetch
     fetch('http://localhost:8080/responsavel/{id}', { // altere a URL conforme seu endpoint
 
-            method: 'POST',
+            method: 'PUT',
         mode: 'cors',
         cache: 'no-cache',
         body: JSON.stringify(
@@ -165,7 +243,7 @@ function alterarResponsavel() {
 }
 
 
-function consultarResponsavel() {
+function consultar() {
 
     
         limparErros();
@@ -186,7 +264,7 @@ function consultarResponsavel() {
     // Envia os dados via fetch
     fetch('http://localhost:8080/responsavel/listaresponsavel', { // altere a URL conforme seu endpoint
 
-        method: 'POST',
+        method: 'GET',
         mode: 'cors',
         cache: 'no-cache',
         body: JSON.stringify(
@@ -206,7 +284,7 @@ function consultarResponsavel() {
 }
 
 
-function deletarResponsavel() {
+function deletar() {
 
        limparErros();
 
@@ -225,7 +303,7 @@ function deletarResponsavel() {
     // Envia os dados via fetch
     fetch('http://localhost:8080/responsavel/{id}', { // altere a URL conforme seu endpoint
 
-        method: 'POST',
+        method: 'DELETE',
         mode: 'cors',
         cache: 'no-cache',
         body: JSON.stringify(

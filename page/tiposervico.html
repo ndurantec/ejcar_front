@@ -9,38 +9,35 @@
 <body>
 
 <div class="form-container">
-<div class="form-title">Tipo de Serviço</div>
-<div class="title-underline"></div> <!-- Linha vermelha abaixo do título -->
+  <div class="form-title">Tipo de Serviço</div>
+  <div class="title-underline"></div>
 
-<form action="#" method="post">
-    <label for="modalidade">Tipo de Serviço:</label>
-        <select id="modalidade" name="modalidade" required aria-label="Escolha o tipo de serviço">
-            <option value="" disabled selected>Selecione uma opção</option>
-            <option value="desmontagem">Desmontagem</option>
-            <option value="montagem">Montagem</option>
-            <option value="chapeacao">Chapeação</option>
-            <option value="preparacao-pintura">Preparação e pintura</option>
-            <option value="polimento">Polimento</option>
-            <option value="lavagem-detalhada">Lavagem detalhada</option>
-            <option value="higienizacao">Higienização</option>
-        </select>
+  <form action="#" method="post">
+      <label for="modalidade">Tipo de Serviço:</label>
+      <select id="modalidade" name="modalidade" required aria-label="Escolha o tipo de serviço">
+          <option value="" disabled selected>Selecione uma opção</option>
+          <option value="desmontagem">Desmontagem</option>
+          <option value="montagem">Montagem</option>
+          <option value="chapeacao">Chapeação</option>
+          <option value="preparacao-pintura">Preparação e pintura</option>
+          <option value="polimento">Polimento</option>
+          <option value="lavagem-detalhada">Lavagem detalhada</option>
+          <option value="higienizacao">Higienização</option>
+      </select>
 
-    <button type="button">Continuar</button>
+      <!-- 🔹 Botões lado a lado -->
+      <div class="btn-container">
+          <button type="button" onclick="salvarTipo()">Salvar</button>
+          <button type="button" onclick="consultarTipo()">Consultar</button>
+          <button type="button" onclick="atualizarTipo()">Alterar</button>
+          <button type="button" onclick="deletarTipo()">Deletar</button>
+      </div>
 
-    <button type="button"  onclick="salvarTipo()">salvar</button>
-
-    <button type="button" onclick="deletarTipo()">deletar</button>
-
-    <button type="button" onclick="consultarTipo()">consultar</button>
-
-    <button type="button" onclick="atualizarTipo()">atualizar</button>
-
-
-
-
-
-</form>
+  </form>
 </div>
+
 <script src="/script/tiposervico.js"></script>
 </body>
 </html>
+
+

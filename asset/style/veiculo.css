@@ -1,3 +1,5 @@
+/* ==================== ESTILO GERAL ==================== */
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
@@ -7,7 +9,10 @@ body {
   padding: 20px;
   margin: 0;
   min-height: 100vh;
+  position: relative;
 }
+
+/* ==================== CONTAINER PRINCIPAL ==================== */
 
 .container {
   width: 95%;
@@ -37,6 +42,8 @@ body {
   margin: 20px 0 30px;
 }
 
+/* ==================== FORMULÁRIO ==================== */
+
 form {
   display: flex;
   flex-direction: column;
@@ -52,7 +59,8 @@ label {
 }
 
 input[type="text"],
-input[type="date"] {
+input[type="date"],
+input[type="tel"] {
   border: 1px solid #ddd;
   border-radius: 6px;
   padding: 16px;
@@ -64,18 +72,19 @@ input[type="date"] {
 }
 
 input[type="text"]:focus,
-input[type="date"]:focus {
+input[type="date"]:focus,
+input[type="tel"]:focus {
   outline: none;
   border-color: #d32f2f;
   box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.2);
   background-color: #fff;
 }
 
-input[type="text"]::placeholder {
+input::placeholder {
   color: #999;
 }
 
-/* ==== CAMPOS LADO A LADO ==== */
+/* ==================== CAMPOS LADO A LADO ==================== */
 
 .linha {
   display: flex;
@@ -89,18 +98,26 @@ input[type="text"]::placeholder {
   flex-direction: column;
 }
 
-/* ============================ */
+/* ==================== RADIO E SEGURADORA ==================== */
 
 .radio-group {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  gap: 15px;
   margin: 10px 0 20px;
+}
+
+.radio-options-row {
+  display: flex;
+  gap: 20px; /* espaço entre “Sim” e “Não” */
+  align-items: center;
 }
 
 .radio-option {
   display: flex;
   align-items: center;
-  padding: 12px;
+  gap: 8px;
+  padding: 6px 10px;
   border-radius: 8px;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -117,7 +134,7 @@ input[type="text"]::placeholder {
   height: 22px;
   border: 2px solid #ddd;
   border-radius: 4px;
-  margin-right: 12px;
+  margin-right: 8px;
   position: relative;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -141,90 +158,12 @@ input[type="text"]::placeholder {
 
 .radio-option label {
   margin: 0;
-  cursor: pointer;
   font-weight: normal;
   color: #333;
   font-size: 16px;
 }
 
-/* ==== BOTÕES ==== */
-
-.botoes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.botoes button {
-  background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
-  color: white;
-  border: none;
-  padding: 14px 30px;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(183, 28, 28, 0.3);
-  letter-spacing: 0.5px;
-}
-
-.botoes button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 7px 20px rgba(183, 28, 28, 0.4);
-}
-
-.botoes button:active {
-  transform: translateY(1px);
-}
-body {
-    position: relative;
-}
-
-.btn-back-home {
-    position: absolute;
-    top: 25px;
-    left: 25px;
-    z-index: 10;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px 18px;
-    background: #d32f2f;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 10px rgba(183, 28, 28, 0.4);
-}
-
-.btn-back-home:hover {
-    background: #b71c1c;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(183, 28, 28, 0.5);
-}
-
-.btn-back-home:active {
-    transform: translateY(1px);
-    box-shadow: none;
-}
-
-@media (max-width: 768px) {
-    .btn-back-home {
-        top: 10px;
-        left: 10px;
-        padding: 8px 14px;
-        font-size: 14px;
-    }
-}
-/* ===== CAMPOS DE SEGURADORA ===== */
+/* ===== CAMPOS DA SEGURADORA ===== */
 
 #nomeSeguradora,
 #numeroSeguradora {
@@ -261,28 +200,99 @@ body {
   margin-top: 12px;
 }
 
-/* Para alinhar melhor os campos de seguradora dentro do grupo de rádio */
-.radio-group {
+/* ==================== BOTÕES ==================== */
+
+.botoes {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.radio-group input[type="text"],
-.radio-group input[type="tel"] {
-  width: 100%;
+.botoes button {
+  background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(183, 28, 28, 0.3);
+  letter-spacing: 0.5px;
 }
 
-/* Ajuste de espaçamento */
-.radio-option {
-  margin-top: 10px;
+.botoes button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(183, 28, 28, 0.4);
 }
 
-/* Responsivo */
+.botoes button:active {
+  transform: translateY(1px);
+}
+
+/* ==================== BOTÃO VOLTAR ==================== */
+
+.btn-back-home {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(183, 28, 28, 0.4);
+}
+
+.btn-back-home:hover {
+  background: #b71c1c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(183, 28, 28, 0.5);
+}
+
+.btn-back-home:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* ==================== RESPONSIVO ==================== */
+
 @media (max-width: 768px) {
+  .btn-back-home {
+    top: 10px;
+    left: 10px;
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  .linha {
+    flex-direction: column;
+  }
+
+  .radio-options-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
   #nomeSeguradora,
   #numeroSeguradora {
     font-size: 15px;
     padding: 12px;
   }
 }
+
+

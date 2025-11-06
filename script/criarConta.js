@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Configuração da Assinatura
     const canvas = document.getElementById('signaturePad');
     const clearBtn = document.getElementById('clearSignature');
     const ctx = canvas.getContext('2d');
@@ -73,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ctx.fillStyle = '#000'; 
     }
     
+    // Event Listeners da Assinatura
     canvas.addEventListener('mousedown', startDrawing);
     canvas.addEventListener('mousemove', draw);
     canvas.addEventListener('mouseup', stopDrawing);
@@ -85,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     clearBtn.addEventListener('click', clearSignature);
     window.addEventListener('resize', initCanvas);
 
+    // Toggle Senha
     document.getElementById('toggleSenha').addEventListener('click', function() {
         toggleSenha('toggleSenha', 'senha');
     });
@@ -93,7 +96,202 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleSenha('toggleConfirme', 'confirme');
     });
 
+    // Botões
+    document.getElementById('botaocriar').addEventListener('click', criarconta);
+    document.getElementById('botaosalvar').addEventListener('click', salvar);
+    document.getElementById('botaodeletar').addEventListener('click', deletar);
+    document.getElementById('botaotrocar').addEventListener('click', atualizar);
 });
+
+// Função para Toggle da Senha
+function toggleSenha(botaoId, inputId) {
+    const botao = document.getElementById(botaoId);
+    const input = document.getElementById(inputId);
+    const icon = botao.querySelector('i');
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'fa fa-eye-slash';
+    } else {
+        input.type = 'password';
+        icon.className = 'fa fa-eye';
+    }
+}
+
+// Função para guardar os dados
+function guardarDados(conta) {
+    const contasExistentes = JSON.parse(localStorage.getItem('contas')) || [];
+    contasExistentes.push(conta);
+    localStorage.setItem('contas', JSON.stringify(contasExistentes));
+    console.log('Conta salva:', conta);
+}
+
+// Função para obter contas
+function obterContas() {
+    return JSON.parse(localStorage.getItem('contas')) || [];
+}
+
+// Função principal para criar conta
+function criarconta() {
+    document.querySelectorAll('.erro').forEach(erro => erro.textContent = '');
+
+    const nome = document.getElementById("nome").value.trim();
+    const cpf = document.getElementById("cpf").value.trim();
+    const telefone = document.getElementById("telefone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const usuario = document.getElementById("usuario").value.trim();
+    const senha = document.getElementById("senha").value;
+    const confirme = document.getElementById("confirme").value;
+    
+    let ok = true;
+
+    // Validações
+    if (nome === '') {
+        document.getElementById('erro-nome').textContent = 'Preencha o nome!';
+        ok = false;
+    }
+    if (cpf === '') {
+        document.getElementById('erro-cpf').textContent = 'Preencha o CPF!';
+        ok = false;
+    }
+    if (telefone === '') {
+        document.getElementById('erro-telefone').textContent = 'Preencha o telefone!';
+        ok = false;
+    }
+    if (email === '') {
+        document.getElementById('erro-email').textContent = 'Preencha o email!';
+        ok = false;
+    }
+    if (usuario === '') {
+        document.getElementById('erro-usuario').textContent = 'Preencha o usuário!';
+        ok = false;
+    }
+    if (senha === '') {
+        document.getElementById('erro-senha').textContent = 'Preencha a senha!';
+        ok = false;
+    }
+    if (confirme === '') {
+        document.getElementById('erro-confirme').textContent = 'Confirme a senha!';
+        ok = false;
+    }
+    if (senha !== confirme) {
+        document.getElementById('erro-confirme').textContent = 'As senhas não coincidem!';
+        ok = false;
+    }
+
+    if (ok) {
+        const conta = {
+            nome: nome,
+            cpf: cpf,
+            telefone: telefone,
+            email: email,
+            usuario: usuario,
+            senha: senha
+        };
+
+        guardarDados(conta);
+        
+        // CONSOLE.LOG APENAS COM OS CAMPOS DO HTML
+        console.log("=== DADOS DA CONTA CRIADA ===");
+        console.log("Nome: " + nome);
+        console.log("CPF: " + cpf);
+        console.log("Telefone: " + telefone);
+        console.log("Email: " + email);
+        console.log("Usuário: " + usuario);
+        console.log("Senha: " + senha);
+        console.log("Confirme: " + confirme);
+        console.log("==============================");
+        
+        alert('✅ Conta criada com sucesso!');
+        limparFormulario();
+    } else {
+        console.log("❌ Formulário inválido!");
+    }
+}
+
+// Função Salvar
+function salvar() {
+    const nome = document.getElementById("nome").value.trim();
+    const cpf = document.getElementById("cpf").value.trim();
+    const telefone = document.getElementById("telefone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const usuario = document.getElementById("usuario").value.trim();
+    
+    console.log("=== DADOS SALVOS ===");
+    console.log("Nome: " + nome);
+    console.log("CPF: " + cpf);
+    console.log("Telefone: " + telefone);
+    console.log("Email: " + email);
+    console.log("Usuário: " + usuario);
+    console.log("=====================");
+    
+    alert('Dados salvos no console!');
+}
+
+// Função Deletar
+function deletar() {
+    const usuario = document.getElementById("usuario").value.trim();
+    
+    if (usuario === '') {
+        alert('Digite um usuário para deletar');
+        return;
+    }
+
+    const contas = obterContas();
+    const contaIndex = contas.findIndex(conta => conta.usuario === usuario);
+    
+    if (contaIndex !== -1) {
+        if (confirm(`Tem certeza que deseja deletar a conta do usuário: ${usuario}?`)) {
+            const contaDeletada = contas[contaIndex];
+            contas.splice(contaIndex, 1);
+            localStorage.setItem('contas', JSON.stringify(contas));
+            
+            console.log("=== CONTA DELETADA ===");
+            console.log("Usuário: " + contaDeletada.usuario);
+            console.log("Nome: " + contaDeletada.nome);
+            console.log("CPF: " + contaDeletada.cpf);
+            console.log("Email: " + contaDeletada.email);
+            console.log("======================");
+            
+            alert('✅ Conta deletada com sucesso!');
+            limparFormulario();
+        }
+    } else {
+        console.log("❌ Conta não encontrada para o usuário: " + usuario);
+        alert('❌ Conta não encontrada!');
+    }
+}
+
+// Função Atualizar
+function atualizar() {
+    const nome = document.getElementById("nome").value.trim();
+    const cpf = document.getElementById("cpf").value.trim();
+    const telefone = document.getElementById("telefone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const usuario = document.getElementById("usuario").value.trim();
+    
+    console.log("=== DADOS PARA ATUALIZAR ===");
+    console.log("Nome: " + nome);
+    console.log("CPF: " + cpf);
+    console.log("Telefone: " + telefone);
+    console.log("Email: " + email);
+    console.log("Usuário: " + usuario);
+    console.log("============================");
+    
+    alert('Dados prontos para atualização no console!');
+}
+
+// Função para limpar formulário
+function limparFormulario() {
+    document.querySelector('form').reset();
+    const canvas = document.getElementById('signaturePad');
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#f9f9f9';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    console.log("📝 Formulário limpo!");
+}
 
 function toggleSenha(botaoId, inputId) {
     const botao = document.getElementById(botaoId);
