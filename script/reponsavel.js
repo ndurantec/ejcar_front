@@ -43,7 +43,6 @@ function coletarDados() {
 
 function salvar() {
 
-    
     limparErros();
 
     if (!validarFormulario()) return;
@@ -120,8 +119,6 @@ function salvar() {
       }
     })
     .catch(error => console.error("Erro ao cadastrar:", error))
-
-
 }
 
 
@@ -199,8 +196,6 @@ function alterar() {
       }
     })
     .catch(error => console.error("Erro ao cadastrar:", error))
-
-
 }
 
 
@@ -285,8 +280,6 @@ function consultar() {
       }
     })
     .catch(error => console.error("Erro ao cadastrar:", error))
-
-
 }
 
 
@@ -370,7 +363,5 @@ function deletar() {
       }
     })
     .catch(error => console.error("Erro ao cadastrar:", error))
-
-
 }
 
