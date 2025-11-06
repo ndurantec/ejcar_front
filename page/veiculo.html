@@ -24,11 +24,13 @@
         <div class="campo">
           <label for="responsavel">Responsável:</label>
           <input type="text" id="responsavel" name="responsavel" placeholder="Ex: Maria Eduarda" required />
+          <div id="erro-responsavel" class="erro"></div>
         </div>
 
         <div class="campo">
           <label for="modelo">Modelo:</label>
           <input type="text" id="modelo" name="modelo" placeholder="Ex: Fiat Uno" required />
+          <div id="erro-modelo" class="erro"></div>
         </div>
       </div>
 
@@ -36,11 +38,13 @@
         <div class="campo">
           <label for="placa">Placa:</label>
           <input type="text" id="placa" name="placa" placeholder="Ex: ABC-1234" required />
+          <div id="erro-placa" class="erro"></div>
         </div>
 
         <div class="campo">
           <label for="ano">Ano:</label>
           <input type="text" id="ano" name="ano" placeholder="Ex: 2020" required />
+          <div id="erro-ano" class="erro"></div>
         </div>
       </div>
 
@@ -48,14 +52,16 @@
         <div class="campo">
           <label for="cor">Cor:</label>
           <input type="text" id="cor" name="cor" placeholder="Ex: Vermelho" required />
+          <div id="erro-cor" class="erro"></div>
         </div>
 
         <div class="campo">
           <label for="chassi">Chassi:</label>
           <input type="text" id="chassi" name="chassi" placeholder="Ex: 1234567890ABCDEF" required />
+          <div id="erro-chassi" class="erro"></div>
         </div>
       </div>
-      
+
 <label>Tem seguradora?</label>
 <div class="radio-group">
   <div class="radio-options-row">
@@ -79,9 +85,9 @@
 
 
       <div class="botoes">
-        <button type="button" onclick="consultar()">Consultar</button>
-        <button type="button" onclick="alterar()">Alterar</button>
         <button type="button" onclick="salvar()">Salvar</button>
+        <button type="button" onclick="alterar()">Alterar</button>
+        <button type="button" onclick="consultar()">Consultar</button>
         <button type="button" onclick="apagar()">Apagar</button>
       </div>
     </form>
