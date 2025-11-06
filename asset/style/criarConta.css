@@ -1,4 +1,3 @@
-
 /* Reset Básico */
 * {
     margin: 0;
@@ -7,487 +6,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* --- ESTILO DO BOTÃO DE VOLTAR (ALINHADO COM PADRÃO VERMELHO) --- */
-.btn-back-home {
-    /* Posicionamento no canto superior esquerdo */
-    position: absolute;
-    top: 25px; 
-    left: 25px; 
-    z-index: 10;
-
-    /* Estilo Visual */
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    /* Cores e Efeitos */
-    padding: 10px 18px; 
-    background: #d32f2f; /* Cor Primária (Vermelho) */
-    color: white;
-    border: none;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 10px rgba(183, 28, 28, 0.4); 
-}
-
-.btn-back-home:hover {
-    background: #b71c1c; 
-    transform: translateY(-1px); 
-    box-shadow: 0 4px 12px rgba(183, 28, 28, 0.5);
-}
-
-.btn-back-home:active {
-    transform: translateY(1px);
-    box-shadow: none;
-}
-
-/* --- FIM DO ESTILO DO BOTÃO DE VOLTAR --- */
-
-
-/* Estilos Gerais */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    margin: 0;
-    position: relative; /* Essencial para o posicionamento absoluto do botão de voltar */
-}
-
-.formulario-com-borda {
-    width: 100%;
-    max-width: 600px;
-    background: white;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    border-top: 5px solid #d32f2f;
-}
-
-/* Título e Divisor */
-.formulario-com-borda h1 {
-    color: #d32f2f;
-    text-align: center;
-    margin-bottom: 15px;
-    font-weight: 700;
-    font-size: 32px;
-    letter-spacing: 1px;
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
-    display: block;
-    padding: 15px;
-    margin: 0;
-    min-height: 100vh;
-}
-
-.formulario-com-borda {
-    width: 95%;
-    max-width: 1000px; /* Reduzido de 1200px */
-    background: white;
-    padding: 25px; /* Reduzido de 40px */
-    border-radius: 10px; /* Reduzido de 12px */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Reduzido */
-    border-top: 4px solid #d32f2f; /* Reduzido de 5px */
-    margin: 0 auto;
-}
-
-.formulario-com-borda h1 {
-    color: #d32f2f;
-    text-align: center;
-    margin-bottom: 12px; /* Reduzido de 15px */
-    font-weight: 700;
-    font-size: 26px; /* Reduzido de 32px */
-    letter-spacing: 0.5px; /* Reduzido de 1px */
-
-    text-transform: uppercase;
-}
-
-.formulario-com-borda hr {
-    border: none;
-
-    height: 2px;
-    background: linear-gradient(to right, transparent, #d32f2f, transparent);
-    margin: 20px 0 30px;
-}
-
-/* Labels dos Campos */
-.formulario-com-borda b {
-    display: block;
-    color: #333;
-    margin-top: 22px;
-    margin-bottom: 10px;
-    font-weight: 600;
-    font-size: 16px;
-}
-
-/* Campos de Input */
-.formulario-com-borda .form-control {
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 16px;
-    font-size: 16px;
-
-    height: 1px; /* Reduzido de 2px */
-    background: linear-gradient(to right, transparent, #d32f2f, transparent);
-    margin: 15px 0 20px; /* Reduzido */
-}
-
-.formulario-com-borda b {
-    display: block;
-    color: #333;
-    margin-top: 18px; /* Reduzido de 22px */
-    margin-bottom: 8px; /* Reduzido de 10px */
-    font-weight: 600;
-    font-size: 15px; /* Reduzido de 16px */
-}
-
-.formulario-com-borda .form-control {
-    border: 1px solid #ddd;
-    border-radius: 5px; /* Reduzido de 6px */
-    padding: 12px; /* Reduzido de 16px */
-    font-size: 14px; /* Reduzido de 16px */
-
-    background-color: #f9f9f9;
-    transition: all 0.3s ease;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.formulario-com-borda .form-control:focus {
-    outline: none;
-    border-color: #d32f2f;
-    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.2);
-    background-color: #fff;
-}
-
-.formulario-com-borda .form-control::placeholder {
-    color: #999;
-}
-
-/* Container do Email com Ícone */
-.formulario-com-borda #email-container {
-    display: block;
-    width: 100%;
-    margin: 15px 0;
-    position: relative;
-}
-
-.fa-envelope {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #999;
-    z-index: 2;
-}
-
-.formulario-com-borda #email-input {
-    padding-left: 40px;
-}
-
-/* Container dos Botões de Ação (Criar, Salvar, Deletar) */
-.btn-container {
-    display: flex;
-    justify-content: center;
-    gap: 15px; 
-    margin-top: 35px;
-    width: 100%;
-}
-
-/* Botão Estilizado (btn-danger) */
-.btn-danger {
-    background: linear-gradient(135deg, #d32f2f 0%, rgb(183, 28, 28) 100%);
-    color: white;
-    border: none;
-    padding: 16px 40px;
-    border-radius: 10px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(183, 28, 28, 0.3);
-    letter-spacing: 0.5px;
-    position: relative;
-    overflow: hidden;
-    flex-grow: 1; 
-    max-width: 200px;
-    text-align: center;
-}
-
-.btn-danger:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 7px 20px rgba(183, 28, 28, 0.4);
-}
-
-.btn-danger:active {
-    transform: translateY(1px);
-}
-
-.btn-danger::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: 0.5s;
-}
-
-.btn-danger:hover::before {
-    left: 100%;
-}
-
-/* Estilos de Assinatura */
-.signature-container {
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 25px 0;
-    box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.2); /* Reduzido de 3px */
-    background-color: #fff;
-}
-
-.formulario-com-borda .form-control::placeholder {
-    color: #999;
-}
-
-.email-container {
-    display: block;
-    width: 100%;
-    margin: 12px 0; /* Reduzido de 15px */
-    position: relative;
-}
-
-.fa-envelope {
-    position: absolute;
-    left: 12px; /* Reduzido de 15px */
-    top: 50%;
-    transform: translateY(-50%);
-    color: #999;
-    z-index: 2;
-}
-
-.email-container input {
-    padding-left: 35px; /* Reduzido de 40px */
-}
-
-.senha-container {
-    position: relative;
-    width: 100%;
-}
-
-#toggleSenha, #toggleConfirme {
-    position: absolute;
-    right: 10px; /* Reduzido de 12px */
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #666;
-    font-size: 14px; /* Reduzido de 16px */
-    cursor: pointer;
-    padding: 6px; /* Reduzido de 8px */
-    border-radius: 3px; /* Reduzido de 4px */
-    transition: all 0.3s ease;
-}
-
-#toggleSenha:hover, #toggleConfirme:hover {
-    background-color: rgba(211, 47, 47, 0.1);
-    color: #d32f2f;
-}
-
-.btn-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 25px; /* Reduzido de 35px */
-    width: 100%;
-}
-
-.btn-danger {
-    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
-    color: white;
-    border: none;
-    padding: 14px 30px; /* Reduzido de 16px 40px */
-    border-radius: 8px; /* Reduzido de 10px */
-    font-size: 16px; /* Reduzido de 18px */
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 10px rgba(183, 28, 28, 0.3); /* Reduzido */
-    letter-spacing: 0.3px; /* Reduzido de 0.5px */
-    position: relative;
-    overflow: hidden;
-    width: 180px; /* Reduzido de 200px */
-    text-align: center;
-    display: block;
-    margin: 0 auto;
-}
-
-.btn-danger:hover {
-    transform: translateY(-2px); /* Reduzido de -3px */
-    box-shadow: 0 5px 15px rgba(183, 28, 28, 0.4); /* Reduzido */
-}
-
-.btn-danger:active {
-    transform: translateY(1px);
-}
-
-.btn-danger::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: 0.5s;
-}
-
-.btn-danger:hover::before {
-    left: 100%;
-}
-
-.signature-container {
-    border: 1px solid #ddd; /* Reduzido de 2px */
-    border-radius: 8px; /* Reduzido de 10px */
-    padding: 15px; /* Reduzido de 20px */
-    margin: 20px 0; /* Reduzido de 25px */
-    background-color: #fff;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.08); /* Reduzido */
-}
-
-.signature-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px; /* Reduzido de 15px */
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px; /* Reduzido de 12px */
-}
-
-.signature-header h3 {
-    margin: 0;
-    color: #d32f2f;
-    font-size: 18px; /* Reduzido de 20px */
-    font-weight: bold;
-}
-
-.clear-btn {
-    background-color: #000;
-    color: white;
-    border: none;
-    padding: 8px 15px; /* Reduzido de 10px 18px */
-    border-radius: 5px; /* Reduzido de 6px */
-    cursor: pointer;
-    font-size: 13px; /* Reduzido de 14px */
-    transition: background-color 0.3s;
-    font-weight: 500;
-}
-
-.clear-btn:hover {
-    background-color: #333;
-}
-
-#signaturePad {
-    border: 1px dashed #ccc; /* Reduzido de 2px */
-    border-radius: 6px; /* Reduzido de 8px */
-    background-color: #f9f9f9;
-    touch-action: none;
-    width: 100%;
-    height: 180px; /* Reduzido de 200px */
-    cursor: crosshair;
-}
-
-.signature-footer {
-    margin-top: 10px; /* Reduzido de 12px */
-    color: #666;
-    font-style: italic;
-    text-align: center;
-
-}
-
-/* Media Queries (Responsividade) */
-@media (max-width: 768px) {
-    .formulario-com-borda {
-        padding: 25px 20px;
-    }
-    
-    .formulario-com-borda h1 {
-        font-size: 26px;
-    }
-    
-    .btn-container {
-        flex-direction: column; /* Empilha os botões */
-        gap: 10px;
-
-    font-size: 13px; /* Adicionado para reduzir */
-}
-
-.erro {
-    color: #d32f2f;
-    font-size: 13px; /* Reduzido de 14px */
-    margin-top: 4px; /* Reduzido de 5px */
-    min-height: 16px; /* Reduzido de 18px */
-    font-weight: 600;
-    width: 100%;
-    text-align: left;
-}
-
-@media (max-width: 768px) {
-    body {
-        padding: 10px; /* Reduzido de 15px */
-    }
-    
-    .formulario-com-borda {
-        padding: 20px 15px; /* Reduzido */
-        width: 95%;
-    }
-    
-    .formulario-com-borda h1 {
-        font-size: 22px; /* Reduzido de 26px */
-
-    }
-    
-    .btn-danger {
-        width: 100%;
-
-        max-width: none;
-        padding: 14px;
-    }
-
-    /* Ajuste do botão de voltar para mobile */
-
-        padding: 12px; /* Reduzido de 14px */
-    }
-    
-    .signature-header {
-        flex-direction: column;
-        gap: 8px; /* Reduzido de 10px */
-    }
-    
-    .signature-header h3 {
-        text-align: center;
-    }
-    
-    #signaturePad {
-        height: 150px; /* Reduzido para mobile */
-    }
-}
-body {
-    position: relative;
-}
-
+/* --- ESTILO DO BOTÃO DE VOLTAR --- */
 .btn-back-home {
     position: absolute;
     top: 25px;
@@ -521,18 +40,277 @@ body {
     box-shadow: none;
 }
 
-@media (max-width: 768px) {
+/* Estilos Gerais - TELA MAIS LONGA */
+body {
+    background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Mudado para flex-start para tela longa */
+    min-height: 100vh;
+    padding: 40px 20px; /* Aumentado o padding */
+    margin: 0;
+    position: relative;
+    overflow-y: auto; /* Permite scroll */
+}
 
+.formulario-com-borda {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    padding: 50px 40px; /* Aumentado o padding interno */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border-top: 5px solid #d32f2f;
+    margin: 20px 0; /* Margem para tela longa */
+}
+
+/* Título e Divisor */
+.formulario-com-borda h1 {
+    color: #d32f2f;
+    text-align: center;
+    margin-bottom: 20px; /* Aumentado */
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.formulario-com-borda hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #d32f2f, transparent);
+    margin: 25px 0 35px; /* Aumentado */
+}
+
+/* Labels dos Campos */
+.formulario-com-borda b {
+    display: block;
+    color: #333;
+    margin-top: 25px; /* Aumentado */
+    margin-bottom: 12px; /* Aumentado */
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* Campos de Input */
+.formulario-com-borda .form-control {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 18px; /* Aumentado */
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 5px; /* Espaço antes do erro */
+}
+
+.formulario-com-borda .form-control:focus {
+    outline: none;
+    border-color: #d32f2f;
+    box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.2);
+    background-color: #fff;
+}
+
+.formulario-com-borda .form-control::placeholder {
+    color: #999;
+}
+
+/* Mensagens de Erro */
+.erro {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 15px; /* Aumentado espaço abaixo do erro */
+    min-height: 18px;
+    font-weight: 600;
+    width: 100%;
+    text-align: left;
+}
+
+/* Container dos Botões */
+.btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 40px; /* Aumentado */
+    width: 100%;
+}
+
+/* TODOS OS BOTÕES VERMELHOS */
+.btn-container button {
+    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+    color: white;
+    border: none;
+    padding: 16px 25px; /* Aumentado */
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+    box-shadow: 0 3px 10px rgba(183, 28, 28, 0.3);
+}
+
+/* Hover para todos os botões */
+.btn-container button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(183, 28, 28, 0.4);
+    background: linear-gradient(135deg, #b71c1c 0%, #8b0000 100%);
+}
+
+/* Active para todos os botões */
+.btn-container button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(183, 28, 28, 0.3);
+}
+
+/* Botão específico btn-danger (caso ainda exista no HTML) */
+.btn-danger {
+    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%) !important;
+    color: white !important;
+    border: none !important;
+}
+
+/* Assinatura - MAIOR */
+.signature-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px; /* Aumentado */
+    margin: 30px 0; /* Aumentado */
+    background-color: #fff;
+}
+
+.signature-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px; /* Aumentado */
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px; /* Aumentado */
+}
+
+.signature-header h3 {
+    margin: 0;
+    color: #d32f2f;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.clear-btn {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.3s;
+}
+
+.clear-btn:hover {
+    background-color: #333;
+}
+
+#signaturePad {
+    border: 1px dashed #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    touch-action: none;
+    width: 100%;
+    height: 200px; /* Aumentado */
+    cursor: crosshair;
+}
+
+.signature-footer {
+    margin-top: 12px; /* Aumentado */
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 10px; /* Ajustado para mobile */
+        align-items: flex-start;
+    }
+    
+    .formulario-com-borda {
+        padding: 30px 20px; /* Ajustado para mobile */
+        width: 95%;
+        margin: 10px 0;
+    }
+    
+    .formulario-com-borda h1 {
+        font-size: 26px; /* Ajustado */
+        margin-bottom: 15px;
+    }
+    
     .btn-back-home {
         top: 10px;
         left: 10px;
         padding: 8px 14px;
         font-size: 14px;
     }
-
+    
+    .btn-container {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 30px;
+    }
+    
+    .btn-container button {
+        width: 100%;
+        max-width: none;
+        padding: 14px;
+        font-size: 15px;
+    }
+    
+    .signature-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .signature-header h3 {
+        text-align: center;
+    }
+    
+    #signaturePad {
+        height: 180px; /* Ajustado para mobile */
+    }
+    
+    .formulario-com-borda b {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .formulario-com-borda .form-control {
+        padding: 16px;
+    }
 }
 
-
-
+/* Para telas muito pequenas */
+@media (max-width: 480px) {
+    .formulario-com-borda {
+        padding: 25px 15px;
+    }
+    
+    .btn-container button {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .formulario-com-borda h1 {
+        font-size: 24px;
+    }
 }
-

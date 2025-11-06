@@ -1,35 +1,41 @@
 
 // cadastrar
-function cadastrar() {
-    const nome = document.getElementById("name").value;
+// function cadastrar() {
+//     const nome = document.getElementById("name").value;
 
-    const telefone = document.getElementById("telefone").value;
+//     const telefone = document.getElementById("telefone").value;
 
-    const endereco = document.getElementById("endereco").value;
+//     const endereco = document.getElementById("endereco").value;
 
-    const cep= document.getElementById("cep").value;
+//     const cep= document.getElementById("cep").value;
+
+//     const cpf= document.getElementById("cpf").value;
 
 
-            if(nome == ""){
-                alert("Você precisa preencher o campo nome");
-            }
+//             if(nome == ""){
+//                 alert("Você precisa preencher o campo nome");
+//             }
 
-            if(telefone == ""){
-                alert("Você precisa preencher o campo telefone");
-            }
+//             if(telefone == ""){
+//                 alert("Você precisa preencher o campo telefone");
+//             }
 
-             if(endereco == ""){
-                alert("Você precisa preencher o campo endereco");
-            }
+//              if(cpf == ""){
+//                 alert("Você precisa preencher o campo telefone");
+//             }
 
-             if(cep == ""){
-                alert("Você precisa preencher o campo CEP");
-            }
+//              if(endereco == ""){
+//                 alert("Você precisa preencher o campo endereco");
+//             }
 
-                  alert(nome + " - " + telefone + " - " + endereco + " - " + cep);
+//              if(cep == ""){
+//                 alert("Você precisa preencher o campo CEP");
+//             }
 
-                  alert("Sucesso! Operação concluída.");
-}
+//                   alert(nome + " - " + telefone + " - " + endereco + " - " + cep);
+
+//                   alert("Sucesso! Operação concluída.");
+// }
 
 function limparErros() {
     let erros = document.querySelectorAll('.erro');
@@ -57,7 +63,10 @@ function coletarDados() {
   
     return {
         nome: document.getElementById("nome").value.trim(),
-        cpf: document.getElementById("cpf").value.trim()
+        telefone: document.getElementById("telefone").value.trim(),
+        cpf: document.getElementById("cpf").value.trim(),
+        enrececo: document.getElementById("endereco").value.trim(),
+        cep: document.getElementById("cep").value.trim()
     };
 }
 
@@ -66,7 +75,7 @@ function coletarDados() {
 
 
 
-function salvarResponsavel() {
+function salvar() {
 
     
         limparErros();
@@ -87,9 +96,15 @@ function salvarResponsavel() {
 
     const cep= document.getElementById("cep").value;
 
+    const cpf= document.getElementById("cpf").value;
+
 
             if(nome == ""){
                 alert("Você precisa preencher o campo nome");
+            }
+
+            if(cpf == ""){
+              alert("Você precisa preencher o campo CPF");
             }
 
             if(telefone == ""){
@@ -104,7 +119,7 @@ function salvarResponsavel() {
                 alert("Você precisa preencher o campo CEP");
             }
 
-                  alert(nome + " - " + telefone + " - " + endereco + " - " + cep);
+                  alert(nome + " - " + telefone + " - " + endereco + " - " + cep + " - " + cpf);
 
                   alert("Sucesso! Operação concluída.");
 
@@ -138,7 +153,7 @@ function salvarResponsavel() {
 }
 
 
-function alterarResponsavel() {
+function alterar() {
    
        c
 
@@ -165,7 +180,7 @@ function alterarResponsavel() {
 }
 
 
-function consultarResponsavel() {
+function consultar() {
 
     
         limparErros();
@@ -206,7 +221,7 @@ function consultarResponsavel() {
 }
 
 
-function deletarResponsavel() {
+function deletar() {
 
        limparErros();
 

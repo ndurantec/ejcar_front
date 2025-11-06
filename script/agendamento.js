@@ -61,7 +61,7 @@ function coletarDados() {
 
 
 
-function salvarAgendamento() {
+function salvar() {
 
 
         
@@ -130,7 +130,7 @@ function salvarAgendamento() {
 }
 
 
-function alterarAgendamento() {
+function alterar() {
 
         limparErros();
 
@@ -170,7 +170,7 @@ function alterarAgendamento() {
 }
 
 
-function consultarAgendamento() {
+function consultar() {
 
         limparErros();
 
@@ -210,7 +210,7 @@ function consultarAgendamento() {
 }
 
 
-function deletarAgendamento() {
+function deletar() {
 
         limparErros();
 
