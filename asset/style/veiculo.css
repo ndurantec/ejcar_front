@@ -224,3 +224,65 @@ body {
         font-size: 14px;
     }
 }
+/* ===== CAMPOS DE SEGURADORA ===== */
+
+#nomeSeguradora,
+#numeroSeguradora {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 14px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+#nomeSeguradora:focus,
+#numeroSeguradora:focus {
+  outline: none;
+  border-color: #d32f2f;
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.2);
+  background-color: #fff;
+}
+
+#nomeSeguradora::placeholder,
+#numeroSeguradora::placeholder {
+  color: #999;
+}
+
+.radio-group label[for="nomeSeguradora"],
+.radio-group label[for="numeroSeguradora"] {
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-top: 12px;
+}
+
+/* Para alinhar melhor os campos de seguradora dentro do grupo de rádio */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.radio-group input[type="text"],
+.radio-group input[type="tel"] {
+  width: 100%;
+}
+
+/* Ajuste de espaçamento */
+.radio-option {
+  margin-top: 10px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  #nomeSeguradora,
+  #numeroSeguradora {
+    font-size: 15px;
+    padding: 12px;
+  }
+}
