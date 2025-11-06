@@ -419,16 +419,6 @@ function deletar() {
 
 }
 
-
-
-
-
-
-
-
-
-
-
 function limparErros() {
     let erros = document.querySelectorAll('.erro');
     erros.forEach(e => e.textContent = '');
