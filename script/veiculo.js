@@ -4,13 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    let responsavel = document.getElementById("responsavel").value.trim();
-    let modelo = document.getElementById("modelo").value.trim();
-    let placa = document.getElementById("placa").value.trim();
-    let ano = document.getElementById("ano").value.trim();
-    let cor = document.getElementById("cor").value.trim();
-    let chassi = document.getElementById("chassi").value.trim();
-    let seguradora = document.querySelector('input[name="realizado"]:checked');
+    // let responsavel = document.getElementById("responsavel").value.trim();
+    // let modelo = document.getElementById("modelo").value.trim();
+    // let placa = document.getElementById("placa").value.trim();
+    // let ano = document.getElementById("ano").value.trim();
+    // let cor = document.getElementById("cor").value.trim();
+    // let chassi = document.getElementById("chassi").value.trim();
+    // let seguradora = document.querySelector('input[name="realizado"]:checked');
 
     if (responsavel === "") {
       alert("Você precisa preencher o nome do responsável");

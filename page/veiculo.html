@@ -55,29 +55,33 @@
           <input type="text" id="chassi" name="chassi" placeholder="Ex: 1234567890ABCDEF" required />
         </div>
       </div>
+      
+<label>Tem seguradora?</label>
+<div class="radio-group">
+  <div class="radio-options-row">
+    <div class="radio-option">
+      <input type="radio" id="sim" name="realizado" value="sim" required />
+      <label for="sim">Sim</label>
+    </div>
+    <div class="radio-option">
+      <input type="radio" id="nao" name="realizado" value="nao" />
+      <label for="nao">Não</label>
+    </div>
+  </div>
 
-      <!-- O serviço foi realizado? (igual ao de serviço) -->
-      <label>Tem seguradora?</label>
-      <div class="radio-group">
-        <div class="radio-option">
-          <input type="radio" id="sim" name="realizado" value="sim" required />
-          <label for="sim">Sim</label>
-        </div>
-        <label for="nomeSeguradora"><b>Nome da seguradora:</b></label>
-            <input type="text" id="nomeSeguradora" class="form-control" placeholder="Digite o nome da seguradora">
+  <label for="nomeSeguradora"><b>Nome da seguradora:</b></label>
+  <input type="text" id="nomeSeguradora" placeholder="Digite o nome da seguradora">
 
-            <label for="numeroSeguradora"><b>Número da seguradora:</b></label>
-            <input type="tel" id="numeroSeguradora" class="form-control" placeholder="(00) 00000-0000">
+  <label for="numeroSeguradora"><b>Número da seguradora:</b></label>
+  <input type="tel" id="numeroSeguradora" placeholder="(00) 00000-0000">
+</div>
 
-        <div class="radio-option">
-          <input type="radio" id="nao" name="realizado" value="nao" />
-          <label for="nao">Não</label>
-        </div>
-      </div>
+
 
       <div class="botoes">
         <button type="button" onclick="consultar()">Consultar</button>
         <button type="button" onclick="alterar()">Alterar</button>
+        <button type="button" onclick="salvar()">Salvar</button>
         <button type="button" onclick="apagar()">Apagar</button>
       </div>
     </form>
