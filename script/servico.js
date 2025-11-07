@@ -168,15 +168,14 @@ function alterar() {
    
     fetch('http://localhost:8080/servico/{id}', { 
 
-      method: 'POST',
+      method: 'PUT',
         mode: 'cors',
         cache: 'no-cache',
-        body: JSON.stringify(
-            dados
-        ),
+        body: JSON.stringify(dados),
     
         headers: headers
 
+        
         
     }).then(response => {
            
