@@ -224,6 +224,7 @@ function limparErros() {
     erros.forEach(e => e.textContent = '');
 }
 
+
 function validarFormulario() {
     //limparErros();
 
@@ -232,7 +233,7 @@ function validarFormulario() {
     let placa = document.getElementById("placa").value;
     let produto = document.getElementById("produto").value;
     let servico = document.getElementById("servico").value;
-    let valor = document.getElementById("valor").value;
+    let mao_de_obra = document.getElementById("mao_de_obra").value;
 
 
     let ok = true;
@@ -241,7 +242,7 @@ function validarFormulario() {
     if (!placa) { mostrarErro('erro-placa', 'Verifique se possui placa para continuar.'); ok = false; }
     if (!produto) { mostrarErro('erro-produto', 'Verifique se possui produto para continuar.'); ok = false; }
     if (!servico) { mostrarErro('erro-servico', 'Verifique se possui serivoc para continuar.'); ok = false; }
-    if (!valor) { mostrarErro('erro-valor', 'Verifique se possui valor para continuar.'); ok = false; }
+    if (!mao_de_obra) { mostrarErro('erro-mao_de_obra', 'Verifique se possui mao_de_obra para continuar.'); ok = false; }
 
     return ok;
 }
@@ -254,7 +255,7 @@ function coletarDados() {
         placa: document.getElementById("placa").value.trim(),
         produto: document.getElementById("produto").value.trim(),
         servico: document.getElementById("servico").value.trim(),
-        valor: document.getElementById("valor").value.trim(),
+        mao_de_obra: document.getElementById("mao_de_obra").value.trim(),
 
 
     };
@@ -263,7 +264,7 @@ function coletarDados() {
 
 function cadastrarorcamento() {
 
-    
+    limparErros();
     
     if (!validarFormulario()) return;
 
@@ -271,6 +272,7 @@ function cadastrarorcamento() {
     //console.log("Enviando criar conta:", dados);
 
     console.log(JSON.stringify(dados));
+    console.log("JSON enviado ao backend:", JSON.stringify(dados, null, 2));
 
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
