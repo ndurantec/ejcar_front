@@ -288,8 +288,7 @@ function cadastrarorcamento() {
         headers: headers
 
 
-    })
-    .then(async response => {
+    }).then(async response => {
       let data = await response.json();
 
       console.log(data);
@@ -333,8 +332,7 @@ function cadastrarorcamento() {
       }
 
       return data;
-    })
-    .then(data => {
+    }).then(data => {
       if (data.id) {
         localStorage.setItem("id_orcamento", data.id);
         // mostrarMensagem(data.message || "✅ Professor cadastrado com sucesso!", "sucesso");
@@ -373,8 +371,7 @@ function deletarorcamento() {
         headers: headers
 
 
-    })
-    .then(async response => {
+    }).then(async response => {
       let data = await response.json();
 
       console.log(data);
@@ -456,8 +453,7 @@ function deletarorcamento() {
         headers: headers
 
 
-    })
-    .then(async response => {
+    }).then(async response => {
       let data = await response.json();
 
       console.log(data);
@@ -540,8 +536,7 @@ function deletarorcamento() {
         headers: headers
 
 
-    })
-    .then(async response => {
+    }).then(async response => {
       let data = await response.json();
 
       console.log(data);
@@ -585,8 +580,7 @@ function deletarorcamento() {
       }
 
       return data;
-    })
-    .then(data => {
+    }).then(data => {
       if (data.id) {
         localStorage.setItem("id_orcamento", data.id);
         // mostrarMensagem(data.message || "✅ Professor cadastrado com sucesso!", "sucesso");
