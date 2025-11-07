@@ -385,6 +385,8 @@ function concluir() {
 
     limparErros();
 
+    console.log("A função 'salvarUsuario' foi chamada e está executando a lógica de salvar.");
+
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
@@ -410,44 +412,142 @@ function concluir() {
        
     }).catch(error => {
        
-    });
+    }).then(async response => {
+        let data = await response.json();
+  
+        console.log(data);
+        
+        if (!response.ok) {
+          // Caso sejam erros de validação no DTO
+          if (typeof data === "object") {
+            let mensagens = Object.values(data).join("<br>");
+  
+            console.log("Entrou dento do if data ==== object");
+            console.log("----------------------------------------------");
+            console.log(mensagens);
+            console.log("----------------------------------------------");
+  
+              let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+  
+              for (const [campo, mensagem] of Object.entries(data)) {
+                  // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                  const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+  
+                  console.log("========================================================");
+                  console.log(idElementoErro);
+                  console.log("========================================================");
+                  // Tenta exibir o erro no elemento específico
+                  if (document.getElementById(idElementoErro)) {
+                      //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                      mostrarErro(idElementoErro, mensagem);
+                                          
+                  } 
+  
+          }
+  
+          } else {
+            mostrarMensagem("⚠️ Erro desconhecido", "erro");
+          }
+          throw new Error("Erro de validação");
+        }
+  
+        return data;
+      })
+      .then(data => {
+        if (data.id) {
+          localStorage.setItem("id_usuario", data.id);
+          mostrarMensagem(data.message || "✅ Usuario cadastrado com sucesso!", "sucesso");
+        }
+      })
+      .catch(error => console.error(error));
+
 }
 
 function salvar() {
 
     limparErros();
 
+    console.log("A função 'salvarUsuario' foi chamada e está executando a lógica de salvar.");
+    
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
+    //console.log("Enviando criar conta:", dados);
+
+    console.log(JSON.stringify(dados));
 
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
 
-    fetch('http://127.0.0.1:8080/responsaveis', {
 
+    fetch('http://localhost:8080/usuario/insert', {
+        
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache',
-        body: JSON.stringify(
-            dados
-        ),
+
+        body: JSON.stringify (dados),
     
         headers: headers
-       
-    }).then(response => {
-           
-    }).then(data => {
-       
-    }).catch(error => {
-       
-    });
-}
+
+    })
+    .then(async response => {
+      let data = await response.json();
+
+      console.log(data);
+      
+      if (!response.ok) {
+        // Caso sejam erros de validação no DTO
+        if (typeof data === "object") {
+          let mensagens = Object.values(data).join("<br>");
+
+          console.log("Entrou dento do if data ==== object");
+          console.log("----------------------------------------------");
+          console.log(mensagens);
+          console.log("----------------------------------------------");
+
+            let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+
+            for (const [campo, mensagem] of Object.entries(data)) {
+                // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+
+                console.log("========================================================");
+                console.log(idElementoErro);
+                console.log("========================================================");
+                // Tenta exibir o erro no elemento específico
+                if (document.getElementById(idElementoErro)) {
+                    //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                    mostrarErro(idElementoErro, mensagem);
+                                        
+                } 
+
+        }
+
+        } else {
+          mostrarMensagem("⚠️ Erro desconhecido", "erro");
+        }
+        throw new Error("Erro de validação");
+      }
+
+      return data;
+    })
+    .then(data => {
+      if (data.id) {
+        localStorage.setItem("id_usuario", data.id);
+        mostrarMensagem(data.message || "✅ Usuario cadastrado com sucesso!", "sucesso");
+      }
+    })
+    .catch(error => console.error(error));
+}       
+
 
 function deletar() {
     
     limparErros();
+
+    console.log("A função 'salvarUsuario' foi chamada e está executando a lógica de salvar.");
 
     if (!validarFormulario()) return;
 
@@ -468,13 +568,55 @@ function deletar() {
     
         headers: headers        
        
-    }).then(response => {
-           
-    }).then(data => {
-       
-    }).catch(error => {
-       
-    });
+    }).then(async response => {
+        let data = await response.json();
+  
+        console.log(data);
+        
+        if (!response.ok) {
+          // Caso sejam erros de validação no DTO
+          if (typeof data === "object") {
+            let mensagens = Object.values(data).join("<br>");
+  
+            console.log("Entrou dento do if data ==== object");
+            console.log("----------------------------------------------");
+            console.log(mensagens);
+            console.log("----------------------------------------------");
+  
+              let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+  
+              for (const [campo, mensagem] of Object.entries(data)) {
+                  // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                  const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+  
+                  console.log("========================================================");
+                  console.log(idElementoErro);
+                  console.log("========================================================");
+                  // Tenta exibir o erro no elemento específico
+                  if (document.getElementById(idElementoErro)) {
+                      //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                      mostrarErro(idElementoErro, mensagem);
+                                          
+                  } 
+  
+          }
+  
+          } else {
+            mostrarMensagem("⚠️ Erro desconhecido", "erro");
+          }
+          throw new Error("Erro de validação");
+        }
+  
+        return data;
+      })
+      .then(data => {
+        if (data.id) {
+          localStorage.setItem("id_usuario", data.id);
+          mostrarMensagem(data.message || "✅ Usuario cadastrado com sucesso!", "sucesso");
+        }
+      })
+      .catch(error => console.error(error));
+
 }
 
 function limparErros() {
@@ -503,6 +645,159 @@ function coletarDados() {
   
     return {
         nome: document.getElementById("nome").value.trim(),
-        cpf: document.getElementById("cpf").value.trim()
+        cpf: document.getElementById("cpf").value.trim(),
+        //telefone: document.getElementById("telefone").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        user: document.getElementById("usuario").value.trim(),
+        password: document.getElementById("senha").value.trim(),
+        confirmarSenha: document.getElementById("confirme").value.trim(),
+        assinatura: canvas.toDataURL(),// converte assinatura para Base64
+
     };
+
+}
+
+
+function consultarUsuario() {
+   
+    limparErros();
+
+    console.log("A função 'salvarUsuario' foi chamada e está executando a lógica de salvar.");
+
+    if (!validarFormulario()) return;
+
+    const dados = coletarDados();
+
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
+
+    fetch('http://localhost:8080/responsavel/listaresponsavel', { // altere a URL conforme seu endpoint
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    })  .then(async response => {
+        let data = await response.json();
+  
+        console.log(data);
+        
+        if (!response.ok) {
+          // Caso sejam erros de validação no DTO
+          if (typeof data === "object") {
+            let mensagens = Object.values(data).join("<br>");
+  
+            console.log("Entrou dento do if data ==== object");
+            console.log("----------------------------------------------");
+            console.log(mensagens);
+            console.log("----------------------------------------------");
+  
+              let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+  
+              for (const [campo, mensagem] of Object.entries(data)) {
+                  // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                  const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+  
+                  console.log("========================================================");
+                  console.log(idElementoErro);
+                  console.log("========================================================");
+                  // Tenta exibir o erro no elemento específico
+                  if (document.getElementById(idElementoErro)) {
+                      //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                      mostrarErro(idElementoErro, mensagem);
+                                          
+                  } 
+  
+          }
+  
+          } else {
+            mostrarMensagem("⚠️ Erro desconhecido", "erro");
+          }
+          throw new Error("Erro de validação");
+        }
+  
+        return data;
+      })
+      .then(data => {
+        if (data.id) {
+          localStorage.setItem("id_usuario", data.id);
+          mostrarMensagem(data.message || "✅ Usuario cadastrado com sucesso!", "sucesso");
+        }
+      })
+      .catch(error => console.error(error));
+}
+
+function alterarUsuario() {
+
+    limparErros();
+
+    console.log("A função 'salvarUsuario' foi chamada e está executando a lógica de salvar.");
+
+    if (!validarFormulario()) return;
+
+    const dados = coletarDados();
+
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
+
+    fetch('http://localhost:8080/responsavel/{id}', { // altere a URL conforme seu endpoint
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    })  .then(async response => {
+        let data = await response.json();
+  
+        console.log(data);
+        
+        if (!response.ok) {
+          // Caso sejam erros de validação no DTO
+          if (typeof data === "object") {
+            let mensagens = Object.values(data).join("<br>");
+  
+            console.log("Entrou dento do if data ==== object");
+            console.log("----------------------------------------------");
+            console.log(mensagens);
+            console.log("----------------------------------------------");
+  
+              let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+  
+              for (const [campo, mensagem] of Object.entries(data)) {
+                  // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                  const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+  
+                  console.log("========================================================");
+                  console.log(idElementoErro);
+                  console.log("========================================================");
+                  // Tenta exibir o erro no elemento específico
+                  if (document.getElementById(idElementoErro)) {
+                      //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                      mostrarErro(idElementoErro, mensagem);
+                                          
+                  } 
+  
+          }
+  
+          } else {
+            mostrarMensagem("⚠️ Erro desconhecido", "erro");
+          }
+          throw new Error("Erro de validação");
+        }
+  
+        return data;
+      })
+      .then(data => {
+        if (data.id) {
+          localStorage.setItem("id_usuario", data.id);
+          mostrarMensagem(data.message || "✅ Usuario cadastrado com sucesso!", "sucesso");
+        }
+      })
+      .catch(error => console.error(error));
 }

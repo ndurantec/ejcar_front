@@ -87,14 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('resize', initCanvas);
     
-    // Centralizar o combobox e atualizar o termo quando uma opção for selecionada
-    const comboboxContainer = document.querySelector('.combobox-container');
-    if (comboboxContainer) {
-        comboboxContainer.style.display = 'flex';
-        comboboxContainer.style.flexDirection = 'column';
-        comboboxContainer.style.alignItems = '';
-        comboboxContainer.style.marginBottom = '10px';
-    }
+
     
     const modalidadeSelect = document.getElementById('modalidade');
     if (modalidadeSelect) {
@@ -191,46 +184,81 @@ document.querySelectorAll('.campo-termo-label').forEach(label => {
 botaoConcluir.addEventListener('click', validarCheckbox);
 
 function salvar() {
-    const dados = {
-        step: document.getElementById("boxstep").checked,
-        macaco: document.getElementById("boxmacaco").checked,
-        chave: document.getElementById("boxchave").checked,
-        descricao: document.getElementById("descricao").value,
-        proprietario: document.getElementById("proprietario").textContent,
-        marcaModelo: document.getElementById("marcaModelo").textContent,
-        placa: document.getElementById("placa").textContent,
-        termoAceito: document.getElementById("termoAceite").checked
-    };
     console.log('Dados salvos:', dados);
-}
-
-function concluir() {
-
-    limparErros();
 
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
 
+    console.log(JSON.stringify(dados));
+
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
 
-    if (validarCheckbox()) {
-        fetch('http://127.0.0.1:8080/responsaveis', {
-           
+
+    fetch('http://localhost:8080/vistoria/insert', {
+        
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
 
 
-        }).then(response => {
-               
-        }).then(data => {
-           
-        }).catch(error => {
-           
-        });
-    }
+        body: JSON.stringify (dados),
+
+    
+        headers: headers
+
+
+    }).then(async response => {
+        let data = await response.json();
+
+        console.log(data);
+        
+        if (!response.ok) {
+        // Caso sejam erros de validação no DTO
+        if (typeof data === "object") {
+            let mensagens = Object.values(data).join("<br>");
+
+            console.log("Entrou dento do if data ==== object");
+            console.log("----------------------------------------------");
+            console.log(mensagens);
+            console.log("----------------------------------------------");
+
+            let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+
+            for (const [campo, mensagem] of Object.entries(data)) {
+                // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+
+                console.log("========================================================");
+                console.log(idElementoErro);
+                console.log("========================================================");
+                // Tenta exibir o erro no elemento específico
+                if (document.getElementById(idElementoErro)) {
+                    //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                    mostrarErro(idElementoErro, mensagem);
+                                        
+                }
+            }
+            
+        } else {
+            mostrarMensagem("⚠️ Erro desconhecido", "erro");
+        }
+        throw new Error("Erro de validação");
+        }
+
+        return data;
+
+    })
+    .then(data => {
+        if (data.id) {
+        localStorage.setItem("id_usuario", data.id);
+        mostrarMensagem(data.message || "✅ Vistoria cadastrada com sucesso!", "sucesso");
+        }
+    })
+    .catch(error => console.error(error));
 }
-
 
 
 function deletar() {
@@ -414,10 +442,13 @@ function validarFormulario() {
 }
 
 function coletarDados() {
-    const canvas = document.getElementById('signaturePad');
   
     return {
-        nome: document.getElementById("nome").value.trim(),
-        cpf: document.getElementById("cpf").value.trim()
+        step: document.getElementById("boxstep").checked,
+        chaveDeRoda: document.getElementById("boxchaveDeRoda").value.trim(),
+        macaco: document.getElementById("boxmacaco").value.trim(),
+        outrosItens: document.getElementById("boxoutrosItens").value.trim(),
+        termo: document.getElementById("boxtermo").value.trim(),
+        imagemBase64:  document.getElementById('signaturePad').toDataURL(),// converte assinatura para Base64
     };
 }

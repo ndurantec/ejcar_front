@@ -22,14 +22,15 @@
                 <div class="input-icon">
                     <i class="fas fa-user"></i>
                     <input type="text" name="nome" id="name" placeholder="Digite o Nome">
-                
-            </div>
+                    <div id="erro-nome" class="erro"></div>
+                </div>
            
             <div class="form-group">
                 <label for="telefone">Telefone:</label>
                 <div class="input-icon">
                     <i class="fas fa-phone"></i>
                     <input type="tel" name="telefone" id="telefone" placeholder="Digite o Telefone">
+                    <div id="erro-telefone" class="erro"></div>
                 </div>
             </div>
 
@@ -38,6 +39,7 @@
                 <div class="input-icon">
                     <i class="fas fa-user"></i>
                     <input type="cpf" name="cpf" id="cpf" placeholder="Digite o seu CPF">
+                    <div id="erro-cpf" class="erro"></div>
                 </div>
             </div>
 
@@ -48,6 +50,7 @@
                 <div class="input-icon">
                     <i class="fas fa-map-marker-alt"></i>
                     <input type="text" name="endereco" id="endereco" placeholder="Digite o Endereço">
+                    <div id="erro-endereco" class="erro"></div>
                 </div>
             </div>
            
@@ -56,6 +59,7 @@
                 <div class="input-icon">
                     <i class="fas fa-map-pin"></i>
                     <input type="text" name="cep" id="cep" placeholder="Digite o CEP">
+                    <div id="erro-cep" class="erro"></div>
                 </div>
             </div>
 
@@ -66,7 +70,7 @@
                 <button type="button" class="button" onclick="salvar()" id="botao">
                     <i class="fas fa-user-plus"></i> Cadastrar
                 </button>
-                
+
                 <button type="button" class="button" onclick="alterar()" id="botao">alterar</button>
                 <button type="button" class="button" onclick="consultar()" id="botao">consultar</button>
                 <button type="button" class="button" onclick="deletar()" id="botao">deletar</button>
