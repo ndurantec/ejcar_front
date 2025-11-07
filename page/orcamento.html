@@ -26,6 +26,7 @@
                     <div class="input-icon">
                         <i class="fas fa-barcode"></i>
                         <input type="text" class="form-control" id="chassi" placeholder="Digite o número do chassi" name="chassi">
+                        <div id="erro-chassi" class="erro" style="color:red; font-size: 14px;"></div>
                     </div>
                 </div>
 
@@ -34,13 +35,15 @@
                     <div class="input-icon">
                         <i class="fas fa-car"></i>
                         <input type="text" class="form-control" id="placa" placeholder="Digite a placa do veículo" name="placa">
+                        <div id="erro-placa" class="erro" style="color:red; font-size: 14px;"></div>
                     </div>
                 </div>
             </div>
 
             <div class="product-row" style="display: flex; gap: 10px; align-items: flex-end;">
                 <div class="product-input" style="flex: 2;">
-                    <label for="produto" class="form-label"><i class="fas fa-box"></i> Produto:</label>
+                    <label for="produto" class="form-label" id="produto"><i class="fas fa-box"></i> Produto:</label>
+                    <div id="erro-produto" class="erro" style="color:red; font-size: 14px;"></div>
                     <div class="input-icon">
                     <i class="fas fa-box"></i></label>  
                      <select name="tipo" id="tipo">
@@ -53,7 +56,8 @@
                 </div>
 
                 <div class="product-input" style="flex: 2;">
-                    <label for="servico" class="form-label"><i class="fas fa-wrench"></i> Serviço:</label>
+                    <label for="servico" class="form-label" id="servico"><i class="fas fa-wrench"></i> Serviço:</label>
+                    <div id="erro-servico" class="erro" style="color:red; font-size: 14px;"></div>
                     <div class="input-icon">
                         <i class="fas fa-wrench"></i>
                         <select name="tipo" id="tipo"class="form-control">
@@ -70,10 +74,11 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="product-price" class="form-label" ><i class="fas fa-dollar-sign"></i> Valor:</label>
+                    <label for="product-price" class="form-label"><i class="fas fa-dollar-sign"></i> Valor:</label>
                     <div class="input-icon">
                         <i class="fas fa-dollar-sign"></i>
                         <input type="number" class="form-control" id="mao_de_obra" placeholder="0,00" min="0" step="0.01">
+                        <div id="erro-mao_de_obra" class="erro" style="color:red; font-size: 14px;"></div>
                     </div>
                 </div>
                 
