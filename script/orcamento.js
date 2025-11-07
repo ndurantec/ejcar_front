@@ -269,7 +269,7 @@ function cadastrarorcamento() {
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
-    //console.log("Enviando criar conta:", dados);
+    console.log("Enviando criar conta:", dados);
 
     console.log(JSON.stringify(dados));
     console.log("JSON enviado ao backend:", JSON.stringify(dados, null, 2));

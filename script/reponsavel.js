@@ -70,8 +70,8 @@ function salvar() {
     
         headers: headers  
 
-
       }).then(async response => {
+
 
       let data = await response.data();
 
@@ -137,8 +137,6 @@ function alterar() {
 
     const dados = coletarDados();
 
-
-
     // Envia os dados via fetch
     fetch('http://localhost:8080/responsavel/{id}', { // altere a URL conforme seu endpoint
 
@@ -152,7 +150,9 @@ function alterar() {
         headers: headers  
     
 
+
     }).then(async response => {
+
       let data = await response.data();
 
       console.log(data);//resposta do servidor
@@ -216,6 +216,7 @@ function consultar() {
     if (!validarFormulario()) return;
 
 
+
     const dados = coletarDados();
     //console.log("Enviando criar conta:", dados);3
 
@@ -239,7 +240,68 @@ function consultar() {
         headers: headers  
        
        
+
     }).then(async response => {
+
+
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    })
+
+    .then(data => {
+      if (data.id) {
+        localStorage.setItem("id_responsavel", data.id);
+        // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");
+        alert("Responsável cadastrado com sucesso!")
+      } else {
+        alert("Cadastro concluído, mas o ID não foi retornado.")
+      }
+    })
+    .catch(error => console.error("Erro ao cadastrar:", error))
+}
+
+
+function deletar() {
+
+    limparErros();
+
+    if (!validarFormulario()) return;
+
+    const dados = coletarDados();
+    //console.log("Enviando criar conta:", dados);3
+
+
+    var headers = new Headers();
+
+    headers.append("Content-Type", "application/json");
+
+    headers.append("Access-Control-Allow-Origin", "*");
+   
+    // Envia os dados via fetch
+    fetch('http://localhost:8080/responsavel/{id}', { // altere a URL conforme seu endpoint
+
+        method: 'DELETE',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers  
+       
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    })
+
+  .then(async response => {
 
       let data = await response.data();
 
