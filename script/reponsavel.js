@@ -1,3 +1,7 @@
+function mostrarErro(idElemento, mensagem) {
+    document.getElementById(idElemento).textContent = mensagem;
+}
+
 function limparErros() {
     let erros = document.querySelectorAll('.erro');
     erros.forEach(e => e.textContent = '');
@@ -66,7 +70,8 @@ function salvar() {
     
         headers: headers  
 
-    }).then(async response => {
+        })
+    .then(async response => {
       let data = await response.data();
 
       console.log(data);//resposta do servidor
@@ -134,7 +139,7 @@ function alterar() {
     // Envia os dados via fetch
     fetch('http://localhost:8080/responsavel/{id}', { // altere a URL conforme seu endpoint
 
-        method: 'PUT',
+            method: 'PUT',
         mode: 'cors',
         cache: 'no-cache',
         body: JSON.stringify(
@@ -143,7 +148,16 @@ function alterar() {
 
         headers: headers  
     
-    }).then(async response => {
+
+    }).then(response => {
+        
+    }).then(data => {
+    
+    }).catch(error => {
+    
+    })
+
+    .then(async response => {
       let data = await response.data();
 
       console.log(data);//resposta do servidor
@@ -201,6 +215,8 @@ function alterar() {
 
 function consultar() {
 
+    
+        limparErros();
     limparErros();
 
     if (!validarFormulario()) return;
@@ -228,49 +244,15 @@ function consultar() {
         headers: headers  
        
        
-    }).then(async response => {
-      let data = await response.data();
-
-      console.log(data);//resposta do servidor
-      
-
-      if (!response.ok) {
-        // Caso sejam erros de validação no DTO
-        if (typeof data === "object") {
-          let mensagens = Object.values(data).join("<br>");
-
-          console.log("Entrou dento do if data ==== object");
-          console.log("----------------------------------------------");
-          console.log(mensagens);
-          console.log("----------------------------------------------");
-
-            let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
-
-            for (const [campo, mensagem] of Object.entries(data)) {
-                // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
-                const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
-
-                console.log("========================================================");
-                console.log(idElementoErro);
-                console.log("========================================================");
-                // Tenta exibir o erro no elemento específico
-                if (document.getElementById(idElementoErro)) {
-                    //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
-                    mostrarErro(idElementoErro, mensagem);
-                                        
-                } 
-            }
-
-          
-        } else {
-         // mostrarMensagem("⚠️ Erro desconhecido", "erro");
-         //alert("⚠️ " + text);
-        }
-        throw new Error("Erro de validação");
-      }
-
-      return data;
+    }).then(response => {
+           
     }).then(data => {
+       
+    }).catch(error => {
+       
+    })
+
+    .then(data => {
       if (data.id) {
         localStorage.setItem("id_responsavel", data.id);
         // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");
@@ -311,7 +293,15 @@ function deletar() {
     
         headers: headers  
        
-    }).then(async response => {
+    }).then(response => {
+           
+    }).then(data => {
+       
+    }).catch(error => {
+       
+    })
+
+  .then(async response => {
       let data = await response.data();
 
         console.log(data);//resposta do servidor
