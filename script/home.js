@@ -1,54 +1,39 @@
 function entrar() {
-    window.location.href=''
+    window.location.href='/page/login.html'
 }
 
 function criarconta() {
-    window.location.href=''
+    window.location.href='/page/criarConta.html'
 }
 
 function orcamento() {
-    window.location.href=''
+    window.location.href='/page/orcamento.html'
 }
 
 function cadastrarveiculo() {
-    window.location.href=''
+    window.location.href='/page/veiculo.html'
 }
 
 function vistoria() {
-    window.location.href=''
+    window.location.href='/page/vistoria.html'
 }
 
 function agendamento() {
-    window.location.href=''
+    window.location.href='/page/agendamento.html'
 }
 
 function servico() {
-    window.location.href=''
+    window.location.href='/page/servico.html'
 }
 
 function produto() {
-    window.location.href=''
+    window.location.href='/page/produto.html'
 }
 
 function tipodeservico() {
-    window.location.href=''
+    window.location.href='/page/tiposervico.html'
 }
 
 function responsavel() {
-    window.location.href=''
+    window.location.href='/page/responsavel.html'
 }
-
-
-
-
-
-
-
-//  <li><a href="/page/orcamento.html">ORÇAMENTO</a></li>
-//             <li><a href="/page/veiculo.html">CADASTRAR VEÍCULO</a></li>
-//             <li><a href="/page/vistoria.html">VISTORIA</a></li>
-//             <li><a href="/page/agendamento.html">AGENDAMENTO</a></li>
-//             <li><a href="/page/servico.html">SERVIÇO</a></li>
-//             <li><a href="/page/produto.html">PRODUTO</a></li>
-//             <li><a href="/page/tiposervico.html">TIPO DE SERVIÇO</a></li>
-//              <li><a href="/page/responsavel.html">RESPONSAVEL</a></li>

@@ -241,8 +241,8 @@ function validarFormulario() {
     if (!chassi) { mostrarErro('erro-chassi', 'Verifique se possui chassi para continuar.'); ok = false; }
     if (!placa) { mostrarErro('erro-placa', 'Verifique se possui placa para continuar.'); ok = false; }
     if (!produto) { mostrarErro('erro-produto', 'Verifique se possui produto para continuar.'); ok = false; }
-    if (!servico) { mostrarErro('erro-servico', 'Verifique se possui serivoc para continuar.'); ok = false; }
-    if (!mao_de_obra) { mostrarErro('erro-mao_de_obra', 'Verifique se possui mao_de_obra para continuar.'); ok = false; }
+    if (!servico) { mostrarErro('erro-servico', 'Verifique se possui servico para continuar.'); ok = false; }
+    if (!mao_de_obra) { mostrarErro('erro-mao_de_obra', 'Verifique se possui valor para continuar.'); ok = false; }
 
     return ok;
 }
@@ -269,7 +269,7 @@ function cadastrarorcamento() {
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
-    //console.log("Enviando criar conta:", dados);
+    console.log("Enviando criar conta:", dados);
 
     console.log(JSON.stringify(dados));
     console.log("JSON enviado ao backend:", JSON.stringify(dados, null, 2));
@@ -348,7 +348,7 @@ function cadastrarorcamento() {
 
 function deletarorcamento() {
 
-    
+  limparErros();
     
     if (!validarFormulario()) return;
 
@@ -428,9 +428,9 @@ function deletarorcamento() {
 }
 //CONSULTAR
 
-function deletarorcamento() {
+function consultarorcamento() {
 
-    
+  limparErros(); 
     
     if (!validarFormulario()) return;
 
@@ -511,9 +511,9 @@ function deletarorcamento() {
 
 //ATUALIZAR
 
-function deletarorcamento() {
+function atualizarorcamento() {
 
-    
+  limparErros();
     
     if (!validarFormulario()) return;
 

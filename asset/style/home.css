@@ -28,7 +28,7 @@ body {
     padding: 5px 50px; 
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Garante alinhamento vertical */
+    align-items: center; 
     border-bottom: 3px solid var(--background-dark); 
     flex-wrap: wrap;
     position: relative;
@@ -39,13 +39,12 @@ body {
     position: relative;
     cursor: default;
     display: flex; 
-    flex-direction: row; /* Layout Horizontal */
-    align-items: center; /* Alinha verticalmente */
-    gap: 10px; /* Espaço entre a logo e o texto (que agora está escondido) */
+    flex-direction: row; 
+    align-items: center; 
+    gap: 10px; 
     height: 100%; 
 }
 
-/* NOVO ESTILO: Container para a Imagem da Logo (substitui o texto) */
 .logo-image-link {
     display: block;
     text-decoration: none;
@@ -54,19 +53,17 @@ body {
 
 .logo-img {
     background-color: transparent; 
-    height: 100px; /* *** AUMENTADO: Logo maior, ocupando a altura total do header (100px) *** */
+    height: 100px; 
     width: auto; 
     max-width: 100%;
     display: block; 
 }
-/* FIM DO NOVO ESTILO DA LOGO */
 
-/* SUBTÍTULO: REMOVIDO */
 .logo-subtitle {
-    display: none; /* *** TEXTO ABAIXO DA LOGO FOI REMOVIDO/ESCONDIDO *** */
+    display: none; 
 }
 
-/* LINKS DE AUTENTICAÇÃO E ÍCONE HOME */
+/* ESTILO DOS BOTÕES DE AUTENTICAÇÃO (AGORA COM EFEITO PRETO/VERMELHO NO HOVER) */
 .user-auth {
     display: flex;
     gap: 20px; 
@@ -74,44 +71,30 @@ body {
     height: 100%; 
 }
 
-/* ESTILO BÁSICO DOS LINKS */
-.user-auth a {
-    color: var(--text-light);
-    text-decoration: none;
-    font-weight: 700;
-    padding: 10px 18px; 
-    border-radius: 5px;
-    border: 2px solid transparent; 
-    font-size: 1.2rem; 
-    display: flex;
-    align-items: center;
-}
-
-/* ESTILO DO ÍCONE DA CASINHA SEPARADA */
-.home-icon {
-    font-size: 1.4rem; 
-    color: var(--text-light);
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 2px solid transparent;
-}
-
-/* HOVER: Fundo preto e borda/texto branco para contraste no header vermelho */
-.home-icon:hover {
-    color: var(--text-light);
-    background-color: var(--background-dark); 
-    border-color: var(--background-dark);
-    transform: scale(1.1); 
-}
-
-/* HOVER NOS LINKS: Fundo preto e borda/texto branco para contraste no header vermelho */
-.user-auth a:hover {
+.user-auth button {
+    background-color: transparent; /* Fundo transparente (ou manter preto se preferir o efeito da primeira revisão, mas vamos usar transparente para seguir o padrão dos outros) */
     color: var(--text-light); 
-    background-color: var(--background-dark); 
-    border-color: var(--background-dark);
-    transform: scale(1.05);
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 10px 10px; 
+    border-radius: 5px;
+    border: none; 
+    border-bottom: 2px solid transparent; /* Borda inferior para manter a estética de link */
+    transition: all 0.3s ease;
+    text-transform: uppercase;
 }
+
+/* *** NOVO EFEITO HOVER: Fundo Preto (background-dark) e Texto Vermelho (primary-red) *** */
+.user-auth button:hover,
+.user-auth button:focus {
+    background-color: var(--background-dark); /* Fundo Preto */
+    color: var(--primary-red); /* Texto Vermelho */
+    border-bottom-color: var(--primary-red); /* Borda Vermelha */
+    transform: scale(1.05);
+    outline: none;
+}
+
 
 /* ----------------------- SUB-NAVEGAÇÃO (BARRA DE OPÇÕES PRINCIPAIS) ----------------------- */
 .sub-nav {
@@ -128,22 +111,30 @@ body {
     flex-wrap: wrap;
 }
 
-.main-options a {
-    color: var(--text-light);
-    text-decoration: none;
+/* ESTILO DOS BUTTONS DA NAVEGAÇÃO (Mantém o estilo de Link com Borda Inferior) */
+.main-options button {
+    background-color: transparent; 
+    color: var(--text-light); 
+    cursor: pointer; 
+    border: none; 
+    
     font-weight: 600;
     font-size: 1rem;
-    padding: 5px 0;
-    border-bottom: 2px solid transparent;
+    padding: 5px 0; 
+    
+    border-bottom: 2px solid transparent; 
+    transition: all 0.3s ease;
+    text-transform: uppercase;
 }
 
-/* HOVER: Cor do texto e borda é o Vermelho Específico (barra superior) */
-.main-options a:hover {
-    color: var(--primary-red);
-    border-bottom-color: var(--primary-red);
+.main-options button:hover,
+.main-options button:focus {
+    color: var(--primary-red); 
+    border-bottom-color: var(--primary-red); 
+    outline: none; 
 }
 
-/* ----------------------- MAIN CONTENT (ÁREA PRINCIPAL COM IMAGEM) ----------------------- */
+/* ----------------------- MAIN CONTENT ----------------------- */
 .main-content {
     flex-grow: 1;
     display: flex;
@@ -153,35 +144,31 @@ body {
     padding: 100px 40px; 
     text-align: center;
     
-    /* === PROPRIEDADES PARA A IMAGEM DE FUNDO COBRIR A ÁREA === */
     background-image: url('/asset/image/backgroundejcar.jpeg');
-    background-size: cover; /* Faz a imagem cobrir todo o fundo da div */
-    background-position: center; /* Centraliza a imagem */
-    background-repeat: no-repeat; /* Impede a repetição */
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
     
-    /* Overlay escuro para garantir que o texto seja legível */
     background-blend-mode: darken;
-    background-color: rgba(0, 0, 0, 0.4); /* Cor de fundo misturada com a imagem */
+    background-color: rgba(0, 0, 0, 0.4); 
 }
 
-/* Estilo da mensagem sobre a imagem */
 .hero-message {
     font-size: 2.5rem;
     color: var(--text-light);
     font-weight: 700;
-    /* Sombra para destacar o texto sobre a imagem de fundo */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
     max-width: 90%;
 }
 
 /* ----------------------- FOOTER (FUNDO VERMELHO SÓLIDO) ----------------------- */
 .footer {
-    background-color: var(--primary-red); /* Fundo Vermelho */
+    background-color: var(--primary-red); 
     color: var(--text-light);
     padding: 20px 50px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start; 
     flex-wrap: wrap;
 }
 
@@ -195,9 +182,23 @@ body {
     color: var(--text-light);
     text-transform: uppercase;
     font-weight: 600;
+    margin-bottom: 10px;
 }
 
-/* ÍCONES SOCIAIS NA DIREITA */
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section a {
+    color: var(--text-light);
+    text-decoration: none;
+    line-height: 1.6;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
 .social-icons {
     display: flex;
     gap: 20px;
@@ -209,7 +210,6 @@ body {
     text-decoration: none;
 }
 
-/* HOVER: Ícones brancos para contraste no fundo vermelho */
 .social-icons a:hover {
     color: var(--text-light); 
     transform: scale(1.15);
@@ -218,14 +218,11 @@ body {
 /* Responsividade */
 @media (max-width: 992px) {
     .logo-img {
-        height: 80px; /* Logo um pouco menor em telas médias */
+        height: 80px; 
     }
-    .user-auth a {
+    .user-auth button {
         font-size: 1rem;
-        padding: 8px 12px;
-    }
-    .home-icon {
-        font-size: 1.2rem;
+        padding: 8px 10px;
     }
     .hero-message {
         font-size: 2rem;
@@ -233,42 +230,56 @@ body {
 }
 @media (max-width: 768px) {
     .header {
-        flex-direction: row; /* Volta para linha para melhor encaixe com links de auth */
-        height: 90px; /* Reduz levemente a altura máxima para mobile */
+        flex-direction: row; 
+        height: 90px; 
         padding: 0 20px;
+        justify-content: space-between;
     }
     .logo-container {
-        flex-direction: row; /* Mantém a linha */
+        flex-direction: row; 
         align-items: center;
-        justify-content: flex-start;
         gap: 10px;
     }
     .logo-img {
-        height: 70px; /* Tamanho mobile */
+        height: 70px; 
     }
-    /* .logo-subtitle continua como display: none; */
+    .logo-subtitle {
+        display: none; 
+    }
     
     .user-auth {
-        justify-content: center;
-        height: auto; /* Ajuste para mobile */
+        gap: 10px; 
     }
+    .user-auth button {
+        font-size: 0.85rem;
+        padding: 8px 8px;
+    }
+    
     .sub-nav {
         padding: 10px 20px;
     }
     .main-options {
-        gap: 15px;
+        gap: 10px; 
     }
+    .main-options button {
+        font-size: 0.85rem;
+        padding: 5px 8px;
+    }
+    
     .hero-message {
         font-size: 1.5rem;
     }
+    
     .footer {
         flex-direction: column;
         text-align: center;
         padding: 15px 20px;
     }
     .footer-info {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+        flex-direction: column; 
         gap: 20px;
+        width: 100%;
     }
     .social-icons {
         justify-content: center;
