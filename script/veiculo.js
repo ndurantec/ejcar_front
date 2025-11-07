@@ -6,14 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function limparErros() {
-   let erros = document.querySelectorAll('.erro');
-    erros.forEach(e => e.textContent = '');
-}
-
 function mostrarErro(id, mensagem) {
     const erroElement = document.getElementById(id);
    if (erroElement) erroElement.textContent = mensagem;
+}
+
+function limparErros() {
+   let erros = document.querySelectorAll('.erro');
+    erros.forEach(e => e.textContent = '');
 }
 
 function validarFormulario() {

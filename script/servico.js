@@ -29,6 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+function mostrarErro(id, mensagem) {
+    const erroElement = document.getElementById(id);
+   if (erroElement) erroElement.textContent = mensagem;
+}
+
 function limparErros() {
     let erros = document.querySelectorAll('.erro');
     erros.forEach(e => e.textContent = '');
@@ -39,14 +44,11 @@ function validarFormulario() {
 
     // Captura dos valores do formulário
     let nome = document.getElementById("nome").value;
-    let cpf = document.getElementById("cpf").value;
     
     let ok = true;
 
     if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
-    if (!cpf) { mostrarErro('erro-cpf', 'Verifique se possui cpf para continuar.'); ok = false; }
     
-
     return ok;
 }
 
@@ -55,7 +57,6 @@ function coletarDados() {
   
     return {
         nome: document.getElementById("nome").value.trim(),
-        cpf: document.getElementById("cpf").value.trim()
     };
 }
 
