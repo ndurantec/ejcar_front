@@ -66,12 +66,8 @@ function salvar() {
     
         headers: headers  
 
-<<<<<<< HEAD
         })
-            .then(async response => {
-=======
-    }).then(async response => {
->>>>>>> a71f0edd1190a61f2606eea4a5a9230c3810674f
+    .then(async response => {
       let data = await response.data();
 
       console.log(data);//resposta do servidor
@@ -124,33 +120,16 @@ function salvar() {
       }
     })
     .catch(error => console.error("Erro ao cadastrar:", error))
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> a71f0edd1190a61f2606eea4a5a9230c3810674f
 }
 
 
 function alterar() {
    
-<<<<<<< HEAD
-       
-=======
     limparErros();
 
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
->>>>>>> a71f0edd1190a61f2606eea4a5a9230c3810674f
 
 
     // Envia os dados via fetch
@@ -165,16 +144,16 @@ function alterar() {
 
         headers: headers  
     
-<<<<<<< HEAD
+
     }).then(response => {
         
     }).then(data => {
     
     }).catch(error => {
     
-    });
-=======
-    }).then(async response => {
+    })
+
+    .then(async response => {
       let data = await response.data();
 
       console.log(data);//resposta do servidor
@@ -227,20 +206,16 @@ function alterar() {
       }
     })
     .catch(error => console.error("Erro ao cadastrar:", error))
->>>>>>> a71f0edd1190a61f2606eea4a5a9230c3810674f
 }
 
 
 function consultar() {
 
-<<<<<<< HEAD
     
         limparErros();
-=======
     limparErros();
 
     if (!validarFormulario()) return;
->>>>>>> a71f0edd1190a61f2606eea4a5a9230c3810674f
 
     const dados = coletarDados();
     //console.log("Enviando criar conta:", dados);3
@@ -268,12 +243,12 @@ function consultar() {
     }).then(response => {
            
     }).then(data => {
-<<<<<<< HEAD
        
     }).catch(error => {
        
-    });
-=======
+    })
+
+    .then(data => {
       if (data.id) {
         localStorage.setItem("id_responsavel", data.id);
         // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");
@@ -283,19 +258,14 @@ function consultar() {
       }
     })
     .catch(error => console.error("Erro ao cadastrar:", error))
->>>>>>> a71f0edd1190a61f2606eea4a5a9230c3810674f
 }
 
 
 function deletar() {
 
-<<<<<<< HEAD
-       limparErros();
-=======
     limparErros();
 
     if (!validarFormulario()) return;
->>>>>>> a71f0edd1190a61f2606eea4a5a9230c3810674f
 
     const dados = coletarDados();
     //console.log("Enviando criar conta:", dados);3
@@ -319,16 +289,15 @@ function deletar() {
     
         headers: headers  
        
-<<<<<<< HEAD
     }).then(response => {
            
     }).then(data => {
        
     }).catch(error => {
        
-    });
-=======
-    }).then(async response => {
+    })
+
+  .then(async response => {
       let data = await response.data();
 
         console.log(data);//resposta do servidor
@@ -380,6 +349,5 @@ function deletar() {
       }
     })
     .catch(error => console.error("Erro ao cadastrar:", error))
->>>>>>> a71f0edd1190a61f2606eea4a5a9230c3810674f
 }
 
