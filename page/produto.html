@@ -19,14 +19,15 @@
             <div class="form-group">
                 <label for="nome_produto">Nome do produto:</label>
                 <input type="text" id="nome_produto" name="nome_produto" placeholder="Digite aqui:" class="input-value">
+                <div id="erro_produto" class="erro"></div>
             </div>
 
             <!-- BOTÕES -->
             <div class="button-container">
-                <button type="button" onclick="salvarproduto()">Salvar</button>
-                <button type="button" onclick="consultarproduto()">Consultar</button>
-                <button type="button" onclick="alterarproduto()">Alterar</button>
-                <button type="button" onclick="deletarproduto()">Deletar</button>
+                <button type="button" onclick="salvar()">Salvar</button>
+                <button type="button" onclick="alterar()">Consultar</button>
+                <button type="button" onclick="consultar()">Alterar</button>
+                <button type="button" onclick="deletar()">Deletar</button>
             </div>
         </form>
     </div>
