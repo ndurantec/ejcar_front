@@ -1,3 +1,7 @@
+function mostrarErro(idElemento, mensagem) {
+  document.getElementById(idElemento).textContent = mensagem;
+}
+
 function limparErros() {
     let erros = document.querySelectorAll('.erro');
     erros.forEach(e => e.textContent = '');
@@ -16,13 +20,16 @@ function validarFormulario() {
     console.log(senha);
     console.log(email);
     console.log(telefone);
+
+
+  
     
     let ok = true;
 
-    if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
-    if (!senha) { mostrarErro('erro-senha', 'Verifique se possui senha para continuar.'); ok = false; }
-    if (!email) { mostrarErro('erro-email', 'Verifique se possui email para continuar.'); ok = false; }
-    if (!telefone) { mostrarErro('erro-telefone', 'Verifique se possui telefone para continuar.'); ok = false; }
+    if (!nome) { mostrarErro('erro-usuario', 'Verifique se possui nome para continuar!'); ok = false; }
+    if (!senha) { mostrarErro('erro-senha', 'Verifique se possui senha para continuar!'); ok = false; }
+    if (!email) { mostrarErro('erro-email', 'Verifique se possui email para continuar!'); ok = false; }
+    if (!telefone) { mostrarErro('erro-telefone', 'Verifique se possui telefone para continuar!'); ok = false; }
 
     return ok;
 }
@@ -52,43 +59,12 @@ function logar() {
     const dados = coletarDados();
     console.log(dados);
 
-    const usuario = document.getElementById('usuario').value;
-    const senha = document.getElementById('senha').value;
-    const email = document.getElementById('email').value;
-    const telefone = document.getElementById('telefone').value;
-     
-    console.log("Usuário:", usuario);
-    console.log("Senha:", senha);
-    console.log("Email:", email);
-    console.log("Telefone:", telefone);
-
-    document.getElementById('erro-usuario').textContent = '';
-    document.getElementById('erro-senha').textContent = '';
-    document.getElementById('erro-email').textContent = '';
-    document.getElementById('erro-telefone').textContent = '';
-
-   
-    if (usuario === '') {
-       document.getElementById('erro-usuario').textContent = 'Preencha o usuário!';
-    }
-
-    if (senha === '') {
-       document.getElementById('erro-senha').textContent = 'Preencha a senha!';
-    }
-
-    if (email === '') {
-       document.getElementById('erro-email').textContent = 'Preencha o email!';
-    }
-
-    if (telefone === '') {
-        document.getElementById('erro-telefone').textContent = 'Preencha o telefone!';
-     }
-
+    
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
     
-    fetch('http://127.0.0.1:8080/responsaveis'), {
+    fetch('http://127.0.0.1:8080/login'), {
 
         method: 'POST',
         mode: 'cors',
@@ -171,3 +147,38 @@ function logar() {
     // });
 
 }
+
+
+
+
+// const usuario = document.getElementById('usuario').value;
+//     const senha = document.getElementById('senha').value;
+//     const email = document.getElementById('email').value;
+//     const telefone = document.getElementById('telefone').value;
+     
+//     console.log("Usuário:", usuario);
+//     console.log("Senha:", senha);
+//     console.log("Email:", email);
+//     console.log("Telefone:", telefone);
+
+//     document.getElementById('erro-usuario').textContent = '';
+//     document.getElementById('erro-senha').textContent = '';
+//     document.getElementById('erro-email').textContent = '';
+//     document.getElementById('erro-telefone').textContent = '';
+
+   
+//     if (usuario === '') {
+//        document.getElementById('erro-usuario').textContent = 'Preencha o usuário!';
+//     }
+
+//     if (senha === '') {
+//        document.getElementById('erro-senha').textContent = 'Preencha a senha!';
+//     }
+
+//     if (email === '') {
+//        document.getElementById('erro-email').textContent = 'Preencha o email!';
+//     }
+
+//     if (telefone === '') {
+//         document.getElementById('erro-telefone').textContent = 'Preencha o telefone!';
+//      }
