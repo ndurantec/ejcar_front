@@ -270,7 +270,11 @@ function coletarDados() {
         password: document.getElementById("senha").value.trim(),
         confirmarSenha: document.getElementById("confirme").value.trim(),
         assinatura: canvas.toDataURL(),// converte assinatura para Base64
-        idUsuario: localStorage.getItem("id_usuario")
+        idUsuario: localStorage.getItem("id_usuario"),
+
+        usuarioDto: {
+            id: localStorage.getItem("id_usuario") // ou pegue de um campo <input hidden>
+        }
 
         veiculoDto: {
             id: localStorage.getItem("id_veiculo") // ou pegue de um campo <input hidden>

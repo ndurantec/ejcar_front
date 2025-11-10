@@ -4,17 +4,25 @@ function limparErros() {
 }
 
 function validarFormulario() {
-    //limparErros();
+    limparErros();
 
     // Captura dos valores do formulário
-    let nome = document.getElementById("nome").value;
-    let cpf = document.getElementById("cpf").value;
+    let nome = document.getElementById("usuario").value;
+    let senha = document.getElementById("senha").value;
+    let email = document.getElementById("email").value;
+    let telefone = document.getElementById("telefone").value;
+
+    console.log(nome);
+    console.log(senha);
+    console.log(email);
+    console.log(telefone);
     
     let ok = true;
 
     if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
-    if (!cpf) { mostrarErro('erro-cpf', 'Verifique se possui cpf para continuar.'); ok = false; }
-    
+    if (!senha) { mostrarErro('erro-senha', 'Verifique se possui senha para continuar.'); ok = false; }
+    if (!email) { mostrarErro('erro-email', 'Verifique se possui email para continuar.'); ok = false; }
+    if (!telefone) { mostrarErro('erro-telefone', 'Verifique se possui telefone para continuar.'); ok = false; }
 
     return ok;
 }
@@ -23,8 +31,14 @@ function coletarDados() {
     const canvas = document.getElementById('signaturePad');
   
     return {
-        nome: document.getElementById("nome").value.trim(),
-        cpf: document.getElementById("cpf").value.trim()
+        nome: document.getElementById("usuario").value.trim(),
+        senha: document.getElementById("senha").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        telefone: document.getElementById("telefone").value.trim(),
+        idUsuario: localStorage.getItem("id_usuario"),
+        loginDto: {
+            id: localStorage.getItem("id_login") // ou pegue de um campo <input hidden>
+        }
     };
 }
 
@@ -36,6 +50,7 @@ function logar() {
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
+    console.log(dados);
 
     const usuario = document.getElementById('usuario').value;
     const senha = document.getElementById('senha').value;
