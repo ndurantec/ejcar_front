@@ -135,6 +135,7 @@ function toggleSenha(botaoId, inputId) {
 
 // Função Salvar
 function salvar() {
+    
     const nome = document.getElementById("nome").value.trim();
     const cpf = document.getElementById("cpf").value.trim();
     const telefone = document.getElementById("telefone").value.trim();
@@ -152,61 +153,10 @@ function salvar() {
     alert('Dados salvos no console!');
 }
 
-// Função Deletar
-function deletar() {
-    const usuario = document.getElementById("usuario").value.trim();
-    
-    if (usuario === '') {
-        alert('Digite um usuário para deletar');
-        return;
-    }
-
-    const contas = obterContas();
-    const contaIndex = contas.findIndex(conta => conta.usuario === usuario);
-    
-    if (contaIndex !== -1) {
-        if (confirm(`Tem certeza que deseja deletar a conta do usuário: ${usuario}?`)) {
-            const contaDeletada = contas[contaIndex];
-            contas.splice(contaIndex, 1);
-            localStorage.setItem('contas', JSON.stringify(contas));
-            
-            console.log("=== CONTA DELETADA ===");
-            console.log("Usuário: " + contaDeletada.usuario);
-            console.log("Nome: " + contaDeletada.nome);
-            console.log("CPF: " + contaDeletada.cpf);
-            console.log("Email: " + contaDeletada.email);
-            console.log("======================");
-            
-            alert('✅ Conta deletada com sucesso!');
-            limparFormulario();
-        }
-    } else {
-        console.log("❌ Conta não encontrada para o usuário: " + usuario);
-        alert('❌ Conta não encontrada!');
-    }
-}
-
-// Função Atualizar
-function atualizar() {
-    const nome = document.getElementById("nome").value.trim();
-    const cpf = document.getElementById("cpf").value.trim();
-    const telefone = document.getElementById("telefone").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const usuario = document.getElementById("usuario").value.trim();
-    
-    console.log("=== DADOS PARA ATUALIZAR ===");
-    console.log("Nome: " + nome);
-    console.log("CPF: " + cpf);
-    console.log("Telefone: " + telefone);
-    console.log("Email: " + email);
-    console.log("Usuário: " + usuario);
-    console.log("============================");
-    
-    alert('Dados prontos para atualização no console!');
-}
 
 // Função para limpar formulário
 function limparFormulario() {
+
     document.querySelector('form').reset();
     const canvas = document.getElementById('signaturePad');
     const ctx = canvas.getContext('2d');
@@ -216,6 +166,8 @@ function limparFormulario() {
     
     console.log("📝 Formulário limpo!");
 }
+
+
 
 function toggleSenha(botaoId, inputId) {
     const botao = document.getElementById(botaoId);
@@ -230,6 +182,9 @@ function toggleSenha(botaoId, inputId) {
         icon.className = 'fa fa-eye';
     }
 }
+
+
+
 
 function validarFormulario() {
      //limparErros();
@@ -257,6 +212,8 @@ function validarFormulario() {
     return ok;
 };
 
+
+
 function coletarDados() {
 
     const canvas = document.getElementById('signaturePad');
@@ -275,23 +232,27 @@ function coletarDados() {
         usuarioDto: {
             id: localStorage.getItem("id_usuario") // ou pegue de um campo <input hidden>
         }
-
-        veiculoDto: {
-            id: localStorage.getItem("id_veiculo") // ou pegue de um campo <input hidden>
-        }
-
     };
 }
 
+
+
+
+function mostrarErro(idElemento, mensagem) {
+    document.getElementById(idElemento).textContent = mensagem;
+}
+function limparErros() {
+    let erros = document.querySelectorAll('.erro');
+    erros.forEach(e => e.textContent = '');
+}
+
+
+
+
+
 function criarconta() {
 
-    function mostrarErro(idElemento, mensagem) {
-        document.getElementById(idElemento).textContent = mensagem;
-    }
-    function limparErros() {
-        let erros = document.querySelectorAll('.erro');
-        erros.forEach(e => e.textContent = '');
-    }
+    limparErros();
 
     console.log("A função 'criar conta' foi chamada e está executando a lógica de salvar.");
     
@@ -369,15 +330,12 @@ function criarconta() {
 
 }
 
+
+
+
 function atualizar() {
 
-    function mostrarErro(idElemento, mensagem) {
-        document.getElementById(idElemento).textContent = mensagem;
-    }
-    function limparErros() {
-        let erros = document.querySelectorAll('.erro');
-        erros.forEach(e => e.textContent = '');
-    }
+    limparErros();
 
     console.log("A função 'atualizar' foi chamada e está executando a lógica de atualizar.");
     
@@ -454,15 +412,11 @@ function atualizar() {
     .catch(error => console.error(error));
 }
 
+
+
 function deletar() {
     
-    function mostrarErro(idElemento, mensagem) {
-        document.getElementById(idElemento).textContent = mensagem;
-    }
-    function limparErros() {
-        let erros = document.querySelectorAll('.erro');
-        erros.forEach(e => e.textContent = '');
-    }
+    limparErros();
 
     console.log("A função 'deletar' foi chamada e está executando a lógica de deletar.");
     
@@ -540,21 +494,12 @@ function deletar() {
 
 }
 
-function limparErros() {
-    let erros = document.querySelectorAll('.erro');
-    erros.forEach(e => e.textContent = '');
-}
+
+
 
 function alterarUsuario() {
 
-
-    function mostrarErro(idElemento, mensagem) {
-        document.getElementById(idElemento).textContent = mensagem;
-    }
-    function limparErros() {
-        let erros = document.querySelectorAll('.erro');
-        erros.forEach(e => e.textContent = '');
-    }
+    limparErros();
 
     console.log("A função 'alterar' foi chamada e está executando a lógica de alterar.");
     

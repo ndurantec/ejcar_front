@@ -173,15 +173,31 @@ document.querySelectorAll('.campo-termo-label').forEach(label => {
     label.addEventListener('click', function() {
         const tipo = this.id === 'proprietario' ? 'nome do proprietário' : 
                     this.id === 'marcaModelo' ? 'marca e modelo' : 'placa';
-        
-        const valor = prompt(`Digite o ${tipo}:`);
-        if (valor && valor.trim()) {
-            this.textContent = valor.trim();
-        }
-    });
-});
+                    
+                    const valor = prompt(`Digite o ${tipo}:`);
+                    if (valor && valor.trim()) {
+                        this.textContent = valor.trim();
+                    }
+                });
+            });
 
-botaoSalvar.addEventListener('click', validarCheckbox);
+
+
+
+            
+    function mostrarErro(idElemento, mensagem) {
+        document.getElementById(idElemento).textContent = mensagem;
+    }
+    function limparErros() {
+        let erros = document.querySelectorAll('.erro');
+        erros.forEach(e => e.textContent = '');
+    }
+
+
+
+
+            
+    botaoSalvar.addEventListener('click', validarCheckbox);
 
 function validarFormulario() {
 
@@ -217,41 +233,29 @@ function coletarDados() {
         outrosItens: document.getElementById("boxoutrosItens").value.trim(),
         termo: document.getElementById("boxtermo").value.trim(),
         imagemBase64:  document.getElementById('signaturePad').toDataURL(),// converte assinatura para Base64
-<<<<<<< HEAD
-        idUsuario: localStorage.getItem("id_usuario")
 
-        veiculoDto: {
-            id: localStorage.getItem("id_veiculo") // ou pegue de um campo <input hidden>
-=======
         idUsuario: localStorage.getItem("id_usuario"),
 
         vistoriaDto: {
             id: localStorage.getItem("id_vistoria") // ou pegue de um campo <input hidden>
->>>>>>> 7e61f18e1c517dc7a0b9fe39b6e8631808eeae0d
+
         }
     };
 }
 
+
+
 function salvar() {
-  
-    function mostrarErro(idElemento, mensagem) {
-        document.getElementById(idElemento).textContent = mensagem;
-    }
-    function limparErros() {
-        let erros = document.querySelectorAll('.erro');
-        erros.forEach(e => e.textContent = '');
-    }
 
     console.log("A função 'salvar' foi chamada e está executando a lógica de salvar.");
     
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
-<<<<<<< HEAD
+
     console.log("Enviando vistoria:", dados);
-=======
-    console.log("Enviando criar conta:", dados);
->>>>>>> 7e61f18e1c517dc7a0b9fe39b6e8631808eeae0d
+
+    // console.log("Enviando criar conta:", dados);
 
     console.log(JSON.stringify(dados));
 
@@ -323,13 +327,6 @@ function salvar() {
 
 function consultar() {
   
-    function mostrarErro(idElemento, mensagem) {
-        document.getElementById(idElemento).textContent = mensagem;
-    }
-    function limparErros() {
-        let erros = document.querySelectorAll('.erro');
-        erros.forEach(e => e.textContent = '');
-    }
 
     console.log("A função 'consultar' foi chamada e está executando a lógica de consulta.");
     
@@ -408,14 +405,6 @@ function consultar() {
 
 function deletar() {
 
-    function mostrarErro(idElemento, mensagem) {
-        document.getElementById(idElemento).textContent = mensagem;
-    }
-    function limparErros() {
-        let erros = document.querySelectorAll('.erro');
-        erros.forEach(e => e.textContent = '');
-    }
-
     console.log("A função 'deletar' foi chamada e está executando a lógica de deletar.");
     
     if (!validarFormulario()) return;
@@ -492,15 +481,6 @@ function deletar() {
 }
 
 function atualizar() {
-
-
-    function mostrarErro(idElemento, mensagem) {
-        document.getElementById(idElemento).textContent = mensagem;
-    }
-    function limparErros() {
-        let erros = document.querySelectorAll('.erro');
-        erros.forEach(e => e.textContent = '');
-    }
 
     console.log("A função 'atualizar' foi chamada e está executando a lógica de atualizar.");
     
