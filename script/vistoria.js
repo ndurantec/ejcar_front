@@ -217,6 +217,10 @@ function coletarDados() {
         termo: document.getElementById("boxtermo").value.trim(),
         imagemBase64:  document.getElementById('signaturePad').toDataURL(),// converte assinatura para Base64
         idUsuario: localStorage.getItem("id_usuario")
+
+        veiculoDto: {
+            id: localStorage.getItem("id_veiculo") // ou pegue de um campo <input hidden>
+        }
     };
 }
 
@@ -235,7 +239,7 @@ function salvar() {
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
-    //console.log("Enviando criar conta:", dados);
+    console.log("Enviando vistoria:", dados);
 
     console.log(JSON.stringify(dados));
 

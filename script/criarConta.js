@@ -264,13 +264,17 @@ function coletarDados() {
     return {
         nome: document.getElementById("nome").value.trim(),
         cpf: document.getElementById("cpf").value.trim(),
-        //telefone: document.getElementById("telefone").value.trim(),
+        telefone: document.getElementById("telefone").value.trim(),
         email: document.getElementById("email").value.trim(),
         user: document.getElementById("usuario").value.trim(),
         password: document.getElementById("senha").value.trim(),
         confirmarSenha: document.getElementById("confirme").value.trim(),
         assinatura: canvas.toDataURL(),// converte assinatura para Base64
         idUsuario: localStorage.getItem("id_usuario")
+
+        veiculoDto: {
+            id: localStorage.getItem("id_veiculo") // ou pegue de um campo <input hidden>
+        }
 
     };
 }
@@ -290,7 +294,7 @@ function criarconta() {
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
-    //console.log("Enviando criar conta:", dados);
+    console.log("Enviando criar conta:", dados);
 
     console.log(JSON.stringify(dados));
 

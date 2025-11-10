@@ -53,6 +53,8 @@ function salvar() {
 
     const dados = coletarDados();
 
+    console.log(dados);
+
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
