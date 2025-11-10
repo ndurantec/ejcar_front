@@ -213,10 +213,15 @@ function coletarDados() {
         step: document.getElementById("boxstep").checked,
         chaveDeRoda: document.getElementById("boxchaveDeRoda").value.trim(),
         macaco: document.getElementById("boxmacaco").value.trim(),
+        equipamento: document.getElementById("boxequipamento").value.trim(),
         outrosItens: document.getElementById("boxoutrosItens").value.trim(),
         termo: document.getElementById("boxtermo").value.trim(),
         imagemBase64:  document.getElementById('signaturePad').toDataURL(),// converte assinatura para Base64
-        idUsuario: localStorage.getItem("id_usuario")
+        idUsuario: localStorage.getItem("id_usuario"),
+
+        vistoriaDto: {
+            id: localStorage.getItem("id_vistoria") // ou pegue de um campo <input hidden>
+        }
     };
 }
 
@@ -235,7 +240,7 @@ function salvar() {
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
-    //console.log("Enviando criar conta:", dados);
+    console.log("Enviando criar conta:", dados);
 
     console.log(JSON.stringify(dados));
 
