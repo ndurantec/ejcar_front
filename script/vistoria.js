@@ -87,8 +87,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('resize', initCanvas);
     
-
-    
     const modalidadeSelect = document.getElementById('modalidade');
     if (modalidadeSelect) {
         modalidadeSelect.addEventListener('change', function() {
@@ -100,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 }); 
 
-const botaoConcluir = document.getElementById('botaoconcluir');
+const botaoSalvar = document.getElementById('botaosalvar');
     function mostrarErro(idElemento, mensagem) {
     document.getElementById(idElemento).textContent = mensagem;
 }
@@ -109,8 +107,10 @@ function limparErros() {
     mostrarErro('erro-step', '');
     mostrarErro('erro-macaco', '');
     mostrarErro('erro-chave', '');
+    mostrarErro('erro-equipamentos', '');
     mostrarErro('erro-descricao', '');
     mostrarErro('erro-termo', '');
+    mostrarErro('erro-assinatura', '');
 }
 
 function validarCheckbox() {
@@ -173,22 +173,89 @@ document.querySelectorAll('.campo-termo-label').forEach(label => {
     label.addEventListener('click', function() {
         const tipo = this.id === 'proprietario' ? 'nome do proprietário' : 
                     this.id === 'marcaModelo' ? 'marca e modelo' : 'placa';
-        
-        const valor = prompt(`Digite o ${tipo}:`);
-        if (valor && valor.trim()) {
-            this.textContent = valor.trim();
-        }
-    });
-});
+                    
+                    const valor = prompt(`Digite o ${tipo}:`);
+                    if (valor && valor.trim()) {
+                        this.textContent = valor.trim();
+                    }
+                });
+            });
 
-botaoConcluir.addEventListener('click', validarCheckbox);
+
+
+
+            
+    function mostrarErro(idElemento, mensagem) {
+        document.getElementById(idElemento).textContent = mensagem;
+    }
+    function limparErros() {
+        let erros = document.querySelectorAll('.erro');
+        erros.forEach(e => e.textContent = '');
+    }
+
+
+
+
+            
+    botaoSalvar.addEventListener('click', validarCheckbox);
+
+function validarFormulario() {
+
+    // Captura dos valores do formulário
+    let step = document.getElementById("step").value;
+    let macaco = document.getElementById("macaco").value;
+    let chaveDeRoda = document.getElementById("chaveDeRoda").value;
+    let equipamentos = document.getElementById("equipamentos").value;
+    let outrosItens = document.getElementById("outrosItens").value;
+    let termo = document.getElementById("termo").value;
+    let assinatura = document.getElementById("assinatura").value;
+
+    let ok = true;
+
+    if (!step) { mostrarErro('erro-step', 'Verifique se possui step para continuar.'); ok = false; }
+    if (!macaco) { mostrarErro('erro-macaco', 'Verifique se possui macaco para continuar.'); ok = false; }
+    if (!chaveDeRoda) { mostrarErro('erro-chaveDeRoda', 'Verifique se possui chaveDeRoda para continuar.'); ok = false; }
+    if (!equipamentos) { mostrarErro('erro-equipamentos', 'Verifique se possui equipamentos para continuar.'); ok = false; }
+    if (!outrosItens) { mostrarErro('erro-outrosItens', 'Verifique se possui outrosItens para continuar.'); ok = false; }
+    if (!termo) { mostrarErro('erro-termo', 'Verifique se aceitou o termo para continuar.'); ok = false; }
+    if (!assinatura) { mostrarErro('erro-assinatura', 'Verifique se a assinatura está preenchida para continuar.'); ok = false; }
+    return ok;
+
+}
+
+function coletarDados() {
+  
+    return {
+        step: document.getElementById("boxstep").checked,
+        chaveDeRoda: document.getElementById("boxchaveDeRoda").value.trim(),
+        macaco: document.getElementById("boxmacaco").value.trim(),
+        equipamento: document.getElementById("boxequipamento").value.trim(),
+        outrosItens: document.getElementById("boxoutrosItens").value.trim(),
+        termo: document.getElementById("boxtermo").value.trim(),
+        imagemBase64:  document.getElementById('signaturePad').toDataURL(),// converte assinatura para Base64
+
+        idUsuario: localStorage.getItem("id_usuario"),
+
+        vistoriaDto: {
+            id: localStorage.getItem("id_vistoria") // ou pegue de um campo <input hidden>
+
+        }
+    };
+}
+
+
 
 function salvar() {
-    console.log('Dados salvos:', dados);
 
+    console.log("A função 'salvar' foi chamada e está executando a lógica de salvar.");
+    
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
+
+    console.log("Enviando vistoria:", dados);
+
+    // console.log("Enviando criar conta:", dados);
 
     console.log(JSON.stringify(dados));
 
@@ -203,27 +270,25 @@ function salvar() {
         mode: 'cors',
         cache: 'no-cache',
 
-
         body: JSON.stringify (dados),
-
     
         headers: headers
 
+    })
+    .then(async response => {
+      let data = await response.json();
 
-    }).then(async response => {
-        let data = await response.json();
-
-        console.log(data);
-        
-        if (!response.ok) {
+      console.log(data);
+      
+      if (!response.ok) {
         // Caso sejam erros de validação no DTO
         if (typeof data === "object") {
-            let mensagens = Object.values(data).join("<br>");
+          let mensagens = Object.values(data).join("<br>");
 
-            console.log("Entrou dento do if data ==== object");
-            console.log("----------------------------------------------");
-            console.log(mensagens);
-            console.log("----------------------------------------------");
+          console.log("Entrou dento do if data ==== object");
+          console.log("----------------------------------------------");
+          console.log(mensagens);
+          console.log("----------------------------------------------");
 
             let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
 
@@ -239,90 +304,257 @@ function salvar() {
                     //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
                     mostrarErro(idElementoErro, mensagem);
                                         
-                }
+                } 
+
             }
-            
+
         } else {
-            mostrarMensagem("⚠️ Erro desconhecido", "erro");
+          mostrarMensagem("⚠️ Erro desconhecido", "erro");
         }
         throw new Error("Erro de validação");
-        }
+      }
 
-        return data;
-
+      return data;
     })
     .then(data => {
-        if (data.id) {
+      if (data.id) {
         localStorage.setItem("id_usuario", data.id);
         mostrarMensagem(data.message || "✅ Vistoria cadastrada com sucesso!", "sucesso");
-        }
+      }
     })
     .catch(error => console.error(error));
 }
 
+function consultar() {
+  
 
-function deletar() {
-
-    limparErros();
-
+    console.log("A função 'consultar' foi chamada e está executando a lógica de consulta.");
+    
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
+    //console.log("Enviando criar conta:", dados);
+
+    console.log(JSON.stringify(dados));
 
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
 
-    fetch('http://localhost:8080/vistoria/{id}', {
 
-        method: 'POST',
+    fetch('http://localhost:8080/vistoria/id', {
+        
+        method: 'GET',
         mode: 'cors',
         cache: 'no-cache',
-        body: JSON.stringify(
-            dados
-        ),
+
+        body: JSON.stringify (dados),
     
         headers: headers
-       
-    }).then(response => {
-           
-    }).then(data => {
-       
-    }).catch(error => {
-       
-    });
+
+    })
+    .then(async response => {
+      let data = await response.json();
+
+      console.log(data);
+      
+      if (!response.ok) {
+        // Caso sejam erros de validação no DTO
+        if (typeof data === "object") {
+          let mensagens = Object.values(data).join("<br>");
+
+          console.log("Entrou dento do if data ==== object");
+          console.log("----------------------------------------------");
+          console.log(mensagens);
+          console.log("----------------------------------------------");
+
+            let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+
+            for (const [campo, mensagem] of Object.entries(data)) {
+                // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+
+                console.log("========================================================");
+                console.log(idElementoErro);
+                console.log("========================================================");
+                // Tenta exibir o erro no elemento específico
+                if (document.getElementById(idElementoErro)) {
+                    //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                    mostrarErro(idElementoErro, mensagem);
+                                        
+                } 
+
+            }
+
+        } else {
+          mostrarMensagem("⚠️ Erro desconhecido", "erro");
+        }
+        throw new Error("Erro de validação");
+      }
+
+      return data;
+    })
+    .then(data => {
+      if (data.id) {
+        localStorage.setItem("id_usuario", data.id);
+        mostrarMensagem(data.message || "✅ Vistoria consultada com sucesso!", "sucesso");
+      }
+    })
+    .catch(error => console.error(error));
+}
+
+function deletar() {
+
+    console.log("A função 'deletar' foi chamada e está executando a lógica de deletar.");
+    
+    if (!validarFormulario()) return;
+
+    const dados = coletarDados();
+    //console.log("Enviando criar conta:", dados);
+
+    console.log(JSON.stringify(dados));
+
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
+
+
+    fetch('http://localhost:8080/vistoria/insert', {
+        
+        method: 'DELETE',
+        mode: 'cors',
+        cache: 'no-cache',
+
+        body: JSON.stringify (dados),
+    
+        headers: headers
+
+    })
+    .then(async response => {
+      let data = await response.json();
+
+      console.log(data);
+      
+      if (!response.ok) {
+        // Caso sejam erros de validação no DTO
+        if (typeof data === "object") {
+          let mensagens = Object.values(data).join("<br>");
+
+          console.log("Entrou dento do if data ==== object");
+          console.log("----------------------------------------------");
+          console.log(mensagens);
+          console.log("----------------------------------------------");
+
+            let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+
+            for (const [campo, mensagem] of Object.entries(data)) {
+                // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+
+                console.log("========================================================");
+                console.log(idElementoErro);
+                console.log("========================================================");
+                // Tenta exibir o erro no elemento específico
+                if (document.getElementById(idElementoErro)) {
+                    //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                    mostrarErro(idElementoErro, mensagem);
+                                        
+                } 
+
+            }
+
+        } else {
+          mostrarMensagem("⚠️ Erro desconhecido", "erro");
+        }
+        throw new Error("Erro de validação");
+      }
+
+      return data;
+    })
+    .then(data => {
+      if (data.id) {
+        localStorage.setItem("id_usuario", data.id);
+        mostrarMensagem(data.message || "✅ Vistoria deletada com sucesso!", "sucesso");
+      }
+    })
+    .catch(error => console.error(error));
 }
 
 function atualizar() {
 
-    limparErros();
-
+    console.log("A função 'atualizar' foi chamada e está executando a lógica de atualizar.");
+    
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
+    //console.log("Enviando criar conta:", dados);
+
+    console.log(JSON.stringify(dados));
 
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
 
-    fetch('http://localhost:8080/vistoria/{id}', {
+
+    fetch('http://localhost:8080/vistoria/insert', {
         
-        method: 'POST',
+        method: 'PUT',
         mode: 'cors',
         cache: 'no-cache',
-        body: JSON.stringify(
-            dados
-        ),
+
+        body: JSON.stringify (dados),
     
         headers: headers
-        
-    }).then(response => {
-           
-    }).then(data => {
-       
-    }).catch(error => {
-       
-    });
+
+    })
+    .then(async response => {
+      let data = await response.json();
+
+      console.log(data);
+      
+      if (!response.ok) {
+        // Caso sejam erros de validação no DTO
+        if (typeof data === "object") {
+          let mensagens = Object.values(data).join("<br>");
+
+          console.log("Entrou dento do if data ==== object");
+          console.log("----------------------------------------------");
+          console.log(mensagens);
+          console.log("----------------------------------------------");
+
+            let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+
+            for (const [campo, mensagem] of Object.entries(data)) {
+                // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+
+                console.log("========================================================");
+                console.log(idElementoErro);
+                console.log("========================================================");
+                // Tenta exibir o erro no elemento específico
+                if (document.getElementById(idElementoErro)) {
+                    //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                    mostrarErro(idElementoErro, mensagem);
+                                        
+                } 
+
+            }
+
+        } else {
+          mostrarMensagem("⚠️ Erro desconhecido", "erro");
+        }
+        throw new Error("Erro de validação");
+      }
+
+      return data;
+    })
+    .then(data => {
+      if (data.id) {
+        localStorage.setItem("id_usuario", data.id);
+        mostrarMensagem(data.message || "✅ Vistoria atualizada com sucesso!", "sucesso");
+      }
+    })
+    .catch(error => console.error(error));
 }
 
 // Função para imprimir/gerar PDF da vistoria
@@ -423,32 +655,4 @@ function imprimirVistoria() {
 function limparErros() {
     let erros = document.querySelectorAll('.erro');
     erros.forEach(e => e.textContent = '');
-}
-
-function validarFormulario() {
-    //limparErros();
-
-    // Captura dos valores do formulário
-    let nome = document.getElementById("nome").value;
-    let cpf = document.getElementById("cpf").value;
-    
-    let ok = true;
-
-    if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
-    if (!cpf) { mostrarErro('erro-cpf', 'Verifique se possui cpf para continuar.'); ok = false; }
-    
-
-    return ok;
-}
-
-function coletarDados() {
-  
-    return {
-        step: document.getElementById("boxstep").checked,
-        chaveDeRoda: document.getElementById("boxchaveDeRoda").value.trim(),
-        macaco: document.getElementById("boxmacaco").value.trim(),
-        outrosItens: document.getElementById("boxoutrosItens").value.trim(),
-        termo: document.getElementById("boxtermo").value.trim(),
-        imagemBase64:  document.getElementById('signaturePad').toDataURL(),// converte assinatura para Base64
-    };
 }

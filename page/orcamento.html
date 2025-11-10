@@ -30,8 +30,20 @@
                     </div>
                 </div>
 
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="chassi" class="form-label"><i class="fas fa-barcode"></i> Codigo de Orçamento:</label>
+                        <div class="input-icon">
+                            <i class="fas fa-barcode"></i>
+                            <input type="text" class="form-control" id="chassi" placeholder="Digite o número do chassi" name="chassi">
+                            <div id="erro-chassi" class="erro" style="color:red; font-size: 14px;"></div>
+                        </div>
+                    </div>
+
+
                 <div class="input-group">
-                    <label for="placa" class="form-label"><i class="fas fa-car"></i> Placa:</label>
+                    <label for="placa" class="form-label"><i class="fas fa-car"></i> Veiculo:</label>
                     <div class="input-icon">
                         <i class="fas fa-car"></i>
                         <input type="text" class="form-control" id="placa" placeholder="Digite a placa do veículo" name="placa">
@@ -42,11 +54,11 @@
 
             <div class="product-row" style="display: flex; gap: 10px; align-items: flex-end;">
                 <div class="product-input" style="flex: 2;">
-                    <label for="produto" class="form-label" id="produto"><i class="fas fa-box"></i> Produto:</label>
+                    <label for="produto" class="form-label"><i class="fas fa-box"></i> Produto:</label>
                     <div id="erro-produto" class="erro" style="color:red; font-size: 14px;"></div>
                     <div class="input-icon">
                     <i class="fas fa-box"></i></label>  
-                     <select name="tipo" id="tipo">
+                     <select name="tipo" id="produto">
                      <option value="tinta">Tinta</option>
                      <option value="pneu">Pneu</option>
                      <option value="oleo">Oleo</option>
@@ -56,11 +68,11 @@
                 </div>
 
                 <div class="product-input" style="flex: 2;">
-                    <label for="servico" class="form-label" id="servico"><i class="fas fa-wrench"></i> Serviço:</label>
+                    <label for="servico" class="form-label"><i class="fas fa-wrench"></i> Serviço:</label>
                     <div id="erro-servico" class="erro" style="color:red; font-size: 14px;"></div>
                     <div class="input-icon">
                         <i class="fas fa-wrench"></i>
-                        <select name="tipo" id="tipo"class="form-control">
+                        <select name="tipo" id="servico"class="form-control">
                         <option value="desmontagem">Desmontagem</option>
                         <option value="montagem">Montagem</option>
                         <option value="chapeacao">Chapeação</option>

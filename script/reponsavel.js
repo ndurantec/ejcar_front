@@ -53,6 +53,8 @@ function salvar() {
 
     const dados = coletarDados();
 
+    console.log(dados);
+
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
@@ -70,8 +72,9 @@ function salvar() {
     
         headers: headers  
 
-        })
-    .then(async response => {
+      }).then(async response => {
+
+
       let data = await response.data();
 
       console.log(data);//resposta do servidor
@@ -124,17 +127,17 @@ function salvar() {
       }
     })
     .catch(error => console.error("Erro ao cadastrar:", error))
+
 }
 
 
 function alterar() {
-   
+
     limparErros();
 
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
-
 
     // Envia os dados via fetch
     fetch('http://localhost:8080/responsavel/{id}', { // altere a URL conforme seu endpoint
@@ -149,15 +152,9 @@ function alterar() {
         headers: headers  
     
 
-    }).then(response => {
-        
-    }).then(data => {
-    
-    }).catch(error => {
-    
-    })
 
-    .then(async response => {
+    }).then(async response => {
+
       let data = await response.data();
 
       console.log(data);//resposta do servidor
@@ -210,16 +207,17 @@ function alterar() {
       }
     })
     .catch(error => console.error("Erro ao cadastrar:", error))
+
 }
 
 
 function consultar() {
 
-    
-        limparErros();
     limparErros();
 
     if (!validarFormulario()) return;
+
+
 
     const dados = coletarDados();
     //console.log("Enviando criar conta:", dados);3
@@ -244,6 +242,10 @@ function consultar() {
         headers: headers  
        
        
+
+    }).then(async response => {
+
+
     }).then(response => {
            
     }).then(data => {
@@ -302,9 +304,10 @@ function deletar() {
     })
 
   .then(async response => {
+
       let data = await response.data();
 
-        console.log(data);//resposta do servidor
+      console.log(data);//resposta do servidor
       
 
       if (!response.ok) {
@@ -343,7 +346,95 @@ function deletar() {
       }
 
       return data;
-    }).then(data => {
+    })
+    .then(data => {
+      if (data.id) {
+        localStorage.setItem("id_responsavel", data.id);
+        // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");
+        alert("Responsável cadastrado com sucesso!")
+      } else {
+        alert("Cadastro concluído, mas o ID não foi retornado.")
+      }
+    })
+    .catch(error => console.error("Erro ao cadastrar:", error))
+
+}
+
+
+function deletar() {
+
+    limparErros();
+
+    if (!validarFormulario()) return;
+
+
+    const dados = coletarDados();
+    //console.log("Enviando criar conta:", dados);3
+
+
+    var headers = new Headers();
+
+    headers.append("Content-Type", "application/json");
+
+    headers.append("Access-Control-Allow-Origin", "*");
+   
+    // Envia os dados via fetch
+    fetch('http://localhost:8080/responsavel/{id}', { // altere a URL conforme seu endpoint
+
+        method: 'DELETE',
+        mode: 'cors',
+        cache: 'no-cache',
+        body: JSON.stringify(
+            dados
+        ),
+    
+        headers: headers  
+       
+    }).then(async response => {
+
+      let data = await response.data();
+
+      console.log(data);//resposta do servidor
+      
+
+      if (!response.ok) {
+        // Caso sejam erros de validação no DTO
+        if (typeof data === "object") {
+          let mensagens = Object.values(data).join("<br>");
+
+          console.log("Entrou dento do if data ==== object");
+          console.log("----------------------------------------------");
+          console.log(mensagens);
+          console.log("----------------------------------------------");
+
+            let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+
+            for (const [campo, mensagem] of Object.entries(data)) {
+                // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+
+                console.log("========================================================");
+                console.log(idElementoErro);
+                console.log("========================================================");
+                // Tenta exibir o erro no elemento específico
+                if (document.getElementById(idElementoErro)) {
+                    //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                    mostrarErro(idElementoErro, mensagem);
+                                        
+                } 
+            }
+
+          
+        } else {
+         // mostrarMensagem("⚠️ Erro desconhecido", "erro");
+         //alert("⚠️ " + text);
+        }
+        throw new Error("Erro de validação");
+      }
+
+      return data;
+    })
+    .then(data => {
       if (data.id) {
         localStorage.setItem("id_responsavel", data.id);
         // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");

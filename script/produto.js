@@ -13,11 +13,11 @@ function validarFormulario() {
     //limparErros();
     
     // Captura dos valores do formulário
-    let nome_produto = document.getElementById("nome_produto").value;
+    let nome = document.getElementById("nome").value;
     
     let ok = true;
     
-    if (!nome_produto) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
+    if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
     
     return ok;
 }
@@ -26,7 +26,9 @@ function coletarDados() {
     const canvas = document.getElementById('signaturePad');
   
     return {
-        nome_produto: document.getElementById("nome_produto").value.trim(),
+        nome: document.getElementById("nome").value.trim(),
+        idUsuario: localStorage.getItem("id_usuario")
+       
     };
 }
 
@@ -38,8 +40,9 @@ function salvar() {
     
     const dados = coletarDados();
     //console.log("Enviando criar conta:", dados);
+    console.log(dados);
     
-    console.log(JSON.stringify(dados));//enviando dados
+   // console.log(JSON.stringify(dados));//enviando dados
 
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -108,9 +111,9 @@ function salvar() {
           alert("Cadastro concluído, mas o ID não foi retornado.")
         }
       })
-      .catch(error => console.error("Erro ao cadastrar:", error))
+      .catch(error => console.error("Erro ao cadastrar:", error));
 
-   }
+}
 
 function consultar() {
     limparErros();
@@ -118,6 +121,7 @@ function consultar() {
     if (!validarFormulario()) return;
     
     const dados = coletarDados();
+
     //console.log("Enviando criar conta:", dados);
     
     console.log(JSON.stringify(dados));//enviando dados

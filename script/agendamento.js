@@ -11,15 +11,17 @@ function validarFormulario() {
     //limparErros();
 
     // Captura dos valores do formulário
-    let nome = document.getElementById("nome").value;
-    let cpf = document.getElementById("cpf").value;
+    let dataSaida = document.getElementById("dataSaida").value;
+    let dataEntrada = document.getElementById("dataEntrada").value;
+    let horaSaida = document.getElementById("horaSaida").value;
+    let horaEntrada = document.getElementById("horaEntrada").value;
     
     let ok = true;
 
-    if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
-    if (!cpf) { mostrarErro('erro-cpf', 'Verifique se possui cpf para continuar.'); ok = false; }
-    
-
+    if (!dataEntrada) { mostrarErro('erro-nome', 'Verifique se possui data de entrada para continuar.'); ok = false; }
+    if (!dataSaida) { mostrarErro('erro-cpf', 'Verifique se possui data de saida para continuar.'); ok = false; }
+    if (!horaEntrada) { mostrarErro('erro-cpf', 'Verifique se possui hora de entrada para continuar.'); ok = false; }
+    if (!horaSaida) { mostrarErro('erro-cpf', 'Verifique se possui hora de saida para continuar.'); ok = false; }
     return ok;
 }
 
@@ -27,8 +29,17 @@ function coletarDados() {
     const canvas = document.getElementById('signaturePad');
   
     return {
-        nome: document.getElementById("nome").value.trim(),
-        cpf: document.getElementById("cpf").value.trim()
+        dataSaida: document.getElementById("dataSaida").value.trim(),
+        dataEntrada: document.getElementById("dataEntrada").value.trim(),
+        horaSaida: document.getElementById("horaSaida").value.trim(),
+        horaEntrada: document.getElementById("horaEntrada").value.trim(),
+        idUsuario: localStorage.getItem("id_usuario"),
+        veiculoDto: {
+            id: localStorage.getItem("id_veiculo") // ou pegue de um campo <input hidden>
+        },
+        servicoDto: {
+            id: localStorage.getItem("id_servico") // ou pegue de um campo <input hidden>
+        }
     };
 }
 
@@ -42,29 +53,34 @@ function salvar() {
         const dados = coletarDados();
         //console.log("Enviando criar conta:", dados);
 
-     const dataEntrada = document.getElementById("entradaVeiculo").value;
+        console.log(dados);
 
-    const dataSaida = document.getElementById("saidaVeiculo").value;
+    // const dataEntrada = document.getElementById("entradaVeiculo").value;
 
-    const seguradoraSim = document.getElementById("seguradoraSim").value;
+    // const dataSaida = document.getElementById("saidaVeiculo").value;
 
-    const seguradoraNao= document.getElementById("seguradoraNao").value;
+    // const horaEntrada = document.getElementById("horaEntrada").value;
 
-
-            if(dataEntrada == ""){
-                alert("Você precisa preencher a entrada do veiculo");
-            }
-
-            if(dataSaida == ""){
-                alert("Você precisa preencher a saida do veiculo");
-            }
-
-             if(seguradoraSim, seguradoraNao == ""){
-                alert("Você precisa preencher o campo endereco");
-            }
+    // const horaSaida = document.getElementById("horaSaida").value;
 
 
-                alert(dataEntrada + " - " + dataSaida + " - " + seguradoraSim + " - " + seguradoraNao )
+            // if(dataEntrada == ""){
+            //     alert("Você precisa preencher a entrada do veiculo");
+            // }
+
+            // if(dataSaida == ""){
+            //     alert("Você precisa preencher a saida do veiculo");
+            // }
+
+            //  if(horaEntrada == ""){
+            //     alert("Você precisa preencher a hora de entrada");
+            // }
+            
+            //  if(horaSaida == ""){
+            //     alert("Você precisa preencher a hora de saida");
+            // }
+
+            //     alert(dataEntrada + " - " + dataSaida + " - " + horaSaida + " - " + horaEntrada )
 
     var headers = new Headers();
 
