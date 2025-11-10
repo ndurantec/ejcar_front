@@ -252,10 +252,14 @@ function coletarDados() {
   
     return {
         chassi: document.getElementById("chassi").value.trim(),
-        placa: document.getElementById("placa").value.trim(),
+        veiculo: document.getElementById("veiculo").value.trim(),
         produto: document.getElementById("produto").value.trim(),
         servico: document.getElementById("servico").value.trim(),
         mao_de_obra: document.getElementById("mao_de_obra").value.trim(),
+        idUsuario: localStorage.getItem("id_usuario"),
+        veiculoDto : {
+          id : localStorage.getItem("id_veiculo")
+        }
 
 
     };
