@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const clearBtn = document.getElementById('clearSignature');
     const ctx = canvas.getContext('2d');
     
+    // 🚨 NOVO: Variável global para armazenar a string Base64 do canvas limpo
+    let emptySignatureData = ''; 
+    
     function initCanvas() {
         const rect = canvas.getBoundingClientRect();
         canvas.width = rect.width;
@@ -15,9 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
         ctx.strokeStyle = '#000';
         ctx.fillStyle = '#f9f9f9';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // 🚨 NOVO: Captura o Base64 do canvas limpo após a inicialização
+        emptySignatureData = canvas.toDataURL('image/png');
     }
     
     initCanvas();
+    
+    // ... (Desenho: isDrawing, lastX, lastY, startDrawing, draw, stopDrawing, getPosition permanecem inalterados) ...
     
     let isDrawing = false;
     let lastX = 0;
@@ -87,107 +95,60 @@ document.addEventListener('DOMContentLoaded', function() {
     clearBtn.addEventListener('click', clearSignature);
     window.addEventListener('resize', initCanvas);
 
-    // Toggle Senha
-    document.getElementById('toggleSenha').addEventListener('click', function() {
-        toggleSenha('toggleSenha', 'senha');
-    });
-
-    document.getElementById('toggleConfirme').addEventListener('click', function() {
-        toggleSenha('toggleConfirme', 'confirme');
-    });
-
-    // Botões
-    document.getElementById('botaocriar').addEventListener('click', criarconta);
-    document.getElementById('botaosalvar').addEventListener('click', salvar);
-    document.getElementById('botaodeletar').addEventListener('click', deletar);
-    document.getElementById('botaotrocar').addEventListener('click', atualizar);
+    // 🚨 NOVO: Função auxiliar para verificar e obter a assinatura
+    window.getSignatureData = function() {
+        const currentSignature = canvas.toDataURL('image/png');
+        
+        // Compara a assinatura atual com a assinatura do canvas limpo
+        if (currentSignature === emptySignatureData) {
+            return null; // Retorna nulo se o canvas estiver vazio
+        }
+        return currentSignature; // Retorna o Base64 se houver desenho
+    };
+    
+    // ... (O restante dos seus comentários de botões/toggle) ...
 });
 
-// Função para Toggle da Senha
-function toggleSenha(botaoId, inputId) {
-    const botao = document.getElementById(botaoId);
-    const input = document.getElementById(inputId);
-    const icon = botao.querySelector('i');
-    
-    if (input.type === 'password') {
-        input.type = 'text';
-        icon.className = 'fa fa-eye-slash';
-    } else {
-        input.type = 'password';
-        icon.className = 'fa fa-eye';
-    }
-}
+// function validarFormulario() {
+//      //limparErros();
 
-// // Função para guardar os dados
-// function guardarDados(conta) {
-//     const contasExistentes = JSON.parse(localStorage.getItem('contas')) || [];
-//     contasExistentes.push(conta);
-//     localStorage.setItem('contas', JSON.stringify(contasExistentes));
-//     console.log('Conta salva:', conta);
-// }
+//     // Captura dos valores do formulário
+//     let nome = document.getElementById("nome").value;
+//     let cpf = document.getElementById("cpf").value;
+//     let telefone = document.getElementById("telefone").value;
+//     let email = document.getElementById("email").value;
+//     let senha = document.getElementById("senha").value;
+//     let confirme = document.getElementById("confirme").value;
+//     //let assinatura = document.getElementById("assinatura").value;
 
-// Função para obter contas
-// function obterContas() {
-//     return JSON.parse(localStorage.getItem('contas')) || [];
-// }
-
-// Função principal para criar conta
-
-// Função Salvar
-function salvar() {
-    
-    const nome = document.getElementById("nome").value.trim();
-    const cpf = document.getElementById("cpf").value.trim();
-    const telefone = document.getElementById("telefone").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const usuario = document.getElementById("usuario").value.trim();
-    
-    console.log("=== DADOS SALVOS ===");
-    console.log("Nome: " + nome);
-    console.log("CPF: " + cpf);
-    console.log("Telefone: " + telefone);
-    console.log("Email: " + email);
-    console.log("Usuário: " + usuario);
-    console.log("=====================");
-    
-    alert('Dados salvos no console!');
-}
+//     const canvasAssinatura = document.getElementById('signaturePad');
+//     let assinaturaBase64 = canvasAssinatura.toDataURL('image/png'); // Captura a imagem como string Base64
 
 
-// Função para limpar formulário
-function limparFormulario() {
+//     let ok = true;
 
-    document.querySelector('form').reset();
-    const canvas = document.getElementById('signaturePad');
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#f9f9f9';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    console.log("📝 Formulário limpo!");
-}
+//     if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
+//     if (!cpf) { mostrarErro('erro-cpf', 'Verifique se possui cpf para continuar.'); ok = false; }
+//     if (!telefone) { mostrarErro('erro-telefone', 'Verifique se possui nome para continuar.'); ok = false; }
+//     if (!email) { mostrarErro('erro-email', 'Verifique se possui email para continuar.'); ok = false; }
+//     if (!senha) { mostrarErro('erro-senha', 'Verifique se possui senha para continuar.'); ok = false; }
+//     if (!confirme) { mostrarErro('erro-confirme', 'Verifique se possui confirme senha para continuar.'); ok = false; }
+//     //if (!assinatura) { mostrarErro('erro-assinatura', 'Verifique se possui assinatura para continuar.'); ok = false; }
 
+//     const tamanhoMinimoBase64 = 1000; // Ajuste este valor após testar o Base64 de um canvas limpo.
 
-
-function toggleSenha(botaoId, inputId) {
-    const botao = document.getElementById(botaoId);
-    const input = document.getElementById(inputId);
-    const icon = botao.querySelector('i');
-    
-    if (input.type === 'password') {
-        input.type = 'text';
-        icon.className = 'fa fa-eye-slash';
-    } else {
-        input.type = 'password';
-        icon.className = 'fa fa-eye';
-    }
-}
+//     if (assinaturaBase64.length < tamanhoMinimoBase64) { 
+//          // Se a string for muito curta, assumimos que está vazia/só tem o fundo.
+//          mostrarErro('erro-assinatura', 'É necessário preencher a assinatura.'); 
+//          ok = false; 
+//     }
 
 
-
+//     return ok;
+// };
 
 function validarFormulario() {
-     //limparErros();
+    // limparErros(); // Assumindo que esta função existe e limpa as mensagens de erro
 
     // Captura dos valores do formulário
     let nome = document.getElementById("nome").value;
@@ -196,21 +157,38 @@ function validarFormulario() {
     let email = document.getElementById("email").value;
     let senha = document.getElementById("senha").value;
     let confirme = document.getElementById("confirme").value;
-    let assinatura = document.getElementById("assinatura").value;
-
+    
+    // 🚨 NOVO: Captura a assinatura usando a função que verifica se o canvas está vazio.
+    // Retorna a string Base64 OU null (se estiver vazio).
+    let assinaturaData = window.getSignatureData(); 
 
     let ok = true;
 
     if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
     if (!cpf) { mostrarErro('erro-cpf', 'Verifique se possui cpf para continuar.'); ok = false; }
-    if (!telefone) { mostrarErro('erro-telefone', 'Verifique se possui nome para continuar.'); ok = false; }
+    if (!telefone) { mostrarErro('erro-telefone', 'Verifique se possui telefone para continuar.'); ok = false; } // Corrigido a mensagem
     if (!email) { mostrarErro('erro-email', 'Verifique se possui email para continuar.'); ok = false; }
     if (!senha) { mostrarErro('erro-senha', 'Verifique se possui senha para continuar.'); ok = false; }
     if (!confirme) { mostrarErro('erro-confirme', 'Verifique se possui confirme senha para continuar.'); ok = false; }
-    if (!assinatura) { mostrarErro('erro-assinatura', 'Verifique se possui assinatura para continuar.'); ok = false; }
+    
+    // 🚨 VALIDAÇÃO CORRETA DA ASSINATURA: Verifica se o retorno não é nulo.
+    if (!assinaturaData) { 
+        mostrarErro('erro-assinatura', 'É necessário preencher a assinatura para continuar.'); 
+        ok = false; 
+    }
+    
+    // Se a validação for bem-sucedida, você pode querer armazenar 'assinaturaData'
+    // em algum lugar para que a função que chama 'validarFormulario' possa acessá-la.
+    // No entanto, é mais limpo deixar a coleta na função 'coletarDados'.
 
     return ok;
 };
+
+
+
+
+
+
 
 
 
@@ -226,7 +204,7 @@ function coletarDados() {
         user: document.getElementById("usuario").value.trim(),
         password: document.getElementById("senha").value.trim(),
         confirmarSenha: document.getElementById("confirme").value.trim(),
-        assinatura: canvas.toDataURL(),// converte assinatura para Base64
+        imagemBase64: canvas.toDataURL(),// converte assinatura para Base64
         idUsuario: localStorage.getItem("id_usuario"),
 
         usuarioDto: {
@@ -235,22 +213,16 @@ function coletarDados() {
     };
 }
 
-
-
-
 function mostrarErro(idElemento, mensagem) {
     document.getElementById(idElemento).textContent = mensagem;
 }
+
 function limparErros() {
     let erros = document.querySelectorAll('.erro');
     erros.forEach(e => e.textContent = '');
 }
 
-
-
-
-
-function criarconta() {
+function criarConta() {
 
     limparErros();
 
@@ -261,7 +233,6 @@ function criarconta() {
     const dados = coletarDados();
     console.log("Enviando criar conta:", dados);
 
-    console.log(JSON.stringify(dados));
 
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -575,3 +546,84 @@ function alterarUsuario() {
     })
     .catch(error => console.error(error));
 }
+
+
+// Função para Toggle da Senha
+// function toggleSenha(botaoId, inputId) {
+//     const botao = document.getElementById(botaoId);
+//     const input = document.getElementById(inputId);
+//     const icon = botao.querySelector('i');
+    
+//     if (input.type === 'password') {
+//         input.type = 'text';
+//         icon.className = 'fa fa-eye-slash';
+//     } else {
+//         input.type = 'password';
+//         icon.className = 'fa fa-eye';
+//     }
+// }
+
+// // Função para guardar os dados
+// function guardarDados(conta) {
+//     const contasExistentes = JSON.parse(localStorage.getItem('contas')) || [];
+//     contasExistentes.push(conta);
+//     localStorage.setItem('contas', JSON.stringify(contasExistentes));
+//     console.log('Conta salva:', conta);
+// }
+
+// Função para obter contas
+// function obterContas() {
+//     return JSON.parse(localStorage.getItem('contas')) || [];
+// }
+
+// Função principal para criar conta
+
+// Função Salvar
+// function salvar() {
+    
+//     const nome = document.getElementById("nome").value.trim();
+//     const cpf = document.getElementById("cpf").value.trim();
+//     const telefone = document.getElementById("telefone").value.trim();
+//     const email = document.getElementById("email").value.trim();
+//     const usuario = document.getElementById("usuario").value.trim();
+    
+//     console.log("=== DADOS SALVOS ===");
+//     console.log("Nome: " + nome);
+//     console.log("CPF: " + cpf);
+//     console.log("Telefone: " + telefone);
+//     console.log("Email: " + email);
+//     console.log("Usuário: " + usuario);
+//     console.log("=====================");
+    
+//     alert('Dados salvos no console!');
+// }
+
+
+// Função para limpar formulário
+// function limparFormulario() {
+
+//     document.querySelector('form').reset();
+//     const canvas = document.getElementById('signaturePad');
+//     const ctx = canvas.getContext('2d');
+//     ctx.clearRect(0, 0, canvas.width, canvas.height);
+//     ctx.fillStyle = '#f9f9f9';
+//     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+//     console.log("📝 Formulário limpo!");
+// }
+
+
+
+// function toggleSenha(botaoId, inputId) {
+//     const botao = document.getElementById(botaoId);
+//     const input = document.getElementById(inputId);
+//     const icon = botao.querySelector('i');
+    
+//     if (input.type === 'password') {
+//         input.type = 'text';
+//         icon.className = 'fa fa-eye-slash';
+//     } else {
+//         input.type = 'password';
+//         icon.className = 'fa fa-eye';
+//     }
+// }
