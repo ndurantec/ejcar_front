@@ -71,11 +71,7 @@ function coletarDados() {
       ano: document.getElementById("ano").value.trim(),
       cor: document.getElementById("cor").value.trim(),
       chassi: document.getElementById("chassi").value.trim(),
-      seguroDto: {
-        nome: document.getElementById("nomeSeguradora").value.trim(), 
-        telefone: document.getElementById("numeroSeguradora").value.trim(),
-        idUsuario: document.getElementById("id_usuario").value.trim()
-      }
+      seguradora: document.querySelector('input[name="realizado"]:checked').value
     };
 }
 
