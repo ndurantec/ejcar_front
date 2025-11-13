@@ -321,6 +321,42 @@ function coletarDados() {
 }
 
 
+function limparCampos() {
+    console.log("Iniciando limpeza dos campos do formulário...");
+
+    // 1. Limpa os campos de texto/input
+    document.getElementById("nome").value = "";
+    document.getElementById("cpf").value = "";
+    document.getElementById("telefone").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("usuario").value = "";
+    document.getElementById("senha").value = "";
+    document.getElementById("confirme").value = "";
+
+    // 2. Limpa a Assinatura (Canvas)
+    const canvas = document.getElementById('signaturePad');
+    if (canvas) {
+        // Tenta usar a instância da biblioteca de assinatura (mais seguro)
+        if (typeof signaturePadInstance !== 'undefined' && signaturePadInstance.clear) {
+            signaturePadInstance.clear();
+        } else {
+             // Caso a instância não esteja disponível, limpa o canvas manualmente
+             const ctx = canvas.getContext('2d');
+             ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    }
+
+    // 3. Limpa mensagens de erro/sucesso (se a função existir)
+    if (typeof limparErros === 'function') {
+        limparErros();
+    }
+    
+    // 4. Limpa o ID do usuário salvo no localStorage, tratando o próximo como novo
+    localStorage.removeItem("id_usuario"); 
+    
+    console.log("Limpeza concluída. Formulário pronto para novo registro.");
+}
+
 
 
 
@@ -468,6 +504,7 @@ function salvar() {
                 // Tenta exibir o erro no elemento específico
                 if (document.getElementById(idElementoErro)) {
                     //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                    limparCampos();
                     mostrarErro(idElementoErro, mensagem);
                                         
                 } 
@@ -636,6 +673,7 @@ function deletar() {
                 // Tenta exibir o erro no elemento específico
                 if (document.getElementById(idElementoErro)) {
                     //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                    limparCampos();
                     mostrarErro(idElementoErro, mensagem);
                                         
                 } 
@@ -653,8 +691,8 @@ function deletar() {
     .then(data => {
       if (data.id) {
         localStorage.removeItem("id_usuario");
-        limparFormulario();
         mostrarMensagem(data.message || "✅ Conta deletada com sucesso!", "sucesso");
+        limparCampos();
       }
     })
     .catch(error => console.error(error));
