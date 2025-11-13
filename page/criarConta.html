@@ -13,6 +13,7 @@
     
     <form class="formulario-com-borda">
         <h1>Criar Conta</h1>
+        <div id="erro-mensagem"></div>
         <hr>
         
         <b>Nome: </b> 
@@ -64,13 +65,16 @@
             <canvas id="signaturePad"></canvas>
             <div class="signature-footer"></div>
         </div>
+        <div id="erro-assinatura" class="erro" style="color:red; font-size: 14px;"></div>
 
         <div class="btn-container">
-            <button type="button" class="btn-danger" id="botaocriar" onclick="criarConta()">Criar Conta</button>
+            <button type="button" class="btn-danger" id="botaocriar" onclick="salvar()">Criar Conta</button>
             <button type="button" class="btn-danger" id="botaodeletar" onclick="deletar()">Deletar</button>
+            <button type="button" class="btn-danger" id="botaconsultar" onclick="consultar()">Consultar</button>
             <button type="button" class="btn-danger" id="botaoatualizar" onclick="atualizar()">Atualizar</button>
         </div>
     </form>
+    <div id="erro-mensagem"></div>
 <script src="/script/criarConta.js"></script>
 </body>
 </html>

@@ -202,12 +202,12 @@ document.querySelectorAll('.campo-termo-label').forEach(label => {
 function validarFormulario() {
 
     // Captura dos valores do formulário
-    let step = document.getElementById("step").value;
-    let macaco = document.getElementById("macaco").value;
-    let chaveDeRoda = document.getElementById("chaveDeRoda").value;
-    let equipamentos = document.getElementById("equipamentos").value;
-    let outrosItens = document.getElementById("outrosItens").value;
-    let termo = document.getElementById("termo").value;
+    let step = document.getElementById("boxstep").value;
+    let macaco = document.getElementById("boxmacaco").value;
+    let chaveDeRoda = document.getElementById("boxchave").value;
+    let equipamentos = document.getElementById("boxequipamento").value;
+    let outrosItens = document.getElementById("descricao").value;
+    let termo = document.getElementById("termoAceite").value;
     let assinatura = document.getElementById("assinatura").value;
 
     let ok = true;
