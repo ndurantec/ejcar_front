@@ -237,7 +237,7 @@ function validarFormulario() {
     // Captura dos valores do formulário
     let nome = document.getElementById("nome").value;
     let cpf = document.getElementById("cpf").value;
-    let telefone = document.getElementById("telefone").value;
+    //let telefone = document.getElementById("telefone").value;
     let email = document.getElementById("email").value;
     let senha = document.getElementById("senha").value;
     let confirme = document.getElementById("confirme").value;
@@ -250,7 +250,7 @@ function validarFormulario() {
 
     if (!nome) { mostrarErro('erro-nome', 'Verifique se possui nome para continuar.'); ok = false; }
     if (!cpf) { mostrarErro('erro-cpf', 'Verifique se possui cpf para continuar.'); ok = false; }
-    if (!telefone) { mostrarErro('erro-telefone', 'Verifique se possui telefone para continuar.'); ok = false; } // Corrigido a mensagem
+    //if (!telefone) { mostrarErro('erro-telefone', 'Verifique se possui telefone para continuar.'); ok = false; } // Corrigido a mensagem
     if (!email) { mostrarErro('erro-email', 'Verifique se possui email para continuar.'); ok = false; }
     if (!senha) { mostrarErro('erro-senha', 'Verifique se possui senha para continuar.'); ok = false; }
     if (!confirme) { mostrarErro('erro-confirme', 'Verifique se possui confirme senha para continuar.'); ok = false; }
@@ -303,7 +303,7 @@ function coletarDados() {
     return {
         nome: document.getElementById("nome").value.trim(),
         cpf: document.getElementById("cpf").value.trim(),
-        telefone: document.getElementById("telefone").value.trim(),
+        //telefone: document.getElementById("telefone").value.trim(),
         email: document.getElementById("email").value.trim(),
         user: document.getElementById("usuario").value.trim(),
         password: document.getElementById("senha").value.trim(),
@@ -327,7 +327,7 @@ function limparCampos() {
     // 1. Limpa os campos de texto/input
     document.getElementById("nome").value = "";
     document.getElementById("cpf").value = "";
-    document.getElementById("telefone").value = "";
+    //document.getElementById("telefone").value = "";
     document.getElementById("email").value = "";
     document.getElementById("usuario").value = "";
     document.getElementById("senha").value = "";

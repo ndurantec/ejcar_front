@@ -7,6 +7,18 @@ function limparErros() {
     erros.forEach(e => e.textContent = '');
 }
 
+function mostrarMensagem(texto, tipo) {
+  const mensagemDiv = document.getElementById("erro-mensagem");
+  mensagemDiv.innerHTML = texto;
+
+  if (tipo === "sucesso") {
+    mensagemDiv.className = "mensagem sucesso";
+  } else {
+    mensagemDiv.className = "mensagem erro";
+  }
+}
+
+
 function validarFormulario() {
     limparErros();
 
@@ -14,12 +26,12 @@ function validarFormulario() {
     let nome = document.getElementById("usuario").value;
     let senha = document.getElementById("senha").value;
     let email = document.getElementById("email").value;
-    let telefone = document.getElementById("telefone").value;
+    //let telefone = document.getElementById("telefone").value;
 
     console.log(nome);
     console.log(senha);
     console.log(email);
-    console.log(telefone);
+    //console.log(telefone);
 
 
   
@@ -29,7 +41,7 @@ function validarFormulario() {
     if (!nome) { mostrarErro('erro-usuario', 'Verifique se possui nome para continuar!'); ok = false; }
     if (!senha) { mostrarErro('erro-senha', 'Verifique se possui senha para continuar!'); ok = false; }
     if (!email) { mostrarErro('erro-email', 'Verifique se possui email para continuar!'); ok = false; }
-    if (!telefone) { mostrarErro('erro-telefone', 'Verifique se possui telefone para continuar!'); ok = false; }
+    //if (!telefone) { mostrarErro('erro-telefone', 'Verifique se possui telefone para continuar!'); ok = false; }
 
     return ok;
 }
@@ -38,14 +50,11 @@ function coletarDados() {
     const canvas = document.getElementById('signaturePad');
   
     return {
-        nome: document.getElementById("usuario").value.trim(),
+        usuario: document.getElementById("usuario").value.trim(),
         senha: document.getElementById("senha").value.trim(),
         email: document.getElementById("email").value.trim(),
-        telefone: document.getElementById("telefone").value.trim(),
-        idUsuario: localStorage.getItem("id_usuario"),
-        loginDto: {
-            id: localStorage.getItem("id_login") // ou pegue de um campo <input hidden>
-        }
+        //telefone: document.getElementById("telefone").value.trim(),
+        //idUsuario: localStorage.getItem("id_usuario")        
     };
 }
 
@@ -64,7 +73,7 @@ function logar() {
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
     
-    fetch('http://127.0.0.1:8080/login'), {
+    fetch('http://localhost:8080/login/autenticar', {
 
         method: 'POST',
         mode: 'cors',
@@ -73,10 +82,11 @@ function logar() {
   
         headers: headers
   
-    }.then(async response => {
-        let data = await response.data();
+    }).then(async response => {
+        let data = await response.json();
   
-        console.log(data);//resposta do servidor
+        console.log("resposta do servidor");//resposta do servidor
+        console.log( data );
         
   
         if (!response.ok) {
@@ -108,7 +118,7 @@ function logar() {
   
             
           } else {
-           // mostrarMensagem("⚠️ Erro desconhecido", "erro");
+            mostrarMensagem("⚠️ Erro desconhecido", "erro");
            //alert("⚠️ " + text);
           }
           throw new Error("Erro de validação");
@@ -118,35 +128,14 @@ function logar() {
       })
       .then(data => {
         if (data.id) {
-          localStorage.setItem("id_veiculo", data.id);
+          localStorage.setItem("id_usuario", data.id);
           // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");
-          alert(" Login cadastrado com sucesso!")
-        } else {
-          alert("Cadastro concluído, mas o ID não foi retornado.")
-        }
+          mostrarMensagem(data.message || "✅ Login efetuado com sucesso!", "sucesso");
+        } 
       })
       .catch(error => console.error("Erro ao cadastrar:", error));
 
-    //    fetch('http://127.0.0.1:8080/responsaveis', { 
-         
-    //        method: 'POST',
-    //     mode: 'cors',
-    //     cache: 'no-cache',
-    //     body: JSON.stringify(
-    //         dados
-    //     ),
-    
-    //     headers: headers
-
-    // }).then(response => {
-           
-    // }).then(data => {
-       
-    // }).catch(error => {
-       
-    // });
-
-}
+    }
 
 
 
