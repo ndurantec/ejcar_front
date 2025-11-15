@@ -95,6 +95,59 @@ function coletarDados() {
     };
 }
 
+
+function popularDados(veiculo) {
+    if (!veiculo) {
+        console.error("Nenhum dado de veículo encontrado para popular a tela.");
+        return;
+    }
+
+    console.log("Populando dados do veículo:", veiculo);
+
+    // Campos principais do veículo
+    document.getElementById("responsavel").value = veiculo.responsavel || "";
+    document.getElementById("modelo").value = veiculo.modelo || "";
+    document.getElementById("placa").value = veiculo.placa || "";
+    document.getElementById("ano").value = veiculo.ano || "";
+    document.getElementById("cor").value = veiculo.cor || "";
+    document.getElementById("chassi").value = veiculo.chassi || "";
+
+    // Se houver idUsuario no retorno, salvar no localStorage
+    if (veiculo.idUsuario) {
+        localStorage.setItem("id_usuario", veiculo.idUsuario);
+    }
+
+    // -------------------------
+    //   Dados do Seguro
+    // -------------------------
+    const radioSim = document.getElementById("sim");
+    const radioNao = document.getElementById("nao");
+
+    if (veiculo.seguro) {
+
+        // Tem seguradora → marca "Sim"
+        radioSim.checked = true;
+
+
+        document.getElementById("nomeSeguradora").value = veiculo.seguro.nome || "";
+        document.getElementById("numeroSeguradora").value = veiculo.seguro.telefone || "";
+
+        // salva idUsuario também no seguro (caso retorne separado)
+        if (veiculo.seguroDto.idUsuario) {
+            localStorage.setItem("id_usuario", veiculo.seguroDto.idUsuario);
+        }
+    } else {
+        // Não tem seguradora → marca "Não"
+        radioNao.checked = true;
+
+        // Limpa os campos caso existam valores antigos
+        document.getElementById("nomeSeguradora").value = "";
+        document.getElementById("numeroSeguradora").value = "";
+        console.warn("Nenhum dado de seguro encontrado no veículo.");
+    }
+}
+
+
 function salvar() {
     
     console.log("Chamou o salvar");
@@ -184,17 +237,17 @@ function alterar() {
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
 
-    fetch('http://localhost:8080/veiculo/{id}'), {
+    fetch('http://localhost:8080/veiculo/alterar', {
 
-      method: 'PUT',
+      method: 'POST',
       mode: 'cors',
       cache: 'no-cache',
       body: JSON.stringify(dados),
       
       headers: headers
 
-  }.then(async response => {
-      let data = await response.data();
+  }).then(async response => {
+      let data = await response.json();
 
       console.log(data);//resposta do servidor
       
@@ -228,7 +281,7 @@ function alterar() {
 
           
         } else {
-         // mostrarMensagem("⚠️ Erro desconhecido", "erro");
+          mostrarMensagem("⚠️ Erro desconhecido", "erro");
          //alert("⚠️ " + text);
         }
         throw new Error("Erro de validação");
@@ -239,11 +292,8 @@ function alterar() {
     .then(data => {
       if (data.id) {
         localStorage.setItem("id_veiculo", data.id);
-        // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");
-        alert("Veículo cadastrado com sucesso!")
-      } else {
-        alert("Cadastro concluído, mas o ID não foi retornado.")
-      }
+        mostrarMensagem(data.message || "✅ Veículo alterado com sucesso!", "sucesso");
+      } 
     })
     .catch(error => console.error("Erro ao cadastrar:", error));
 }
@@ -252,7 +302,7 @@ function consultar() {
 
     limparErros();
 
-    if (!validarFormulario()) return;
+    //if (!validarFormulario()) return;
 
     const dados = coletarDados();
 
@@ -260,17 +310,17 @@ function consultar() {
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
 
-    fetch('http://localhost:8080/veiculo/{id}'), {
+    fetch('http://localhost:8080/veiculo/placa', {
 
-      method: 'GET',
+      method: 'POST',
       mode: 'cors',
       cache: 'no-cache',
       body: JSON.stringify(dados),
       
       headers: headers
 
-  }.then(async response => {
-      let data = await response.data();
+  }).then(async response => {
+      let data = await response.json();
 
       console.log(data);//resposta do servidor
       
@@ -315,11 +365,8 @@ function consultar() {
     .then(data => {
       if (data.id) {
         localStorage.setItem("id_veiculo", data.id);
-        // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");
-        alert("Veículo cadastrado com sucesso!")
-      } else {
-        alert("Cadastro concluído, mas o ID não foi retornado.")
-      }
+        popularDados(data);
+      } 
     })
     .catch(error => console.error("Erro ao cadastrar:", error));
 }
@@ -327,7 +374,7 @@ function consultar() {
 function deletar() {
     limparErros();
 
-   if (!validarFormulario()) return;
+   //if (!validarFormulario()) return;
 
    const dados = coletarDados();
 
@@ -335,17 +382,17 @@ function deletar() {
   headers.append("Content-Type", "application/json");
   headers.append("Access-Control-Allow-Origin", "*");
 
-  fetch('http://localhost:8080/veiculo/{id}'), {
+  fetch('http://localhost:8080/veiculo/deletar', {
 
-    method: 'DELETE',
+    method: 'POST',
     mode: 'cors',
     cache: 'no-cache',
     body: JSON.stringify(dados),
 
     headers: headers
 
-  }.then(async response => {
-      let data = await response.data();
+  }).then(async response => {
+      let data = await response.json();
 
       console.log(data);//resposta do servidor
       
@@ -379,7 +426,7 @@ function deletar() {
 
           
         } else {
-         // mostrarMensagem("⚠️ Erro desconhecido", "erro");
+          mostrarMensagem("⚠️ Erro desconhecido", "erro");
          //alert("⚠️ " + text);
         }
         throw new Error("Erro de validação");
@@ -389,12 +436,9 @@ function deletar() {
     })
     .then(data => {
       if (data.id) {
-        localStorage.setItem("id_veiculo", data.id);
-        // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");
-        alert("Veiculo cadastrado com sucesso!")
-      } else {
-        alert("Cadastro concluído, mas o ID não foi retornado.")
-      }
+        localStorage.removeItem("id_veiculo");
+        mostrarMensagem(data.message || "✅ Veículo deletado com sucesso!", "sucesso");        
+      } 
     })
     .catch(error => console.error("Erro ao cadastrar:", error));
 }
