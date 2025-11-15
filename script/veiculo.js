@@ -1,15 +1,28 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("form");
+// document.addEventListener("DOMContentLoaded", () => {
+//   const form = document.querySelector("form");
 
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-  });
-});
+//   form.addEventListener("submit", (event) => {
+//     event.preventDefault();
+//   });
+// });
 
 function mostrarErro(id, mensagem) {
     const erroElement = document.getElementById(id);
    if (erroElement) erroElement.textContent = mensagem;
 }
+
+
+function mostrarMensagem(texto, tipo) {
+  const mensagemDiv = document.getElementById("erro-mensagem");
+  mensagemDiv.innerHTML = texto;
+
+  if (tipo === "sucesso") {
+    mensagemDiv.className = "mensagem sucesso";
+  } else {
+    mensagemDiv.className = "mensagem erro";
+  }
+}
+
 
 function limparErros() {
    let erros = document.querySelectorAll('.erro');
@@ -62,7 +75,9 @@ function validarFormulario() {
 }
 
 function coletarDados() {
-   const canvas = document.getElementById('signaturePad');
+   //const canvas = document.getElementById('signaturePad');
+
+   console.log("O usuario --> " + localStorage.getItem("id_usuario") );
 
    return {
       responsavel: document.getElementById("responsavel").value.trim(),
@@ -71,26 +86,31 @@ function coletarDados() {
       ano: document.getElementById("ano").value.trim(),
       cor: document.getElementById("cor").value.trim(),
       chassi: document.getElementById("chassi").value.trim(),
+      idUsuario: localStorage.getItem("id_usuario"),
       seguroDto: {
         nome: document.getElementById("nomeSeguradora").value.trim(), 
         telefone: document.getElementById("numeroSeguradora").value.trim(),
-        idUsuario: document.getElementById("id_usuario").value.trim()
+        idUsuario: localStorage.getItem("id_usuario")
       }
     };
 }
 
 function salvar() {
+    
+    console.log("Chamou o salvar");
+
     limparErros();
 
     if (!validarFormulario()) return;
 
     const dados = coletarDados();
+    console.log( dados );
 
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
 
-    fetch('http://localhost:8080/veiculo/cadveiculo'), {
+    fetch('http://localhost:8080/veiculo/cadveiculo', {
 
       method: 'POST',
       mode: 'cors',
@@ -99,10 +119,11 @@ function salvar() {
 
       headers: headers
 
-  }.then(async response => {
-      let data = await response.data();
+    }).then(async response => {
+      let data = await response.json();
 
-      console.log(data);//resposta do servidor
+      console.log("resposta do servidor");//resposta do servidor
+      console.log( data );
       
 
       if (!response.ok) {
@@ -134,7 +155,7 @@ function salvar() {
 
           
         } else {
-         // mostrarMensagem("⚠️ Erro desconhecido", "erro");
+          mostrarMensagem("⚠️ Erro desconhecido", "erro");
          //alert("⚠️ " + text);
         }
         throw new Error("Erro de validação");
@@ -145,11 +166,8 @@ function salvar() {
     .then(data => {
       if (data.id) {
         localStorage.setItem("id_veiculo", data.id);
-        // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");
-        alert("Veículo cadastrado com sucesso!")
-      } else {
-        alert("Cadastro concluído, mas o ID não foi retornado.")
-      }
+        mostrarMensagem(data.message || "✅ Veículo cadastrado com sucesso!", "sucesso");
+      } 
     })
     .catch(error => console.error("Erro ao cadastrar:", error));
 }
