@@ -1,3 +1,106 @@
+document.addEventListener("DOMContentLoaded", function() {
+  carregarComboConta();
+  //carregarComboOperacao();
+  //definirNegativo()
+});
+
+function carregarComboConta() {
+ 
+  //console.log('Carregou a página e chamou a função');
+
+  var headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  headers.append("Access-Control-Allow-Origin", "*");
+
+  fetch('http://localhost:8080/veiculo/lista' ,{
+
+    method: "GET",
+    mode: "cors", // Usando 'cors' para permitir a requisição de origem cruzada
+    cache: "no-cache",
+   
+    // Convertendo o objeto JavaScript para JSON
+    // Esta parte é importante onde você deve passar os parametros (dados) da sua tela
+
+    headers: headers
+
+    
+  })
+  .then(async response => {
+      let data = await response.json();
+
+      console.log(data);
+      
+      if (!response.ok) {
+        // Caso sejam erros de validação no DTO
+        if (typeof data === "object") {
+          let mensagens = Object.values(data).join("<br>");
+
+          console.log("Entrou dento do if data ==== object");
+          console.log("----------------------------------------------");
+          console.log(mensagens);
+          console.log("----------------------------------------------");
+
+            let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+
+            for (const [campo, mensagem] of Object.entries(data)) {
+                // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+
+                console.log("========================================================");
+                console.log(idElementoErro);
+                console.log("========================================================");
+                // Tenta exibir o erro no elemento específico
+                if (document.getElementById(idElementoErro)) {
+                    //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                    limparCampos();
+                    mostrarErro(idElementoErro, mensagem);
+                                        
+                } 
+
+            }
+
+        } else {
+          mostrarMensagem("⚠️ Erro desconhecido", "erro");
+        }
+        throw new Error("Erro de validação");
+      }
+
+      return data;
+    })
+      .then(data => {
+        const comboBox = document.getElementById('veiculos');
+        data.forEach(veiculo => {
+            const option = document.createElement('option');
+            option.value = veiculo.id;
+            option.textContent = veiculo.placa;
+            comboBox.appendChild(option);
+        });
+      })
+    .catch(error => console.error(error));
+  
+   
+
+}
+
+
+
+// .then(response => response.json())
+//     .then(data => {
+//         const comboBox = document.getElementById('Contas');
+//         data.forEach(conta => {
+//             const option = document.createElement('option');
+//             option.value = conta.id;
+//             option.textContent = conta.nome;
+//             comboBox.appendChild(option);
+//         });
+//   })
+
+
+
+
+
+
+
 function mostrarErro(idElemento, mensagem) {
     document.getElementById(idElemento).textContent = mensagem;
 }
