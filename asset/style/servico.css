@@ -248,3 +248,15 @@ body {
         font-size: 14px;
     }
 }
+
+/* Mensagens de Erro */
+.erro {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 15px; /* Aumentado espaço abaixo do erro */
+    min-height: 18px;
+    font-weight: 600;
+    width: 100%;
+    text-align: left;
+}
