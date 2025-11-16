@@ -131,6 +131,7 @@ function logar() {
           localStorage.setItem("id_usuario", data.id);
           // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");
           mostrarMensagem(data.message || "✅ Login efetuado com sucesso!", "sucesso");
+          window.location.href = '/page/home.html';
         } 
       })
       .catch(error => console.error("Erro ao cadastrar:", error));
