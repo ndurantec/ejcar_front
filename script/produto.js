@@ -308,18 +308,20 @@ function deletar() {
 
     limparErros();
     
-    if (!validarFormulario()) return;
+    //if (!validarFormulario()) return;
     
     const dados = coletarDados();
+    dados.id = localStorage.getItem("id_produto");
     //console.log("Enviando criar conta:", dados);
     
-    console.log(JSON.stringify(dados));//enviando dados
+    console.log( dados );//enviando dados
+
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
 
     // Envia os dados via fetch
-    fetch("http://localhost:8080/produto/{id}"), { // altere a URL conforme seu endpoint
+    fetch("http://localhost:8080/produto/deletar", { // altere a URL conforme seu endpoint
 
         
         method: 'POST',
@@ -331,8 +333,8 @@ function deletar() {
     
         headers: headers 
      
-    }.then(async response => {
-        let data = await response.data();
+    }).then(async response => {
+        let data = await response.json();
   
         console.log(data);//resposta do servidor
         
@@ -358,6 +360,7 @@ function deletar() {
                   // Tenta exibir o erro no elemento específico
                   if (document.getElementById(idElementoErro)) {
                       //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                      limparCampos();
                       mostrarErro(idElementoErro, mensagem);
                                           
                   } 
@@ -365,8 +368,7 @@ function deletar() {
   
             
           } else {
-           // mostrarMensagem("⚠️ Erro desconhecido", "erro");
-           //alert("⚠️ " + text);
+           mostrarMensagem("⚠️ Erro desconhecido", "erro");           
           }
           throw new Error("Erro de validação");
         }
@@ -375,14 +377,12 @@ function deletar() {
       })
       .then(data => {
         if (data.id) {
-          localStorage.setItem("id_produto", data.id);
-          // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");
-          alert("Produto cadastrado com sucesso!")
-        } else {
-          alert("Cadastro concluído, mas o ID não foi retornado.")
+          localStorage.removeItem("id_produto");
+          mostrarMensagem(data.message || "✅ Produto deletado com sucesso!", "sucesso");
+          limparCampos();
         }
       })
-      .catch(error => console.error("Erro ao cadastrar:", error))
+      .catch(error => console.error("Erro ao cadastrar:", error));
 } 
 
 
