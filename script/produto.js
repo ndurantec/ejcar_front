@@ -3,11 +3,26 @@ function mostrarErro(idElemento, mensagem) {
     document.getElementById(idElemento).textContent = mensagem;
 }
 
+function mostrarMensagem(texto, tipo) {
+  const mensagemDiv = document.getElementById("erro-mensagem");
+  mensagemDiv.innerHTML = texto;
+
+  if (tipo === "sucesso") {
+    mensagemDiv.className = "mensagem sucesso";
+  } else {
+    mensagemDiv.className = "mensagem erro";
+  }
+}
+
 function limparErros() {
     let erros = document.querySelectorAll('.erro');
     erros.forEach(e => e.textContent = '');
 }
 
+function limparMensagem() {
+  const mensagem = document.getElementById('erro-mensagem');
+  if (mensagem) mensagem.textContent = '';
+}
 
 function validarFormulario() {
     //limparErros();
@@ -23,14 +38,24 @@ function validarFormulario() {
 }
 
 function coletarDados() {
-    const canvas = document.getElementById('signaturePad');
-  
+      
     return {
         nome: document.getElementById("nome").value.trim(),
-        idUsuario: localStorage.getItem("id_usuario")
-       
+        idUsuario: localStorage.getItem("id_usuario")       
     };
 }
+
+function limparCampos() {
+    console.log("Iniciando limpeza dos campos do formulário...");
+
+    // 1. Limpa os campos de texto/input
+    document.getElementById("nome").value = "";
+     
+    
+    console.log("Limpeza concluída. Formulário pronto para novo registro.");
+}
+
+
 
 function salvar() {
     
@@ -49,7 +74,7 @@ function salvar() {
     headers.append("Access-Control-Allow-Origin", "*");
 
     // Envia os dados via fetch
-    fetch("http://localhost:8080/produto/cadproduto"), { // altere a URL conforme seu endpoint
+    fetch("http://localhost:8080/produto/cadproduto", { // altere a URL conforme seu endpoint
        
         method: 'POST',
         mode: 'cors',
@@ -60,8 +85,8 @@ function salvar() {
     
         headers: headers
 
-    }.then(async response => {
-        let data = await response.data();
+    }).then(async response => {
+        let data = await response.json();
   
         console.log(data);//resposta do servidor
         
@@ -87,6 +112,7 @@ function salvar() {
                   // Tenta exibir o erro no elemento específico
                   if (document.getElementById(idElementoErro)) {
                       //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                      limparCampos();
                       mostrarErro(idElementoErro, mensagem);
                                           
                   } 
@@ -94,7 +120,7 @@ function salvar() {
   
             
           } else {
-           // mostrarMensagem("⚠️ Erro desconhecido", "erro");
+            mostrarMensagem("⚠️ Erro desconhecido", "erro");
            //alert("⚠️ " + text);
           }
           throw new Error("Erro de validação");
@@ -105,10 +131,9 @@ function salvar() {
       .then(data => {
         if (data.id) {
           localStorage.setItem("id_produto", data.id);
-          // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");
-          alert("Produto cadastrado com sucesso!")
-        } else {
-          alert("Cadastro concluído, mas o ID não foi retornado.")
+          mostrarMensagem(data.message || "✅ Produto cadastrado com sucesso!", "sucesso");          
+          limparCampos();
+          limparMensagem();
         }
       })
       .catch(error => console.error("Erro ao cadastrar:", error));

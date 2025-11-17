@@ -1,16 +1,7 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//   const form = document.querySelector("form");
-
-//   form.addEventListener("submit", (event) => {
-//     event.preventDefault();
-//   });
-// });
-
 function mostrarErro(id, mensagem) {
     const erroElement = document.getElementById(id);
    if (erroElement) erroElement.textContent = mensagem;
 }
-
 
 function mostrarMensagem(texto, tipo) {
   const mensagemDiv = document.getElementById("erro-mensagem");
@@ -22,7 +13,6 @@ function mostrarMensagem(texto, tipo) {
     mensagemDiv.className = "mensagem erro";
   }
 }
-
 
 function limparErros() {
    let erros = document.querySelectorAll('.erro');
