@@ -39,7 +39,7 @@ function validarFormulario() {
 
 function coletarDados() {
       
-    return {
+    return {        
         nome: document.getElementById("nome").value.trim(),
         idUsuario: localStorage.getItem("id_usuario")       
     };
@@ -143,20 +143,20 @@ function salvar() {
 function consultar() {
     limparErros();
     
-    if (!validarFormulario()) return;
+    //if (!validarFormulario()) return;
     
     const dados = coletarDados();
 
     //console.log("Enviando criar conta:", dados);
     
-    console.log(JSON.stringify(dados));//enviando dados
+    console.log( dados );//enviando dados
     
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
    
     // Envia os dados via fetch
-    fetch("http://localhost:8080/produto/{id}"), { // altere a URL conforme seu endpoint
+    fetch("http://localhost:8080/produto/buscarPorNome", { // altere a URL conforme seu endpoint
 
         method: 'POST',
         mode: 'cors',
@@ -167,8 +167,8 @@ function consultar() {
     
         headers: headers
     
-    }.then(async response => {
-        let data = await response.data();
+    }).then(async response => {
+        let data = await response.json();
   
         console.log(data);//resposta do servidor
         
@@ -201,8 +201,7 @@ function consultar() {
   
             
           } else {
-           // mostrarMensagem("⚠️ Erro desconhecido", "erro");
-           //alert("⚠️ " + text);
+            mostrarMensagem("⚠️ Erro desconhecido", "erro");           
           }
           throw new Error("Erro de validação");
         }
@@ -212,14 +211,10 @@ function consultar() {
       .then(data => {
         if (data.id) {
           localStorage.setItem("id_produto", data.id);
-          // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");
-          alert("Produto cadastrado com sucesso!")
-        } else {
-          alert("Cadastro concluído, mas o ID não foi retornado.")
-        }
+          mostrarMensagem(data.message || "✅ Produto encontrado!", "sucesso");          
+        } 
       })
-      .catch(error => console.error("Erro ao cadastrar:", error))
-
+      .catch(error => console.error("Erro ao cadastrar:", error));
    }
     
 
@@ -228,17 +223,20 @@ function alterar() {
     limparErros();
     
     if (!validarFormulario()) return;
+
     
     const dados = coletarDados();
+    dados.id = localStorage.getItem("id_produto");
     //console.log("Enviando criar conta:", dados);
     
-    console.log(JSON.stringify(dados));//enviando dados
+    console.log( dados );//enviando dados
+
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
    
     // Envia os dados via fetch
-    fetch("http://localhost:8080/produto/{id}"), { // altere a URL conforme seu endpoint
+    fetch("http://localhost:8080/produto/alterar", { // altere a URL conforme seu endpoint
 
         
         method: 'POST',
@@ -250,8 +248,8 @@ function alterar() {
     
         headers: headers
     
-    }.then(async response => {
-        let data = await response.data();
+    }).then(async response => {
+        let data = await response.json();
   
         console.log(data);//resposta do servidor
         

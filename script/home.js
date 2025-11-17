@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
             menu.appendChild(novoItem3);
             menu.appendChild(novoItem4);
             menu.appendChild(novoItem4);
+            menu.appendChild(novoItem5);
 
         }
     }
