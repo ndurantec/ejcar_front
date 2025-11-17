@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const menu = document.getElementById("menu-opcoes");
 
     //Trocar para o usuário que for o administrador - Exemplo 1
-    if (userId === "8") {
+    if (userId === "1") {
         // Remove os botões "Criar Conta" e "Entrar"
         // if (authContainer) {
         //     authContainer.innerHTML = `
