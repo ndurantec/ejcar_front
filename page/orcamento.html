@@ -25,21 +25,46 @@
                         <label for="chassi" class="form-label"><i class="fas fa-barcode"></i> Codigo de Orçamento:</label>
                         <div class="input-icon">
                             <i class="fas fa-barcode"></i>
-                            <input type="text" class="form-control" id="chassi" placeholder="Digite o código" name="chassi">
+                            <input type="text" class="form-control" id="codigo" placeholder="Digite o código" name="codigo">
                             <div id="erro-chassi" class="erro" style="color:red; font-size: 14px;"></div>
                         </div>
                     </div>
 
 
-                <div class="input-group">
-                    <label for="placa" class="form-label"><i class="fas fa-car"></i> Veiculo:</label>
+                    <div class="input-group">
+                        <label for="placa" class="form-label"><i class="fas fa-car"></i> Placa do Veículo:</label>                    
+                        <div class="input-icon">
+                            <!-- <i class="fas fa-car"></i> -->
+                            <select name="veiculo" id="veiculos" class="form-control"> 
+                                <option value="veiculo">Todas as placas dos veículos</option>                               
+                            </select>                       
+                            <div id="erro-placa" class="erro" style="color:red; font-size: 14px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- <label for="servico"><b>Placa do Veículo:</b></label>
+                <select name="veiculo" id="veiculos" class="form-control"> 
+                    <option value="veiculo">Todas as placas dos veículos</option>                               
+                </select> -->
+
+<!-- 
+                <label for="placa" class="form-label"><i class="fas fa-car"></i> Veiculo:</label>
                     <div class="input-icon">
                         <i class="fas fa-car"></i>
                         <input type="text" class="form-control" id="placa" placeholder="Digite a placa do veículo" name="placa">
                         <div id="erro-placa" class="erro" style="color:red; font-size: 14px;"></div>
-                    </div>
-                </div>
-            </div>
+                    </div> -->
+
+
+
+
+
+
 
             <div class="product-row" style="display: flex; gap: 10px; align-items: flex-end;">
                 <div class="product-input" style="flex: 2;">

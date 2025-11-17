@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
-  carregarComboConta();
+  carregarComboVeiculo();
   //carregarComboOperacao();
   //definirNegativo()
 });
 
-function carregarComboConta() {
+function carregarComboVeiculo() {
  
   //console.log('Carregou a página e chamou a função');
 
@@ -76,9 +76,7 @@ function carregarComboConta() {
             comboBox.appendChild(option);
         });
       })
-    .catch(error => console.error(error));
-  
-   
+    .catch(error => console.error(error));   
 
 }
 
