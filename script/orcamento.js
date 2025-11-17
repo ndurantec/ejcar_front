@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
   carregarComboVeiculo();
-  //carregarComboOperacao();
+  carregarComboProduto();
   //definirNegativo()
 });
 
@@ -80,9 +80,89 @@ function carregarComboVeiculo() {
 
 }
 
+
+function carregarComboProduto() {
+ 
+  //console.log('Carregou a página e chamou a função');
+
+  var headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  headers.append("Access-Control-Allow-Origin", "*");
+
+  fetch('http://localhost:8080/produto/lista' ,{
+
+    method: "GET",
+    mode: "cors", // Usando 'cors' para permitir a requisição de origem cruzada
+    cache: "no-cache",
+   
+    // Convertendo o objeto JavaScript para JSON
+    // Esta parte é importante onde você deve passar os parametros (dados) da sua tela
+
+    headers: headers
+
+    
+  })
+  .then(async response => {
+      let data = await response.json();
+
+      console.log(data);
+      
+      if (!response.ok) {
+        // Caso sejam erros de validação no DTO
+        if (typeof data === "object") {
+          let mensagens = Object.values(data).join("<br>");
+
+          console.log("Entrou dento do if data ==== object");
+          console.log("----------------------------------------------");
+          console.log(mensagens);
+          console.log("----------------------------------------------");
+
+            let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+
+            for (const [campo, mensagem] of Object.entries(data)) {
+                // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+                const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+
+                console.log("========================================================");
+                console.log(idElementoErro);
+                console.log("========================================================");
+                // Tenta exibir o erro no elemento específico
+                if (document.getElementById(idElementoErro)) {
+                    //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                    limparCampos();
+                    mostrarErro(idElementoErro, mensagem);
+                                        
+                } 
+
+            }
+
+        } else {
+          mostrarMensagem("⚠️ Erro desconhecido", "erro");
+        }
+        throw new Error("Erro de validação");
+      }
+
+      return data;
+    })
+      .then(data => {
+        const comboBox = document.getElementById('produtos');
+        data.forEach(produto => {
+            const option = document.createElement('option');
+            option.value = produto.id;
+            option.textContent = produto.nome;
+            comboBox.appendChild(option);
+        });
+      })
+    .catch(error => console.error(error));   
+
+}
+
+
+
 function mostrarErro(idElemento, mensagem) {
     document.getElementById(idElemento).textContent = mensagem;
 }
+
 function limparErros() {
     let erros = document.querySelectorAll('.erro');
     erros.forEach(e => e.textContent = '');
@@ -93,7 +173,7 @@ function validarFormulario() {
     //limparErros();
 
     // Captura dos valores do formulário
-    let chassi = document.getElementById("chassi").value;
+    let codigo = document.getElementById("codigo").value;
     let placa = document.getElementById("placa").value;
     let produto = document.getElementById("produto").value;
     let servico = document.getElementById("servico").value;
@@ -130,7 +210,7 @@ function coletarDados() {
 }
 
 
-function cadastrarorcamento() {
+function cadastrar() {
 
     limparErros();
     
@@ -139,14 +219,12 @@ function cadastrarorcamento() {
     const dados = coletarDados();
     console.log("Enviando criar conta:", dados);
 
-    console.log(JSON.stringify(dados));
-    console.log("JSON enviado ao backend:", JSON.stringify(dados, null, 2));
-
+    
     var headers = new Headers();
     headers.append("Content-Type", "application/json");
     headers.append("Access-Control-Allow-Origin", "*");
 
-    fetch('http://localhost:8080/orcamento/cadorca', {
+    fetch('http://localhost:8080/orcamento/cadorcamento', {
         
         method: 'POST',
         mode: 'cors',
@@ -205,13 +283,13 @@ function cadastrarorcamento() {
     }).then(data => {
       if (data.id) {
         localStorage.setItem("id_orcamento", data.id);
-        // mostrarMensagem(data.message || "✅ Professor cadastrado com sucesso!", "sucesso");
+        mostrarMensagem(data.message || "✅ Orçamento cadastrado com sucesso!", "sucesso");
       }
     })
     .catch(error => console.error(error));
 }
 
-//deletar 
+
 
 
 function deletarorcamento() {

@@ -22,11 +22,11 @@
 
                 <div class="form-group">
                     <div class="input-group">
-                        <label for="chassi" class="form-label"><i class="fas fa-barcode"></i> Codigo de Orçamento:</label>
+                        <label for="codigo" class="form-label"><i class="fas fa-barcode"></i> Codigo de Orçamento:</label>
                         <div class="input-icon">
                             <i class="fas fa-barcode"></i>
                             <input type="text" class="form-control" id="codigo" placeholder="Digite o código" name="codigo">
-                            <div id="erro-chassi" class="erro" style="color:red; font-size: 14px;"></div>
+                            <div id="erro-codigo" class="erro" style="color:red; font-size: 14px;"></div>
                         </div>
                     </div>
 
@@ -71,17 +71,18 @@
                     <label for="produto" class="form-label"><i class="fas fa-box"></i> Produto:</label>
                     <div id="erro-produto" class="erro" style="color:red; font-size: 14px;"></div>
                     <div class="input-icon">
-                    <i class="fas fa-box"></i></label>  
-                     <select name="tipo" id="produto">
-                     <option value="tinta">Tinta</option>
-                     <option value="pneu">Pneu</option>
-                     <option value="oleo">Oleo</option>
-                     <option value="outros">Outros</option>
-                    </select>
+                    <!-- <i class="fas fa-box"></i></label>   -->
+                    <select name="produto" id="produtos" class="form-control"> 
+                        <option value="produto">Todas os produtos</option>                               
+                    </select>                       
+                    <div id="erro-produto" class="erro" style="color:red; font-size: 14px;"></div>
                 </div>
             </div>
 
-                <div class="product-input" style="flex: 2;">
+
+            
+
+                <!-- <div class="product-input" style="flex: 2;">
                     <label for="servico" class="form-label"><i class="fas fa-wrench"></i> Serviço:</label>
                     <div id="erro-servico" class="erro" style="color:red; font-size: 14px;"></div>
                     <div class="input-icon">
@@ -97,14 +98,14 @@
                         <option value="outros">Outros</option>
                     </select>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="input-group">
                     <label for="product-price" class="form-label"><i class="fas fa-dollar-sign"></i> Valor:</label>
                     <div class="input-icon">
                         <i class="fas fa-dollar-sign"></i>
-                        <input type="number" class="form-control" id="mao_de_obra" placeholder="0,00" min="0" step="0.01">
-                        <div id="erro-mao_de_obra" class="erro" style="color:red; font-size: 14px;"></div>
+                        <input type="number" class="form-control" id="valor" placeholder="0,00" min="0" step="0.01">
+                        <div id="erro-valor" class="erro" style="color:red; font-size: 14px;"></div>
                     </div>
                 </div>
                 
@@ -114,10 +115,10 @@
             </div>
             <div class="top">
 
-            <button type="button" class="btn btn-submit" onclick="cadastrarorcamento()">Cadastrar Orcamentos</button>
-            <button type="button" class="btn btn-submit" onclick="consultarorcamento()">Consultar Orcamentos</button>
-            <button type="button" class="btn btn-submit" onclick="deletarorcamento()">Deletar Orcamento</button>
-            <button type="button" class="btn btn-submit" onclick="atualizarorcamento()">Atualizar Orcamento</button>
+            <button type="button" class="btn btn-submit" onclick="cadastrar()">Cadastrar</button>
+            <button type="button" class="btn btn-submit" onclick="consultar()">Consultar</button>
+            <button type="button" class="btn btn-submit" onclick="atualizar()">Atualizar</button>
+            <button type="button" class="btn btn-submit" onclick="deletar()">Deletar</button>
             </div>
 
           
