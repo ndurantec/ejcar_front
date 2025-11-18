@@ -81,19 +81,16 @@ function carregarComboVeiculo() {
 }
 
 
+function mostrarMensagem(texto, tipo) {
+  const mensagemDiv = document.getElementById("erro-mensagem");
+  mensagemDiv.innerHTML = texto;
 
-// .then(response => response.json())
-//     .then(data => {
-//         const comboBox = document.getElementById('Contas');
-//         data.forEach(conta => {
-//             const option = document.createElement('option');
-//             option.value = conta.id;
-//             option.textContent = conta.nome;
-//             comboBox.appendChild(option);
-//         });
-//   })
-
-
+  if (tipo === "sucesso") {
+    mensagemDiv.className = "mensagem sucesso";
+  } else {
+    mensagemDiv.className = "mensagem erro";
+  }
+}
 
 
 
@@ -147,113 +144,86 @@ function coletarDados() {
 
 function salvar() {
         
-        limparErros();
+  limparErros();
 
-        if (!validarFormulario()) return;
+  if (!validarFormulario()) return;
 
-        const dados = coletarDados();
-        //console.log("Enviando criar conta:", dados);
+  const dados = coletarDados();
 
-        console.log(dados);
+  console.log("Enviando angenda:");
 
-    // const dataEntrada = document.getElementById("entradaVeiculo").value;
+  console.log(dados);
 
-    // const dataSaida = document.getElementById("saidaVeiculo").value;
-
-    // const horaEntrada = document.getElementById("horaEntrada").value;
-
-    // const horaSaida = document.getElementById("horaSaida").value;
-
-
-            // if(dataEntrada == ""){
-            //     alert("Você precisa preencher a entrada do veiculo");
-            // }
-
-            // if(dataSaida == ""){
-            //     alert("Você precisa preencher a saida do veiculo");
-            // }
-
-            //  if(horaEntrada == ""){
-            //     alert("Você precisa preencher a hora de entrada");
-            // }
-            
-            //  if(horaSaida == ""){
-            //     alert("Você precisa preencher a hora de saida");
-            // }
-
-            //     alert(dataEntrada + " - " + dataSaida + " - " + horaSaida + " - " + horaEntrada )
-
-    var headers = new Headers();
-
-    headers.append("Content-Type", "application/json");
-
-    headers.append("Access-Control-Allow-Origin", "*");
-   
-    // Envia os dados via fetch
-    fetch('http://localhost:8080/agenda/cadagenda', { // altere a URL conforme seu endpoint
-       
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        body: JSON.stringify(
-            dados
-        ),
     
-        headers: headers
 
-
-    }).then(async response => {
-      let data = await response.data();
-
-      console.log(data);//resposta do servidor
+  var headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  headers.append("Access-Control-Allow-Origin", "*");
+   
+   
+  fetch('http://localhost:8080/agenda/cadagenda', { // altere a URL conforme seu endpoint
       
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      body: JSON.stringify(
+          dados
+      ),
+  
+      headers: headers
 
-      if (!response.ok) {
-        // Caso sejam erros de validação no DTO
-        if (typeof data === "object") {
-          let mensagens = Object.values(data).join("<br>");
 
-          console.log("Entrou dento do if data ==== object");
-          console.log("----------------------------------------------");
-          console.log(mensagens);
-          console.log("----------------------------------------------");
+  }).then(async response => {
+    let data = await response.json();
 
-            let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
+    console.log("Resposta do servidor");
+    console.log(data);//resposta do servidor
+    
 
-            for (const [campo, mensagem] of Object.entries(data)) {
-                // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
-                const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+    if (!response.ok) {
+      // Caso sejam erros de validação no DTO
+      if (typeof data === "object") {
+        let mensagens = Object.values(data).join("<br>");
 
-                console.log("========================================================");
-                console.log(idElementoErro);
-                console.log("========================================================");
-                // Tenta exibir o erro no elemento específico
-                if (document.getElementById(idElementoErro)) {
-                    //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
-                    mostrarErro(idElementoErro, mensagem);
-                                        
-                } 
-            }
+        console.log("Entrou dento do if data ==== object");
+        console.log("----------------------------------------------");
+        console.log(mensagens);
+        console.log("----------------------------------------------");
 
-          
-        } else {
-         // mostrarMensagem("⚠️ Erro desconhecido", "erro");
-         //alert("⚠️ " + text);
-        }
-        throw new Error("Erro de validação");
-      }
+          let mensagensGlobais = []; // Para erros que não mapeiam para um campo específico
 
-      return data;
-    }).then(data => {
-      if (data.id) {
-        localStorage.setItem("id_responsavel", data.id);
-        // mostrarMensagem(data.message || "✅ Responsavel cadastrado com sucesso!", "sucesso");
-        alert("Responsável cadastrado com sucesso!")
+          for (const [campo, mensagem] of Object.entries(data)) {
+              // Mapeia o nome do campo do backend ('cpf', 'email', etc.) para o ID do elemento no HTML
+              const idElementoErro = "erro-" + campo; // Ex: 'cpf_error_message'
+
+              console.log("========================================================");
+              console.log(idElementoErro);
+              console.log("========================================================");
+              // Tenta exibir o erro no elemento específico
+              if (document.getElementById(idElementoErro)) {
+                  //CHAMANDO A SUA FUNÇÃO mostrarErro(idElemento, mensagem)
+                  mostrarErro(idElementoErro, mensagem);
+                                      
+              } 
+          }
+
+        
       } else {
-        alert("Cadastro concluído, mas o ID não foi retornado.")
+        mostrarMensagem("⚠️ Erro desconhecido", "erro");
+        //alert("⚠️ " + text);
       }
-    })
-    .catch(error => console.error("Erro ao cadastrar:", error))
+      throw new Error("Erro de validação");
+    }
+
+    return data;
+  }).then(data => {
+    if (data.id) {
+      localStorage.setItem("id_responsavel", data.id);
+      mostrarMensagem(data.message || "✅ Agendado com sucesso!", "sucesso");
+      
+    } 
+  })
+  .catch(error => console.error("Erro ao cadastrar:", error))
 }
 
 
